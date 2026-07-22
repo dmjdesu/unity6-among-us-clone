@@ -74,7 +74,12 @@ namespace AmongUsClone
         [Networked] public int MeetingReporterNumber { get; private set; }
         [Networked] public int MeetingBodyNumber { get; private set; }
         [Networked] public int AssignedTaskCount { get; private set; }
+        [Networked] public int AssignedTaskMask { get; private set; }
         [Networked] public int CompletedTaskMask { get; private set; }
+        [Networked] public int LastAssignedTaskId { get; private set; }
+        [Networked] public float TaskDeadlineEndsAt { get; private set; }
+        [Networked] public bool TaskDeadlineFailed { get; private set; }
+        [Networked] public float TaskFailureCutInEndsAt { get; private set; }
         [Networked] public int ActiveSabotageId { get; private set; }
         [Networked] public float SabotageEndsAt { get; private set; }
         [Networked] public int InteractionKindId { get; private set; }
@@ -119,12 +124,12 @@ namespace AmongUsClone
 
         public bool IsLocalPlayer => Object != null && Object.HasInputAuthority;
         public bool IsImpostor => Role == PlayerRole.Impostor;
-        public bool CanVote => MatchState == MatchState.Meeting && IsAlive && Role != PlayerRole.Spectator;
+        public bool CanVote => MatchState == MatchState.Meeting && IsAlive && Role != PlayerRole.Spectator && !TaskDeadlineFailed;
         public string DisplayName => IsBot ? $"CPU {PlayerNumber}" : $"Player {PlayerNumber}";
         public float KillCooldownRemaining => Mathf.Max(0f, _killCooldownSeconds - (Time.time - LastKillTime));
         public bool IsKillReady => KillCooldownRemaining <= 0f;
-        public bool CanDoTasks => MatchState == MatchState.Playing && IsAlive && Role == PlayerRole.Crewmate && AssignedTaskCount > 0;
-        public int CompletedTaskCount => CountCompletedTasks(CompletedTaskMask, AssignedTaskCount);
+        public bool CanDoTasks => MatchState == MatchState.Playing && IsAlive && Role == PlayerRole.Crewmate && AssignedTaskCount > 0 && !TaskDeadlineFailed;
+        public int CompletedTaskCount => CountTasks(CompletedTaskMask & AssignedTaskMask);
         public bool AllTasksComplete => AssignedTaskCount > 0 && CompletedTaskCount >= AssignedTaskCount;
         public SabotageType ActiveSabotage => (SabotageType)ActiveSabotageId;
         public InteractionKind ActiveInteraction => (InteractionKind)InteractionKindId;
@@ -314,7 +319,12 @@ namespace AmongUsClone
             MeetingReporterNumber = 0;
             MeetingBodyNumber = 0;
             AssignedTaskCount = 0;
+            AssignedTaskMask = 0;
             CompletedTaskMask = 0;
+            LastAssignedTaskId = -1;
+            TaskDeadlineEndsAt = 0f;
+            TaskDeadlineFailed = false;
+            TaskFailureCutInEndsAt = 0f;
             ClearSabotage();
             ClearInteraction();
             ClearAnnouncement();
@@ -324,7 +334,7 @@ namespace AmongUsClone
             ResetMovementAnimation();
         }
 
-        public void BeginRound(PlayerRole role, Vector2 spawnPosition, int taskCount)
+        public void BeginRound(PlayerRole role, Vector2 spawnPosition, int taskMask, float taskDeadlineEndsAt)
         {
             NetworkedPosition = spawnPosition;
             Role = role;
@@ -336,8 +346,13 @@ namespace AmongUsClone
             VotedTargetNumber = SkipVoteTarget;
             MeetingReporterNumber = 0;
             MeetingBodyNumber = 0;
-            AssignedTaskCount = role == PlayerRole.Crewmate ? Mathf.Clamp(taskCount, 0, 30) : 0;
+            AssignedTaskMask = role == PlayerRole.Crewmate ? taskMask & 0x3fffffff : 0;
+            AssignedTaskCount = CountTasks(AssignedTaskMask);
             CompletedTaskMask = 0;
+            LastAssignedTaskId = -1;
+            TaskDeadlineEndsAt = taskDeadlineEndsAt;
+            TaskDeadlineFailed = false;
+            TaskFailureCutInEndsAt = 0f;
             ClearSabotage();
             ClearInteraction();
             ClearAnnouncement();
@@ -415,20 +430,50 @@ namespace AmongUsClone
             LastKillTime = Time.time;
         }
 
+        public bool HasAssignedTask(int taskId)
+        {
+            return taskId >= 0 && taskId < 30 && (AssignedTaskMask & (1 << taskId)) != 0;
+        }
+
         public bool HasCompletedTask(int taskId)
         {
-            return taskId >= 0 && taskId < AssignedTaskCount && (CompletedTaskMask & (1 << taskId)) != 0;
+            return HasAssignedTask(taskId) && (CompletedTaskMask & (1 << taskId)) != 0;
         }
 
         public bool CompleteTask(int taskId)
         {
-            if (!Object.HasStateAuthority || !CanDoTasks || taskId < 0 || taskId >= AssignedTaskCount || HasCompletedTask(taskId))
+            if (!Object.HasStateAuthority || !CanDoTasks || !HasAssignedTask(taskId) || HasCompletedTask(taskId))
             {
                 return false;
             }
 
             CompletedTaskMask |= 1 << taskId;
             return true;
+        }
+
+        public bool AssignTask(int taskId)
+        {
+            if (!Object.HasStateAuthority || Role != PlayerRole.Crewmate || taskId < 0 || taskId >= 30 || HasAssignedTask(taskId))
+            {
+                return false;
+            }
+
+            AssignedTaskMask |= 1 << taskId;
+            AssignedTaskCount = CountTasks(AssignedTaskMask);
+            LastAssignedTaskId = taskId;
+            return true;
+        }
+
+        public void SetTaskFailureCutIn(float cutInEndsAt)
+        {
+            if (!Object.HasStateAuthority)
+            {
+                return;
+            }
+
+            TaskDeadlineFailed = true;
+            TaskFailureCutInEndsAt = cutInEndsAt;
+            ClearInteraction();
         }
 
         public void SetSabotage(SabotageType sabotageType, float endsAt)
@@ -527,6 +572,13 @@ namespace AmongUsClone
                         _collisionRadius);
                 }
 
+                if (TaskDeadlineFailed)
+                {
+                    BasicSpawner.Active?.UpdateHeldInteract(this, Runner.DeltaTime, false);
+                    PreviousButtons = data.Buttons;
+                    return;
+                }
+
                 if (data.Buttons.WasPressed(PreviousButtons, KillButton))
                 {
                     TryUseKill();
@@ -583,7 +635,7 @@ namespace AmongUsClone
             }
         }
 
-        private bool CanMove => MatchState == MatchState.Lobby || (MatchState == MatchState.Playing && IsAlive);
+        private bool CanMove => MatchState == MatchState.Lobby || (MatchState == MatchState.Playing && IsAlive && !TaskDeadlineFailed);
 
         private void TryUseKill()
         {
@@ -644,14 +696,12 @@ namespace AmongUsClone
             BasicSpawner.Active?.TryUseVent(this);
         }
 
-        private static int CountCompletedTasks(int completedMask, int assignedTaskCount)
+        private static int CountTasks(int taskMask)
         {
             var count = 0;
-            var checkedTaskCount = Mathf.Min(assignedTaskCount, 30);
-
-            for (var taskId = 0; taskId < checkedTaskCount; taskId++)
+            for (var taskId = 0; taskId < 30; taskId++)
             {
-                if ((completedMask & (1 << taskId)) != 0)
+                if ((taskMask & (1 << taskId)) != 0)
                 {
                     count++;
                 }

@@ -23,6 +23,9 @@ namespace AmongUsClone
         private const string SabotageMarkerRootName = "Sabotage Stations";
         private const string VentMarkerRootName = "Vents";
         private const string EmergencyMarkerRootName = "Emergency Station";
+        private const int CircuitPulseCount = 4;
+        private const float CalibrationTargetStart = 0.7f;
+        private const float CalibrationTargetEnd = 0.82f;
         private static readonly Vector2 SafeSpawnOrigin = new Vector2(-1.8f, 0.35f);
         private static readonly Vector2 SafeSpawnSpacing = new Vector2(0.9f, 0.75f);
 
@@ -31,12 +34,14 @@ namespace AmongUsClone
             public InteractionKind Kind;
             public int TargetId;
             public float Progress;
+            public bool WasHeld;
 
             public ChannelState(InteractionKind kind, int targetId)
             {
                 Kind = kind;
                 TargetId = targetId;
                 Progress = 0f;
+                WasHeld = false;
             }
         }
 
@@ -69,7 +74,14 @@ namespace AmongUsClone
         [SerializeField] private float _ventUseRange = 0.9f;
         [SerializeField] private float _emergencyUseRange = 1.15f;
         [SerializeField] private float _emergencyCooldownSeconds = 25f;
-        [SerializeField] private float _taskChannelSeconds = 1.35f;
+        [SerializeField, Range(1, 10)] private int _tasksPerCrewmate = 5;
+        [SerializeField, Min(1f)] private float _firstTimedTaskDelaySeconds = 30f;
+        [SerializeField, Min(1f)] private float _timedTaskIntervalSeconds = 45f;
+        [SerializeField, Range(0, 5)] private int _maxTimedTaskWaves = 2;
+        [SerializeField, Min(30f)] private float _taskDeadlineSeconds = 180f;
+        [SerializeField, Min(1f)] private float _taskFailureCutInSeconds = 4f;
+        [SerializeField, Min(0.1f)] private float _taskChannelSeconds = 1.35f;
+        [SerializeField, Min(0.5f)] private float _calibrationCycleSeconds = 2.2f;
         [SerializeField] private float _repairChannelSeconds = 2f;
         [SerializeField] private float _announcementSeconds = 4.5f;
         [SerializeField] private float _botImpostorThinkSeconds = 0.9f;
@@ -103,6 +115,11 @@ namespace AmongUsClone
         private float _activeSabotageEndsAt;
         private float _nextSabotageAllowedAt;
         private float _nextEmergencyAllowedAt;
+        private float _nextTimedTaskAt;
+        private int _timedTaskWavesIssued;
+        private float _taskDeadlineEndsAt;
+        private bool _taskFailurePending;
+        private float _taskFailureCutInEndsAt;
 
         public string RoomName
         {
@@ -124,6 +141,7 @@ namespace AmongUsClone
         public int VoteCount => _votes.Count;
         public int EligibleVoterCount => IsServer ? GetEligibleVoterCount() : CountVisibleEligibleVoters();
         public float MeetingDurationSeconds => _meetingDurationSeconds;
+        public float TaskFailureCutInDurationSeconds => _taskFailureCutInSeconds;
         public bool PreferHostAsImpostorForTesting
         {
             get => _preferHostAsImpostorForTesting;
@@ -169,6 +187,22 @@ namespace AmongUsClone
                 return;
             }
 
+            if (_taskFailurePending)
+            {
+                if (Time.time >= _taskFailureCutInEndsAt)
+                {
+                    EndRound(WinningTeam.Impostors);
+                }
+
+                return;
+            }
+
+            if (_taskDeadlineEndsAt > 0f && Time.time >= _taskDeadlineEndsAt)
+            {
+                BeginTaskFailureCutIn();
+                return;
+            }
+
             if (_meetingActive)
             {
                 UpdateBotVoting();
@@ -188,6 +222,7 @@ namespace AmongUsClone
                 return;
             }
 
+            UpdateTimedTaskAssignments();
             UpdateBots();
         }
 
@@ -332,7 +367,7 @@ namespace AmongUsClone
             GUILayout.Label("Move: WASD / Arrow Keys");
             GUILayout.Label("Kill: Q (Impostor only)");
             GUILayout.Label("Report: R near a body");
-            GUILayout.Label("Interact/Fix: hold E");
+            GUILayout.Label("Interact/Task/Fix: E");
             GUILayout.Label("Emergency Meeting: E");
             GUILayout.Label("Sabotage: F (Impostor)");
             GUILayout.Label("Vent: V (Impostor)");
@@ -487,7 +522,7 @@ namespace AmongUsClone
             if (TryGetNearestIncompleteTask(localPlayer, out var station, out var distance))
             {
                 var label = distance <= _taskUseRange
-                    ? $"Task ready: hold E at {station.Name}"
+                    ? $"Task ready: {GetTaskInstruction(station.Kind)} at {station.Name}"
                     : $"Nearest task: {station.Name} ({distance:0.0}m)";
                 GUILayout.Label(label);
             }
@@ -675,7 +710,11 @@ namespace AmongUsClone
 
                 if (_roundStarted && networkPlayerObject.TryGetBehaviour<Player>(out var lateJoiner))
                 {
-                    lateJoiner.BeginRound(PlayerRole.Spectator, spawnPosition, 0);
+                    lateJoiner.BeginRound(PlayerRole.Spectator, spawnPosition, 0, _taskDeadlineEndsAt);
+                    if (_taskFailurePending)
+                    {
+                        lateJoiner.SetTaskFailureCutIn(_taskFailureCutInEndsAt);
+                    }
                     if (_activeSabotage != SabotageType.None)
                     {
                         lateJoiner.SetSabotage(_activeSabotage, _activeSabotageEndsAt);
@@ -697,6 +736,10 @@ namespace AmongUsClone
             if (_roundStarted)
             {
                 CheckWinCondition();
+            }
+            else if (runner.IsServer)
+            {
+                EnsureTestBots();
             }
         }
         public void OnInput(NetworkRunner runner, NetworkInput input)
@@ -772,7 +815,29 @@ namespace AmongUsClone
                 return;
             }
 
-            while (_botCharacters.Count < _testCpuPlayerCount)
+            var desiredBotCount = Mathf.Min(_testCpuPlayerCount, Mathf.Max(0, _maxPlayerCount - _spawnedCharacters.Count));
+            while (_botCharacters.Count > desiredBotCount)
+            {
+                var lastIndex = _botCharacters.Count - 1;
+                var bot = _botCharacters[lastIndex];
+                _botCharacters.RemoveAt(lastIndex);
+                if (bot == null)
+                {
+                    continue;
+                }
+
+                if (bot.TryGetBehaviour<Player>(out var botPlayer))
+                {
+                    _botTargets.Remove(botPlayer.PlayerNumber);
+                    _botTaskCooldowns.Remove(botPlayer.PlayerNumber);
+                    _botActionCooldowns.Remove(botPlayer.PlayerNumber);
+                    _channels.Remove(botPlayer.PlayerNumber);
+                }
+
+                _runner.Despawn(bot);
+            }
+
+            while (_botCharacters.Count < desiredBotCount)
             {
                 var spawnPosition = GetSpawnPosition(GetSpawnedPlayers().Count);
                 var bot = SpawnBotObject(spawnPosition);
@@ -828,7 +893,7 @@ namespace AmongUsClone
 
         public bool TryInteract(Player player)
         {
-            if (_runner == null || !_runner.IsServer || !_roundStarted || _meetingActive || !player.IsAlive)
+            if (_runner == null || !_runner.IsServer || !_roundStarted || _meetingActive || _taskFailurePending || !player.IsAlive)
             {
                 return false;
             }
@@ -860,7 +925,7 @@ namespace AmongUsClone
                 if (TryGetNearestIncompleteTask(player, out var taskStation, out var taskDistance) &&
                     taskDistance <= _taskUseRange)
                 {
-                    _status = $"Hold E to complete {taskStation.Name}";
+                    _status = $"{GetTaskInstruction(taskStation.Kind)}: {taskStation.Name}";
                     return true;
                 }
             }
@@ -870,7 +935,7 @@ namespace AmongUsClone
 
         public void UpdateHeldInteract(Player player, float deltaTime, bool isHeld)
         {
-            if (_runner == null || !_runner.IsServer || !_roundStarted || _meetingActive || !player.IsAlive || !isHeld)
+            if (_runner == null || !_runner.IsServer || !_roundStarted || _meetingActive || !player.IsAlive)
             {
                 CancelHeldInteract(player);
                 return;
@@ -882,6 +947,12 @@ namespace AmongUsClone
                 var distance = Vector2.Distance(player.NetworkedPosition, sabotageStation.Position);
                 if (distance <= _sabotageUseRange)
                 {
+                    if (!isHeld)
+                    {
+                        CancelHeldInteract(player);
+                        return;
+                    }
+
                     AdvanceChannel(
                         player,
                         InteractionKind.Repair,
@@ -897,17 +968,130 @@ namespace AmongUsClone
                 TryGetNearestIncompleteTask(player, out var taskStation, out var taskDistance) &&
                 taskDistance <= _taskUseRange)
             {
-                AdvanceChannel(
-                    player,
-                    InteractionKind.Task,
-                    taskStation.Id,
-                    _taskChannelSeconds,
-                    deltaTime,
-                    () => TryCompleteTask(player));
+                UpdateTaskChannel(player, taskStation, deltaTime, isHeld);
                 return;
             }
 
             CancelHeldInteract(player);
+        }
+
+        private void UpdateTaskChannel(Player player, TaskStation station, float deltaTime, bool isHeld)
+        {
+            switch (station.Kind)
+            {
+                case TaskKind.CircuitPulse:
+                    UpdateCircuitTask(player, station, deltaTime, isHeld);
+                    break;
+                case TaskKind.Calibration:
+                    UpdateCalibrationTask(player, station, deltaTime, isHeld);
+                    break;
+                default:
+                    if (!isHeld)
+                    {
+                        CancelHeldInteract(player);
+                        return;
+                    }
+
+                    AdvanceChannel(
+                        player,
+                        InteractionKind.Task,
+                        station.Id,
+                        _taskChannelSeconds,
+                        deltaTime,
+                        () => TryCompleteTask(player));
+                    break;
+            }
+        }
+
+        private void UpdateCircuitTask(Player player, TaskStation station, float deltaTime, bool isHeld)
+        {
+            if (!_channels.TryGetValue(player.PlayerNumber, out var channel) ||
+                channel.Kind != InteractionKind.Task ||
+                channel.TargetId != station.Id)
+            {
+                if (!isHeld)
+                {
+                    return;
+                }
+
+                channel = new ChannelState(InteractionKind.Task, station.Id);
+            }
+
+            if (player.IsBot)
+            {
+                channel.Progress += deltaTime / 0.35f;
+            }
+            else if (isHeld && !channel.WasHeld)
+            {
+                channel.Progress += 1f;
+            }
+
+            channel.WasHeld = isHeld;
+            CommitTaskChannel(player, channel, CircuitPulseCount);
+        }
+
+        private void UpdateCalibrationTask(Player player, TaskStation station, float deltaTime, bool isHeld)
+        {
+            var cycleSeconds = Mathf.Max(0.5f, _calibrationCycleSeconds);
+            if (!_channels.TryGetValue(player.PlayerNumber, out var channel) ||
+                channel.Kind != InteractionKind.Task ||
+                channel.TargetId != station.Id)
+            {
+                if (!isHeld)
+                {
+                    return;
+                }
+
+                channel = new ChannelState(InteractionKind.Task, station.Id);
+            }
+
+            if (player.IsBot)
+            {
+                channel.Progress += deltaTime;
+                if (channel.Progress >= cycleSeconds * CalibrationTargetStart)
+                {
+                    CompleteTaskChannel(player);
+                    return;
+                }
+            }
+            else if (isHeld)
+            {
+                channel.Progress = Mathf.Repeat(channel.Progress + deltaTime, cycleSeconds);
+            }
+            else if (channel.WasHeld)
+            {
+                var normalized = channel.Progress / cycleSeconds;
+                if (normalized >= CalibrationTargetStart && normalized <= CalibrationTargetEnd)
+                {
+                    CompleteTaskChannel(player);
+                    return;
+                }
+
+                channel.Progress = 0f;
+            }
+
+            channel.WasHeld = isHeld;
+            _channels[player.PlayerNumber] = channel;
+            player.SetInteraction(InteractionKind.Task, channel.Progress, cycleSeconds);
+        }
+
+        private void CommitTaskChannel(Player player, ChannelState channel, float requiredProgress)
+        {
+            if (channel.Progress >= requiredProgress)
+            {
+                CompleteTaskChannel(player);
+                return;
+            }
+
+            _channels[player.PlayerNumber] = channel;
+            player.SetInteraction(InteractionKind.Task, channel.Progress, requiredProgress);
+        }
+
+        private void CompleteTaskChannel(Player player)
+        {
+            _channels.Remove(player.PlayerNumber);
+            player.ClearInteraction();
+            TryCompleteTask(player);
         }
 
         private void AdvanceChannel(
@@ -952,7 +1136,7 @@ namespace AmongUsClone
 
         public bool TryCompleteTask(Player crewmate)
         {
-            if (_runner == null || !_runner.IsServer || !_roundStarted || _meetingActive || !crewmate.CanDoTasks)
+            if (_runner == null || !_runner.IsServer || !_roundStarted || _meetingActive || _taskFailurePending || !crewmate.CanDoTasks)
             {
                 return false;
             }
@@ -1081,6 +1265,11 @@ namespace AmongUsClone
             _activeSabotageEndsAt = 0f;
             _nextSabotageAllowedAt = Time.time + 4f;
             _nextEmergencyAllowedAt = 0f;
+            _nextTimedTaskAt = Time.time + Mathf.Max(1f, _firstTimedTaskDelaySeconds);
+            _timedTaskWavesIssued = 0;
+            _taskDeadlineEndsAt = Time.time + Mathf.Max(30f, _taskDeadlineSeconds);
+            _taskFailurePending = false;
+            _taskFailureCutInEndsAt = 0f;
             _botTargets.Clear();
             _botTaskCooldowns.Clear();
             _botActionCooldowns.Clear();
@@ -1095,7 +1284,8 @@ namespace AmongUsClone
             for (var i = 0; i < players.Count; i++)
             {
                 var role = i < impostorsToAssign ? PlayerRole.Impostor : PlayerRole.Crewmate;
-                players[i].BeginRound(role, roundSpawnPositions[i], role == PlayerRole.Crewmate ? TaskStations.Length : 0);
+                var taskMask = role == PlayerRole.Crewmate ? CreateTaskAssignmentMask() : 0;
+                players[i].BeginRound(role, roundSpawnPositions[i], taskMask, _taskDeadlineEndsAt);
 
                 if (players[i].IsBot)
                 {
@@ -1106,6 +1296,105 @@ namespace AmongUsClone
             }
 
             _status = $"Round started: {players.Count - impostorsToAssign} Crewmate(s), {impostorsToAssign} Impostor(s)";
+        }
+
+        private int CreateTaskAssignmentMask()
+        {
+            var availableTaskCount = Mathf.Min(TaskStations.Length, 30);
+            var assignedTaskCount = Mathf.Clamp(_tasksPerCrewmate, 0, availableTaskCount);
+            var taskIds = new List<int>(availableTaskCount);
+            for (var taskId = 0; taskId < availableTaskCount; taskId++)
+            {
+                taskIds.Add(taskId);
+            }
+
+            for (var i = 0; i < assignedTaskCount; i++)
+            {
+                var selectedIndex = UnityEngine.Random.Range(i, taskIds.Count);
+                (taskIds[i], taskIds[selectedIndex]) = (taskIds[selectedIndex], taskIds[i]);
+            }
+
+            var mask = 0;
+            for (var i = 0; i < assignedTaskCount; i++)
+            {
+                mask |= 1 << taskIds[i];
+            }
+
+            return mask;
+        }
+
+        private void UpdateTimedTaskAssignments()
+        {
+            if (_timedTaskWavesIssued >= _maxTimedTaskWaves || Time.time < _nextTimedTaskAt)
+            {
+                return;
+            }
+
+            var assignedCount = 0;
+            foreach (var player in GetSpawnedPlayers())
+            {
+                if (player.MatchState != MatchState.Playing || !player.IsAlive || player.Role != PlayerRole.Crewmate)
+                {
+                    continue;
+                }
+
+                if (TryAssignRandomTask(player))
+                {
+                    assignedCount++;
+                }
+            }
+
+            _timedTaskWavesIssued++;
+            _nextTimedTaskAt = _timedTaskWavesIssued >= _maxTimedTaskWaves
+                ? float.PositiveInfinity
+                : Time.time + Mathf.Max(1f, _timedTaskIntervalSeconds);
+
+            if (assignedCount > 0)
+            {
+                _status = $"Task alert: {assignedCount} Crewmate(s) received a new task";
+            }
+        }
+
+        private static bool TryAssignRandomTask(Player player)
+        {
+            var availableTasks = new List<TaskStation>();
+            foreach (var station in TaskStations)
+            {
+                if (station.Id < 30 && !player.HasAssignedTask(station.Id))
+                {
+                    availableTasks.Add(station);
+                }
+            }
+
+            if (availableTasks.Count == 0)
+            {
+                return false;
+            }
+
+            var task = availableTasks[UnityEngine.Random.Range(0, availableTasks.Count)];
+            return player.AssignTask(task.Id);
+        }
+
+        private void BeginTaskFailureCutIn()
+        {
+            if (_taskFailurePending)
+            {
+                return;
+            }
+
+            _taskFailurePending = true;
+            _taskFailureCutInEndsAt = Time.time + Mathf.Max(1f, _taskFailureCutInSeconds);
+            _meetingActive = false;
+            _channels.Clear();
+            _votes.Clear();
+            ClearActiveSabotage();
+
+            foreach (var player in GetSpawnedPlayers())
+            {
+                player.SetTaskFailureCutIn(_taskFailureCutInEndsAt);
+            }
+
+            _status = "Task deadline expired. Impostor victory cut-in started.";
         }
 
         private Player FindKillTarget(Player killer)
@@ -1158,6 +1447,11 @@ namespace AmongUsClone
 
         private bool CheckWinCondition()
         {
+            if (_taskFailurePending)
+            {
+                return false;
+            }
+
             if (GetSpawnedPlayers().Count < 2)
             {
                 return false;
@@ -1194,6 +1488,12 @@ namespace AmongUsClone
                 return true;
             }
 
+            if (_taskDeadlineEndsAt > 0f && Time.time >= _taskDeadlineEndsAt)
+            {
+                BeginTaskFailureCutIn();
+                return true;
+            }
+
             if (AreCrewTasksComplete())
             {
                 EndRound(WinningTeam.Crewmates);
@@ -1206,6 +1506,9 @@ namespace AmongUsClone
         private void EndRound(WinningTeam winningTeam)
         {
             _meetingActive = false;
+            _nextTimedTaskAt = float.PositiveInfinity;
+            _taskDeadlineEndsAt = 0f;
+            _taskFailurePending = false;
             ClearActiveSabotage();
             _channels.Clear();
             _votes.Clear();
@@ -1620,6 +1923,11 @@ namespace AmongUsClone
 
         private bool AreCrewTasksComplete()
         {
+            if (_timedTaskWavesIssued < _maxTimedTaskWaves)
+            {
+                return false;
+            }
+
             GetCrewTaskProgress(GetSpawnedPlayers(), out var completedTasks, out var totalTasks);
             return totalTasks > 0 && completedTasks >= totalTasks;
         }
@@ -1654,7 +1962,7 @@ namespace AmongUsClone
 
             foreach (var candidate in TaskStations)
             {
-                if (player.HasCompletedTask(candidate.Id))
+                if (!player.HasAssignedTask(candidate.Id) || player.HasCompletedTask(candidate.Id))
                 {
                     continue;
                 }
@@ -1676,7 +1984,7 @@ namespace AmongUsClone
             var stations = new List<TaskStation>();
             foreach (var candidate in TaskStations)
             {
-                if (!player.HasCompletedTask(candidate.Id))
+                if (player.HasAssignedTask(candidate.Id) && !player.HasCompletedTask(candidate.Id))
                 {
                     stations.Add(candidate);
                 }
@@ -2005,9 +2313,15 @@ namespace AmongUsClone
             GetVisibleTaskProgress(out completedTasks, out totalTasks);
         }
 
-        public bool TryGetNearestTaskInfo(Player player, out string taskName, out float distance, out bool inRange)
+        public bool TryGetNearestTaskInfo(
+            Player player,
+            out string taskName,
+            out TaskKind taskKind,
+            out float distance,
+            out bool inRange)
         {
             taskName = string.Empty;
+            taskKind = TaskKind.DataTransfer;
             distance = 0f;
             inRange = false;
 
@@ -2017,8 +2331,38 @@ namespace AmongUsClone
             }
 
             taskName = station.Name;
+            taskKind = station.Kind;
             inRange = distance <= _taskUseRange;
             return true;
+        }
+
+        public static bool TryGetTaskInfo(int taskId, out string taskName, out TaskKind taskKind)
+        {
+            taskName = string.Empty;
+            taskKind = TaskKind.DataTransfer;
+            foreach (var station in TaskStations)
+            {
+                if (station.Id != taskId)
+                {
+                    continue;
+                }
+
+                taskName = station.Name;
+                taskKind = station.Kind;
+                return true;
+            }
+
+            return false;
+        }
+
+        public static string GetTaskInstruction(TaskKind taskKind)
+        {
+            return taskKind switch
+            {
+                TaskKind.CircuitPulse => "Press E four times",
+                TaskKind.Calibration => "Hold E, then release in the 70-82% target band",
+                _ => "Hold E to transfer data"
+            };
         }
 
         public bool TryGetActiveSabotageInfo(

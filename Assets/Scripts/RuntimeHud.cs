@@ -31,6 +31,7 @@ namespace AmongUsClone
         private GameObject _controlsPanel;
         private GameObject _meetingPanel;
         private GameObject _taskPanel;
+        private GameObject _taskFailurePanel;
         private InputField _roomInput;
         private Text _statusText;
         private Text _sessionText;
@@ -56,12 +57,24 @@ namespace AmongUsClone
         private Image _meetingFill;
         private Image _taskFill;
         private RectTransform _taskScanner;
+        private RectTransform _taskFailureBanner;
+        private Image _taskFailureBannerImage;
+        private Text _taskFailureTitleText;
+        private Text _taskFailureSubtitleText;
         private readonly List<Text> _rosterRows = new List<Text>();
         private readonly List<Button> _voteButtons = new List<Button>();
         private readonly List<Text> _voteButtonLabels = new List<Text>();
         private readonly List<Text> _controlRows = new List<Text>();
         private readonly List<Image> _taskWireFills = new List<Image>();
         private string _lastRoomName = string.Empty;
+        private AudioSource _taskAlertAudioSource;
+        private AudioClip _taskAlertClip;
+        private AudioClip _taskFailureClip;
+        private int _observedPlayerNumber = -1;
+        private int _observedTimedTaskId = -1;
+        private float _taskAlertUntil;
+        private string _taskAlertMessage = string.Empty;
+        private bool _observedTaskFailure;
 
         private void Awake()
         {
@@ -70,6 +83,7 @@ namespace AmongUsClone
                 Resources.GetBuiltinResource<Font>("Arial.ttf");
             EnsureEventSystem();
             BuildHud();
+            EnsureTaskAlertAudio();
         }
 
         private void Update()
@@ -84,12 +98,14 @@ namespace AmongUsClone
             }
 
             UpdateLobby();
+            UpdateTimedTaskAlert();
             UpdateSession();
             UpdateRoster();
             UpdateActionPanel();
             UpdateControlsPanel();
             UpdateMeetingPanel();
             UpdateTaskPanel();
+            UpdateTaskFailureCutIn();
         }
 
         private void BuildHud()
@@ -172,6 +188,7 @@ namespace AmongUsClone
             _taskFill = CreateBar(_taskPanel.transform, CrewColor, 16f);
             _taskPercentText = CreateText(_taskPanel.transform, string.Empty, 14, FontStyle.Bold, TextAnchor.MiddleCenter);
             CreateTaskVisualizer(_taskPanel.transform);
+            CreateTaskFailureCutIn();
         }
 
         private void UpdateLobby()
@@ -214,7 +231,17 @@ namespace AmongUsClone
                 : $"State: {localPlayer.MatchState}   You: {localPlayer.Role}   {(localPlayer.IsAlive ? "Alive" : "Out")}";
 
             _spawner.GetTaskProgressForHud(out var completedTasks, out var totalTasks);
-            _taskProgressText.text = totalTasks > 0 ? $"Crew tasks: {completedTasks}/{totalTasks}" : "Crew tasks: waiting";
+            var taskSummary = localPlayer != null && localPlayer.Role == PlayerRole.Crewmate && localPlayer.AssignedTaskCount > 0
+                ? $"Your tasks: {localPlayer.CompletedTaskCount}/{localPlayer.AssignedTaskCount}   Crew total: {completedTasks}/{totalTasks}"
+                : totalTasks > 0 ? $"Crew tasks: {completedTasks}/{totalTasks}" : "Crew tasks: waiting";
+            var deadlineRemaining = localPlayer == null || localPlayer.TaskDeadlineEndsAt <= 0f
+                ? 0f
+                : Mathf.Max(0f, localPlayer.TaskDeadlineEndsAt - Time.time);
+            var showDeadline = localPlayer != null &&
+                (localPlayer.MatchState == MatchState.Playing || localPlayer.MatchState == MatchState.Meeting) &&
+                localPlayer.TaskDeadlineEndsAt > 0f;
+            _taskProgressText.text = showDeadline ? $"{taskSummary}   Deadline: {deadlineRemaining:0}s" : taskSummary;
+            _taskProgressText.color = showDeadline && deadlineRemaining <= 30f ? AlertColor : MutedTextColor;
             SetBar(_crewTaskFill, totalTasks <= 0 ? 0f : completedTasks / (float)totalTasks);
 
             _preferHostToggle.gameObject.SetActive(_spawner.IsServer && !_spawner.RoundStarted);
@@ -281,6 +308,95 @@ namespace AmongUsClone
             _actionTitleText.text = localPlayer.IsImpostor ? "Impostor" : "Crewmate";
             _actionHintText.text = GetPrimaryHint(localPlayer);
             _alertText.text = GetAlertText(localPlayer);
+            _alertText.color = Time.time < _taskAlertUntil
+                ? Color.Lerp(GoldColor, AlertColor, Mathf.PingPong(Time.time * 5f, 1f))
+                : AlertColor;
+        }
+
+        private void UpdateTimedTaskAlert()
+        {
+            var localPlayer = _spawner.LocalPlayer;
+            if (localPlayer == null)
+            {
+                _observedPlayerNumber = -1;
+                _observedTimedTaskId = -1;
+                return;
+            }
+
+            if (_observedPlayerNumber != localPlayer.PlayerNumber)
+            {
+                _observedPlayerNumber = localPlayer.PlayerNumber;
+                _observedTimedTaskId = localPlayer.LastAssignedTaskId;
+                return;
+            }
+
+            if (localPlayer.LastAssignedTaskId < 0)
+            {
+                _observedTimedTaskId = -1;
+                return;
+            }
+
+            if (localPlayer.LastAssignedTaskId == _observedTimedTaskId ||
+                localPlayer.MatchState != MatchState.Playing ||
+                localPlayer.Role != PlayerRole.Crewmate)
+            {
+                return;
+            }
+
+            _observedTimedTaskId = localPlayer.LastAssignedTaskId;
+            var taskName = BasicSpawner.TryGetTaskInfo(localPlayer.LastAssignedTaskId, out var name, out _)
+                ? name
+                : "New assignment";
+            _taskAlertMessage = $"NEW TASK: {taskName}";
+            _taskAlertUntil = Time.time + 6f;
+            if (_taskAlertAudioSource != null && _taskAlertClip != null)
+            {
+                _taskAlertAudioSource.PlayOneShot(_taskAlertClip, 0.65f);
+            }
+        }
+
+        private void UpdateTaskFailureCutIn()
+        {
+            var localPlayer = _spawner.LocalPlayer;
+            var active = localPlayer != null &&
+                localPlayer.TaskDeadlineFailed &&
+                localPlayer.MatchState != MatchState.Ended &&
+                Time.time < localPlayer.TaskFailureCutInEndsAt;
+            _taskFailurePanel.SetActive(active);
+
+            if (localPlayer == null || !localPlayer.TaskDeadlineFailed)
+            {
+                _observedTaskFailure = false;
+            }
+
+            if (!active)
+            {
+                return;
+            }
+
+            if (!_observedTaskFailure)
+            {
+                _observedTaskFailure = true;
+                if (_taskAlertAudioSource != null && _taskFailureClip != null)
+                {
+                    _taskAlertAudioSource.PlayOneShot(_taskFailureClip, 0.8f);
+                }
+            }
+
+            var duration = Mathf.Max(1f, _spawner.TaskFailureCutInDurationSeconds);
+            var remaining = Mathf.Max(0f, localPlayer.TaskFailureCutInEndsAt - Time.time);
+            var progress = 1f - Mathf.Clamp01(remaining / duration);
+            var entrance = Mathf.SmoothStep(0f, 1f, Mathf.Clamp01(progress / 0.16f));
+            var exit = remaining < 0.35f ? Mathf.Clamp01(remaining / 0.35f) : 1f;
+
+            _taskFailureBanner.anchoredPosition = new Vector2(Mathf.Lerp(-1500f, 0f, entrance), 0f);
+            _taskFailureBanner.localScale = Vector3.one * Mathf.Lerp(0.9f, 1f, entrance) * exit;
+            _taskFailureBannerImage.color = Color.Lerp(
+                new Color(0.18f, 0.01f, 0.015f, 0.98f),
+                new Color(0.48f, 0.015f, 0.02f, 0.98f),
+                Mathf.PingPong(Time.time * 3.5f, 1f));
+            _taskFailureTitleText.color = Color.Lerp(TextColor, AlertColor, Mathf.PingPong(Time.time * 5f, 1f));
+            _taskFailureSubtitleText.text = $"OBJECTIVES INCOMPLETE\nIMPOSTORS WIN IN {remaining:0.0}s";
         }
 
         private void UpdateControlsPanel()
@@ -374,6 +490,8 @@ namespace AmongUsClone
 
             var isRepair = localPlayer.ActiveInteraction == InteractionKind.Repair;
             var progress = localPlayer.InteractionNormalized;
+            var taskKind = TaskKind.DataTransfer;
+            var taskColor = CrewColor;
             if (isRepair)
             {
                 _spawner.TryGetActiveSabotageInfo(localPlayer, out var sabotageName, out _, out _, out _);
@@ -383,10 +501,15 @@ namespace AmongUsClone
             }
             else
             {
-                _spawner.TryGetNearestTaskInfo(localPlayer, out var taskName, out _, out _);
+                _spawner.TryGetNearestTaskInfo(localPlayer, out var taskName, out taskKind, out _, out _);
                 _taskTitleText.text = string.IsNullOrEmpty(taskName) ? "Task" : $"{taskName} Task";
-                _taskSubtitleText.text = "Hold E and keep the process connected.";
-                _taskFill.color = CrewColor;
+                _taskSubtitleText.text = BasicSpawner.GetTaskInstruction(taskKind) + ".";
+                taskColor = taskKind == TaskKind.CircuitPulse
+                    ? GoldColor
+                    : taskKind == TaskKind.Calibration && progress >= 0.7f && progress <= 0.82f
+                        ? CrewColor
+                        : taskKind == TaskKind.Calibration ? GoldColor : CrewColor;
+                _taskFill.color = taskColor;
             }
 
             SetBar(_taskFill, progress);
@@ -395,7 +518,7 @@ namespace AmongUsClone
             {
                 var rowProgress = Mathf.Clamp01(progress * 1.35f - i * 0.15f);
                 SetBar(_taskWireFills[i], rowProgress);
-                _taskWireFills[i].color = isRepair ? AlertColor : CrewColor;
+                _taskWireFills[i].color = isRepair ? AlertColor : taskColor;
             }
 
             if (_taskScanner != null)
@@ -436,9 +559,11 @@ namespace AmongUsClone
                     return "All tasks complete. Stay alive and report bodies.";
                 }
 
-                if (_spawner.TryGetNearestTaskInfo(localPlayer, out var taskName, out var distance, out var inRange))
+                if (_spawner.TryGetNearestTaskInfo(localPlayer, out var taskName, out var taskKind, out var distance, out var inRange))
                 {
-                    return inRange ? $"Hold E to complete {taskName}." : $"Next task: {taskName}, {distance:0.0}m away.";
+                    return inRange
+                        ? $"{BasicSpawner.GetTaskInstruction(taskKind)}: {taskName}."
+                        : $"Next task: {taskName}, {distance:0.0}m away.";
                 }
             }
 
@@ -467,6 +592,21 @@ namespace AmongUsClone
                 return announcement;
             }
 
+            if (Time.time < _taskAlertUntil)
+            {
+                return _taskAlertMessage;
+            }
+
+            if (localPlayer.TaskDeadlineEndsAt > 0f &&
+                (localPlayer.MatchState == MatchState.Playing || localPlayer.MatchState == MatchState.Meeting))
+            {
+                var deadlineRemaining = Mathf.Max(0f, localPlayer.TaskDeadlineEndsAt - Time.time);
+                if (deadlineRemaining <= 30f)
+                {
+                    return $"TASK DEADLINE: {deadlineRemaining:0.0}s";
+                }
+            }
+
             if (_spawner.TryGetActiveSabotageInfo(localPlayer, out var sabotageName, out _, out _, out var remaining) &&
                 localPlayer.ActiveSabotage == SabotageType.Reactor)
             {
@@ -489,6 +629,57 @@ namespace AmongUsClone
             }
 
             return string.Empty;
+        }
+
+        private void EnsureTaskAlertAudio()
+        {
+            _taskAlertAudioSource = gameObject.AddComponent<AudioSource>();
+            _taskAlertAudioSource.playOnAwake = false;
+            _taskAlertAudioSource.spatialBlend = 0f;
+
+            const int sampleRate = 44100;
+            const float duration = 0.42f;
+            var sampleCount = Mathf.CeilToInt(sampleRate * duration);
+            var samples = new float[sampleCount];
+            for (var i = 0; i < sampleCount; i++)
+            {
+                var time = i / (float)sampleRate;
+                var firstPulse = time < 0.12f;
+                var secondPulse = time >= 0.2f && time < 0.36f;
+                if (!firstPulse && !secondPulse)
+                {
+                    continue;
+                }
+
+                var pulseTime = firstPulse ? time : time - 0.2f;
+                var pulseDuration = firstPulse ? 0.12f : 0.16f;
+                var frequency = firstPulse ? 880f : 1040f;
+                var envelope = Mathf.Sin(Mathf.PI * Mathf.Clamp01(pulseTime / pulseDuration));
+                samples[i] = Mathf.Sin(2f * Mathf.PI * frequency * pulseTime) * envelope * 0.35f;
+            }
+
+            _taskAlertClip = AudioClip.Create("Timed Task Alert", sampleCount, 1, sampleRate, false);
+            _taskAlertClip.SetData(samples, 0);
+
+            const float failureDuration = 1.3f;
+            var failureSampleCount = Mathf.CeilToInt(sampleRate * failureDuration);
+            var failureSamples = new float[failureSampleCount];
+            for (var i = 0; i < failureSampleCount; i++)
+            {
+                var time = i / (float)sampleRate;
+                var pulse = Mathf.Repeat(time, 0.28f);
+                if (pulse >= 0.2f)
+                {
+                    continue;
+                }
+
+                var frequency = Mathf.FloorToInt(time / 0.28f) % 2 == 0 ? 220f : 165f;
+                var envelope = Mathf.Sin(Mathf.PI * Mathf.Clamp01(pulse / 0.2f));
+                failureSamples[i] = Mathf.Sin(2f * Mathf.PI * frequency * pulse) * envelope * 0.42f;
+            }
+
+            _taskFailureClip = AudioClip.Create("Task Deadline Failure", failureSampleCount, 1, sampleRate, false);
+            _taskFailureClip.SetData(failureSamples, 0);
         }
 
         private string GetAnnouncementText(Player localPlayer)
@@ -571,6 +762,32 @@ namespace AmongUsClone
             _taskScanner.anchorMax = new Vector2(0.5f, 0.5f);
             _taskScanner.sizeDelta = new Vector2(8f, 46f);
             scanner.AddComponent<Image>().color = new Color(1f, 1f, 1f, 0.55f);
+        }
+
+        private void CreateTaskFailureCutIn()
+        {
+            _taskFailurePanel = CreatePanel(
+                "Task Deadline Cut-In",
+                _canvasRoot.transform,
+                new Vector2(1600f, 900f),
+                new Vector2(0.5f, 0.5f),
+                Vector2.zero,
+                new Color(0.01f, 0.005f, 0.008f, 0.86f));
+
+            var banner = CreatePanel(
+                "Failure Banner",
+                _taskFailurePanel.transform,
+                new Vector2(960f, 300f),
+                new Vector2(0.5f, 0.5f),
+                Vector2.zero,
+                new Color(0.32f, 0.01f, 0.02f, 0.98f));
+            _taskFailureBanner = banner.GetComponent<RectTransform>();
+            _taskFailureBannerImage = banner.GetComponent<Image>();
+            AddVerticalLayout(banner, 32, 14f);
+            _taskFailureTitleText = CreateText(banner.transform, "TASK DEADLINE EXPIRED", 42, FontStyle.Bold, TextAnchor.MiddleCenter, AlertColor);
+            _taskFailureSubtitleText = CreateText(banner.transform, string.Empty, 24, FontStyle.Bold, TextAnchor.MiddleCenter, TextColor);
+            _taskFailureSubtitleText.rectTransform.sizeDelta = new Vector2(0f, 92f);
+            _taskFailurePanel.SetActive(false);
         }
 
         private GameObject CreatePanel(string panelName, Transform parent, Vector2 size, Vector2 anchor, Vector2 anchoredPosition, Color color)

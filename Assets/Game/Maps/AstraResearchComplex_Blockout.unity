@@ -2559,8 +2559,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmongUsClone.BasicSpawner
   _defaultRoomName: among-us-style
-  _maxPlayerCount: 15
-  _minimumPlayersToStart: 1
+  _maxPlayerCount: 10
+  _minimumPlayersToStart: 4
   _impostorCount: 1
   _preferHostAsImpostorForTesting: 1
   _testCpuPlayerCount: 5
@@ -2579,7 +2579,14 @@ MonoBehaviour:
   _ventUseRange: 0.9
   _emergencyUseRange: 1.15
   _emergencyCooldownSeconds: 25
+  _tasksPerCrewmate: 5
+  _firstTimedTaskDelaySeconds: 30
+  _timedTaskIntervalSeconds: 45
+  _maxTimedTaskWaves: 2
+  _taskDeadlineSeconds: 180
+  _taskFailureCutInSeconds: 4
   _taskChannelSeconds: 1.35
+  _calibrationCycleSeconds: 2.2
   _repairChannelSeconds: 2
   _announcementSeconds: 4.5
   _botImpostorThinkSeconds: 0.9

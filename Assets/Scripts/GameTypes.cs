@@ -39,6 +39,13 @@ namespace AmongUsClone
         Repair
     }
 
+    public enum TaskKind
+    {
+        DataTransfer,
+        CircuitPulse,
+        Calibration
+    }
+
     public enum AnnouncementType
     {
         None,

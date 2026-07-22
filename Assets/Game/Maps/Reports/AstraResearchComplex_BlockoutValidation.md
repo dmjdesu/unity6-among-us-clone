@@ -28,6 +28,7 @@ Overall: PASS
 | SpawnPoint count >= 15 | PASS | definition=15, scene=15 |
 | MeetingPoint count == 1 | PASS | definition=1, scene=1 |
 | TaskPoint count >= 22 | PASS | definition=22, scene=22 |
+| 3 task mechanics configured | PASS | taskKinds=DataTransfer, Calibration, CircuitPulse |
 | SabotagePoint count == 4 | PASS | definition=4, scene=4 |
 | VentPoint count == 9 | PASS | definition=9, scene=9 |
 | SpawnPoint placement | PASS | open and not inside non-trigger colliders |
@@ -36,6 +37,10 @@ Overall: PASS
 | Tilemap composite colliders | PASS | tilemapCompositeColliders=2 |
 | NetworkRunner not duplicated | PASS | scene NetworkRunner components=0; BasicSpawner creates one at runtime |
 | BasicSpawner exists | PASS | BasicSpawner components=1 |
+| Player range is 4-10 | PASS | minimum=4, maximum=10 |
+| 5 tasks assigned per Crewmate | PASS | 22 stations remain available across the map |
+| Timed task waves configured | PASS | one new task at 30s and 75s |
+| Task deadline loss configured | PASS | 180s deadline, then 4s cut-in before Impostor victory |
 | BasicSpawner PlayerPrefab assigned | PASS | Assets/Prefabs/PlayerPrefab.prefab |
 | PlayerPrefab spawnable | PASS | NetworkObject + Player behaviour |
 | No NetworkObject on static map | PASS | staticNetworkObjects=0 |
@@ -59,4 +64,9 @@ Overall: PASS
 - Enter Play Mode, Host, then Start Game; players should spawn from the 15 Central Lounge spawn points.
 - Move with WASD or arrow keys and confirm walls, obstacles, cut corners, and the map boundary block traversal.
 - Verify camera follow at Orthographic Size 6; the full 150 x 116 map should not fit on screen.
-- Use E for tasks/meeting/repairs, F for sabotage, V for vents, Q for kill, and R for report.
+- Confirm the HUD shows `Your tasks: completed/assigned` and aggregate Crew progress.
+- Confirm timed task alerts occur at 30 seconds and 75 seconds with a flashing message and notification tone.
+- Confirm the task deadline counts down from 180 seconds in the HUD.
+- Leave tasks incomplete and confirm a 4-second failure cut-in appears before the Impostor victory result.
+- Use hold E for Data Transfer, four E presses for Circuit Pulse, and release E in the 70-82% band for Calibration.
+- Use E for meetings/repairs, F for sabotage, V for vents, Q for kill, and R for report.

@@ -521,7 +521,11 @@ namespace AmongUsClone
             {
                 var point = definitions[i];
                 var name = !string.IsNullOrWhiteSpace(point.displayName) ? point.displayName : point.id;
-                stations[i] = new TaskStation(i, name, point.position.ToVector2());
+                var fallbackKind = (TaskKind)(i % Enum.GetValues(typeof(TaskKind)).Length);
+                var kind = Enum.TryParse(point.taskKind, true, out TaskKind parsedKind)
+                    ? parsedKind
+                    : fallbackKind;
+                stations[i] = new TaskStation(i, name, kind, point.position.ToVector2());
             }
 
             return stations;

@@ -359,7 +359,8 @@ namespace AmongUsClone.Editor
                         $"task_{room.id}_{i + 1:00}",
                         GetTaskName(room.id, i),
                         room.id,
-                        position));
+                        position,
+                        GetTaskKind(room.id, i).ToString()));
                 }
             }
 
@@ -717,7 +718,7 @@ namespace AmongUsClone.Editor
 
             foreach (var point in layout.TaskPoints)
             {
-                CreatePoint(taskPoints, point.id, point.displayName, point.roomId, point.position.ToVector2(), 0.46f, AstraBlockoutMarkerKind.TaskPoint, new Color(1f, 0.82f, 0.12f, 0.9f), null, null);
+                CreatePoint(taskPoints, point.id, point.displayName, point.roomId, point.position.ToVector2(), 0.46f, AstraBlockoutMarkerKind.TaskPoint, new Color(1f, 0.82f, 0.12f, 0.9f), point.taskKind, null);
             }
 
             CreatePoint(meetingPoint, layout.MeetingPoint.id, layout.MeetingPoint.displayName, layout.MeetingPoint.roomId, layout.MeetingPoint.position.ToVector2(), 0.72f, AstraBlockoutMarkerKind.MeetingPoint, new Color(1f, 0.2f, 0.9f, 0.92f), null, null);
@@ -743,9 +744,16 @@ namespace AmongUsClone.Editor
             network.transform.SetParent(networking, false);
             var spawner = network.AddComponent<BasicSpawner>();
             var serialized = new SerializedObject(spawner);
-            Set(serialized, "_maxPlayerCount", 15);
-            Set(serialized, "_minimumPlayersToStart", 1);
+            Set(serialized, "_maxPlayerCount", 10);
+            Set(serialized, "_minimumPlayersToStart", 4);
             Set(serialized, "_testCpuPlayerCount", 5);
+            Set(serialized, "_tasksPerCrewmate", 5);
+            Set(serialized, "_firstTimedTaskDelaySeconds", 30f);
+            Set(serialized, "_timedTaskIntervalSeconds", 45f);
+            Set(serialized, "_maxTimedTaskWaves", 2);
+            Set(serialized, "_taskDeadlineSeconds", 180f);
+            Set(serialized, "_taskFailureCutInSeconds", 4f);
+            Set(serialized, "_calibrationCycleSeconds", 2.2f);
             Set(serialized, "_showLegacyDebugGui", false);
             SetNetworkPrefabRef(serialized, "_playerPrefab", PlayerPrefabPath);
             serialized.ApplyModifiedPropertiesWithoutUndo();
@@ -1063,6 +1071,37 @@ namespace AmongUsClone.Editor
             return names.TryGetValue(roomId, out var roomNames)
                 ? roomNames[Mathf.Clamp(index, 0, roomNames.Length - 1)]
                 : $"Task {index + 1}";
+        }
+
+        private static TaskKind GetTaskKind(string roomId, int index)
+        {
+            switch (roomId)
+            {
+                case "central_lounge":
+                    return TaskKind.DataTransfer;
+                case "medical_lab":
+                    return index == 0 ? TaskKind.DataTransfer : TaskKind.Calibration;
+                case "xenobiology_lab":
+                    return index == 0 ? TaskKind.Calibration : TaskKind.DataTransfer;
+                case "observation_deck":
+                    return TaskKind.Calibration;
+                case "communications":
+                    return index == 0 ? TaskKind.DataTransfer : TaskKind.Calibration;
+                case "security_control":
+                    return index == 0 ? TaskKind.DataTransfer : TaskKind.CircuitPulse;
+                case "engine_maintenance":
+                    return index == 0 ? TaskKind.Calibration : index == 1 ? TaskKind.CircuitPulse : TaskKind.DataTransfer;
+                case "reactor_core":
+                    return index == 0 ? TaskKind.Calibration : TaskKind.CircuitPulse;
+                case "power_distribution":
+                    return TaskKind.CircuitPulse;
+                case "cargo_storage":
+                    return index == 0 ? TaskKind.DataTransfer : TaskKind.CircuitPulse;
+                case "life_support":
+                    return index == 0 ? TaskKind.CircuitPulse : TaskKind.DataTransfer;
+                default:
+                    return (TaskKind)(Mathf.Abs(index) % Enum.GetValues(typeof(TaskKind)).Length);
+            }
         }
 
         private static Vector2[] Offsets(Vector2 center, params Vector2[] offsets)
@@ -1400,13 +1439,14 @@ namespace AmongUsClone.Editor
                 value.IndexOf(token, StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
-        private static PointFeatureDefinition Point(string id, string name, string roomId, Vector2 position)
+        private static PointFeatureDefinition Point(string id, string name, string roomId, Vector2 position, string taskKind = null)
         {
             return new PointFeatureDefinition
             {
                 id = id,
                 displayName = name,
                 roomId = roomId,
+                taskKind = taskKind,
                 position = V(position)
             };
         }
@@ -1445,6 +1485,15 @@ namespace AmongUsClone.Editor
             if (property != null)
             {
                 property.intValue = value;
+            }
+        }
+
+        private static void Set(SerializedObject serialized, string propertyName, float value)
+        {
+            var property = serialized.FindProperty(propertyName);
+            if (property != null)
+            {
+                property.floatValue = value;
             }
         }
 
@@ -1591,6 +1640,12 @@ namespace AmongUsClone.Editor
             checks.Add(CheckPointCount("SpawnPoint", AstraBlockoutMarkerKind.SpawnPoint, layout.SpawnPoints.Length, 15, true));
             checks.Add(CheckPointCount("MeetingPoint", AstraBlockoutMarkerKind.MeetingPoint, layout.MeetingPoint == null ? 0 : 1, 1, false));
             checks.Add(CheckPointCount("TaskPoint", AstraBlockoutMarkerKind.TaskPoint, layout.TaskPoints.Length, 22, true));
+            var taskKinds = layout.TaskPoints
+                .Select(point => point.taskKind)
+                .Where(taskKind => !string.IsNullOrWhiteSpace(taskKind))
+                .Distinct()
+                .ToArray();
+            checks.Add(Check("3 task mechanics configured", taskKinds.Length == 3, $"taskKinds={string.Join(", ", taskKinds)}"));
             checks.Add(CheckPointCount("SabotagePoint", AstraBlockoutMarkerKind.SabotagePoint, layout.SabotagePoints.Length, 4, false));
             checks.Add(CheckPointCount("VentPoint", AstraBlockoutMarkerKind.VentPoint, layout.VentNodes.Length, 9, false));
 
@@ -1603,6 +1658,19 @@ namespace AmongUsClone.Editor
             checks.Add(Check("NetworkRunner not duplicated", networkRunnerCount == 0, $"scene NetworkRunner components={networkRunnerCount}; BasicSpawner creates one at runtime"));
             var spawnerCount = UnityEngine.Object.FindObjectsByType<BasicSpawner>(FindObjectsInactive.Include, FindObjectsSortMode.None).Length;
             checks.Add(Check("BasicSpawner exists", spawnerCount == 1, $"BasicSpawner components={spawnerCount}"));
+            checks.Add(Check("Player range is 4-10", SpawnerIntEquals("_minimumPlayersToStart", 4) && SpawnerIntEquals("_maxPlayerCount", 10), "minimum=4, maximum=10"));
+            checks.Add(Check("5 tasks assigned per Crewmate", SpawnerIntEquals("_tasksPerCrewmate", 5), "22 stations remain available across the map"));
+            checks.Add(Check(
+                "Timed task waves configured",
+                SpawnerFloatEquals("_firstTimedTaskDelaySeconds", 30f) &&
+                SpawnerFloatEquals("_timedTaskIntervalSeconds", 45f) &&
+                SpawnerIntEquals("_maxTimedTaskWaves", 2),
+                "one new task at 30s and 75s"));
+            checks.Add(Check(
+                "Task deadline loss configured",
+                SpawnerFloatEquals("_taskDeadlineSeconds", 180f) &&
+                SpawnerFloatEquals("_taskFailureCutInSeconds", 4f),
+                "180s deadline, then 4s cut-in before Impostor victory"));
             checks.Add(Check("BasicSpawner PlayerPrefab assigned", PlayerPrefabIsAssigned(), PlayerPrefabPath));
             checks.Add(Check("PlayerPrefab spawnable", PlayerPrefabSpawnable(), "NetworkObject + Player behaviour"));
             checks.Add(Check("No NetworkObject on static map", CountStaticMapNetworkObjects() == 0, $"staticNetworkObjects={CountStaticMapNetworkObjects()}"));
@@ -1664,7 +1732,12 @@ namespace AmongUsClone.Editor
             lines.Add("- Enter Play Mode, Host, then Start Game; players should spawn from the 15 Central Lounge spawn points.");
             lines.Add("- Move with WASD or arrow keys and confirm walls, obstacles, cut corners, and the map boundary block traversal.");
             lines.Add("- Verify camera follow at Orthographic Size 6; the full 150 x 116 map should not fit on screen.");
-            lines.Add("- Use E for tasks/meeting/repairs, F for sabotage, V for vents, Q for kill, and R for report.");
+            lines.Add("- Confirm the HUD shows `Your tasks: completed/assigned` and aggregate Crew progress.");
+            lines.Add("- Confirm timed task alerts occur at 30 seconds and 75 seconds with a flashing message and notification tone.");
+            lines.Add("- Confirm the task deadline counts down from 180 seconds in the HUD.");
+            lines.Add("- Leave tasks incomplete and confirm a 4-second failure cut-in appears before the Impostor victory result.");
+            lines.Add("- Use hold E for Data Transfer, four E presses for Circuit Pulse, and release E in the 70-82% band for Calibration.");
+            lines.Add("- Use E for meetings/repairs, F for sabotage, V for vents, Q for kill, and R for report.");
 
             File.WriteAllLines(ReportPath, lines);
         }
@@ -1770,6 +1843,20 @@ namespace AmongUsClone.Editor
             var expected = NetworkObjectGuid.Parse(AssetDatabase.AssetPathToGUID(PlayerPrefabPath));
             return rawGuid.GetFixedBufferElementAtIndex(0).longValue == expected.RawGuidValue[0] &&
                 rawGuid.GetFixedBufferElementAtIndex(1).longValue == expected.RawGuidValue[1];
+        }
+
+        private static bool SpawnerIntEquals(string propertyName, int expected)
+        {
+            var spawner = UnityEngine.Object.FindFirstObjectByType<BasicSpawner>(FindObjectsInactive.Include);
+            var property = spawner == null ? null : new SerializedObject(spawner).FindProperty(propertyName);
+            return property != null && property.intValue == expected;
+        }
+
+        private static bool SpawnerFloatEquals(string propertyName, float expected)
+        {
+            var spawner = UnityEngine.Object.FindFirstObjectByType<BasicSpawner>(FindObjectsInactive.Include);
+            var property = spawner == null ? null : new SerializedObject(spawner).FindProperty(propertyName);
+            return property != null && Mathf.Approximately(property.floatValue, expected);
         }
 
         private static bool PlayerPrefabSpawnable()

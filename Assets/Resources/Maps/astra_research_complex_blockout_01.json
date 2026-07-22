@@ -2774,6 +2774,7 @@
             "id": "task_central_lounge_01",
             "displayName": "Review Emergency Log",
             "roomId": "central_lounge",
+            "taskKind": "DataTransfer",
             "position": {
                 "x": -10.0,
                 "y": 7.0
@@ -2783,6 +2784,7 @@
             "id": "task_medical_lab_01",
             "displayName": "Run Med Scanner",
             "roomId": "medical_lab",
+            "taskKind": "DataTransfer",
             "position": {
                 "x": -53.5,
                 "y": 7.0
@@ -2792,6 +2794,7 @@
             "id": "task_medical_lab_02",
             "displayName": "Analyze Blood Sample",
             "roomId": "medical_lab",
+            "taskKind": "Calibration",
             "position": {
                 "x": -42.0,
                 "y": 17.0
@@ -2801,6 +2804,7 @@
             "id": "task_xenobiology_lab_01",
             "displayName": "Calibrate Containment",
             "roomId": "xenobiology_lab",
+            "taskKind": "Calibration",
             "position": {
                 "x": -46.0,
                 "y": 32.0
@@ -2810,6 +2814,7 @@
             "id": "task_xenobiology_lab_02",
             "displayName": "Catalog Specimen",
             "roomId": "xenobiology_lab",
+            "taskKind": "DataTransfer",
             "position": {
                 "x": -31.0,
                 "y": 40.0
@@ -2819,6 +2824,7 @@
             "id": "task_observation_deck_01",
             "displayName": "Align Telescope",
             "roomId": "observation_deck",
+            "taskKind": "Calibration",
             "position": {
                 "x": 0.0,
                 "y": 43.0
@@ -2828,6 +2834,7 @@
             "id": "task_communications_01",
             "displayName": "Upload Research Data",
             "roomId": "communications",
+            "taskKind": "DataTransfer",
             "position": {
                 "x": 29.0,
                 "y": 36.0
@@ -2837,6 +2844,7 @@
             "id": "task_communications_02",
             "displayName": "Tune Antenna Array",
             "roomId": "communications",
+            "taskKind": "Calibration",
             "position": {
                 "x": 39.5,
                 "y": 29.5
@@ -2846,6 +2854,7 @@
             "id": "task_security_control_01",
             "displayName": "Review Camera Feed",
             "roomId": "security_control",
+            "taskKind": "DataTransfer",
             "position": {
                 "x": 43.25,
                 "y": 8.25
@@ -2855,6 +2864,7 @@
             "id": "task_security_control_02",
             "displayName": "Reset Door Logs",
             "roomId": "security_control",
+            "taskKind": "CircuitPulse",
             "position": {
                 "x": 53.25,
                 "y": 15.25
@@ -2864,6 +2874,7 @@
             "id": "task_engine_maintenance_01",
             "displayName": "Tune Engine",
             "roomId": "engine_maintenance",
+            "taskKind": "Calibration",
             "position": {
                 "x": 39.0,
                 "y": -13.0
@@ -2873,6 +2884,7 @@
             "id": "task_engine_maintenance_02",
             "displayName": "Prime Coolant Pump",
             "roomId": "engine_maintenance",
+            "taskKind": "CircuitPulse",
             "position": {
                 "x": 50.0,
                 "y": -10.0
@@ -2882,6 +2894,7 @@
             "id": "task_engine_maintenance_03",
             "displayName": "Inspect Turbine",
             "roomId": "engine_maintenance",
+            "taskKind": "DataTransfer",
             "position": {
                 "x": 59.0,
                 "y": -22.0
@@ -2891,6 +2904,7 @@
             "id": "task_reactor_core_01",
             "displayName": "Stabilize Core",
             "roomId": "reactor_core",
+            "taskKind": "Calibration",
             "position": {
                 "x": 28.0,
                 "y": -36.0
@@ -2900,6 +2914,7 @@
             "id": "task_reactor_core_02",
             "displayName": "Balance Control Rods",
             "roomId": "reactor_core",
+            "taskKind": "CircuitPulse",
             "position": {
                 "x": 45.0,
                 "y": -50.0
@@ -2909,6 +2924,7 @@
             "id": "task_power_distribution_01",
             "displayName": "Divert Power",
             "roomId": "power_distribution",
+            "taskKind": "CircuitPulse",
             "position": {
                 "x": 2.0,
                 "y": -38.0
@@ -2918,6 +2934,7 @@
             "id": "task_power_distribution_02",
             "displayName": "Reset Breakers",
             "roomId": "power_distribution",
+            "taskKind": "CircuitPulse",
             "position": {
                 "x": 8.0,
                 "y": -39.0
@@ -2927,6 +2944,7 @@
             "id": "task_power_distribution_03",
             "displayName": "Trace Cable Fault",
             "roomId": "power_distribution",
+            "taskKind": "CircuitPulse",
             "position": {
                 "x": 13.0,
                 "y": -45.0
@@ -2936,6 +2954,7 @@
             "id": "task_cargo_storage_01",
             "displayName": "Scan Cargo",
             "roomId": "cargo_storage",
+            "taskKind": "DataTransfer",
             "position": {
                 "x": -31.0,
                 "y": -22.0
@@ -2945,6 +2964,7 @@
             "id": "task_cargo_storage_02",
             "displayName": "Sort Supply Crates",
             "roomId": "cargo_storage",
+            "taskKind": "CircuitPulse",
             "position": {
                 "x": -8.75,
                 "y": -31.25
@@ -2954,6 +2974,7 @@
             "id": "task_life_support_01",
             "displayName": "Clean Oxygen Filter",
             "roomId": "life_support",
+            "taskKind": "CircuitPulse",
             "position": {
                 "x": -57.75,
                 "y": -13.75
@@ -2963,6 +2984,7 @@
             "id": "task_life_support_02",
             "displayName": "Check Air Tanks",
             "roomId": "life_support",
+            "taskKind": "DataTransfer",
             "position": {
                 "x": -43.0,
                 "y": -19.0

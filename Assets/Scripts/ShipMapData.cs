@@ -70,6 +70,7 @@ namespace AmongUsClone
         public string id;
         public string displayName;
         public string roomId;
+        public string taskKind;
         public Vector2Definition position;
     }
 
@@ -106,12 +107,14 @@ namespace AmongUsClone
     {
         public readonly int Id;
         public readonly string Name;
+        public readonly TaskKind Kind;
         public readonly Vector2 Position;
 
-        public TaskStation(int id, string name, Vector2 position)
+        public TaskStation(int id, string name, TaskKind kind, Vector2 position)
         {
             Id = id;
             Name = name;
+            Kind = kind;
             Position = position;
         }
     }

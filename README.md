@@ -15,7 +15,7 @@ Third-party Unity packages and imported art assets remain under their own licens
 ## Run
 
 1. Open this folder in Unity `6000.3.6f1`.
-2. Open `Assets/Scenes/FusionTest.unity`.
+2. Open `Assets/Game/Maps/AstraResearchComplex_Blockout.unity`.
 3. Press Play.
 4. Use the Canvas lobby to `Host`, `Join`, or `Auto Host Or Join` with the same room name.
 5. Host creates five CPU test players automatically.
@@ -23,14 +23,22 @@ Third-party Unity packages and imported art assets remain under their own licens
 7. Move with WASD or the arrow keys.
 8. If you are the Impostor, press `Q` near a Crewmate to kill.
 9. Press `R` near a body to call a meeting.
-10. Hold `E` near a task station or sabotage panel to complete it.
+10. Task controls depend on the station: hold `E` for data transfer, tap `E` four times for circuit pulse, or hold and release `E` in the 70-82% calibration band. Hold `E` at sabotage panels to repair them.
 11. Press `E` near the emergency button to call a meeting.
 12. If you are the Impostor, press `F` near a sabotage panel.
 13. If you are the Impostor, press `V` near a vent to move to the next vent.
 14. Vote from the meeting buttons. CPU players vote automatically.
 15. The macOS build is generated at `Builds/macOS/AmongUsStyle.app`.
 
-`FusionTest.unity` is included in build settings so Fusion can load the active scene for remote clients.
+`AstraResearchComplex_Blockout.unity` and `FusionTest.unity` are included in build settings so Fusion can load the active scene for remote clients.
+
+## Astra Research Complex
+
+The Astra blockout contains 11 connected rooms, 16 designed connections, 15 spawn points, 22 task stations, 4 sabotage panels, and 9 vents in 3 groups. The server supports 4-10 participants; CPU test players are reduced as humans join the lobby so the starting roster stays within that range.
+
+Each Crewmate starts with five random assignments drawn from the 22 stations. Additional assignments arrive at 30 seconds and 75 seconds with a flashing HUD alert and notification tone.
+
+The Crew has 180 seconds to finish all assignments. The HUD shows the remaining time and switches to an urgent warning during the final 30 seconds. If tasks remain at zero, a four-second failure cut-in and alarm play before the server awards the Impostors the win.
 
 ## Migration Notes
 
@@ -46,14 +54,17 @@ Ported concepts:
 - simple role assignment
 - placeholder impostor kill flow
 - report, meeting, voting, and ejection flow
-- simple crewmate task stations and task-completion win condition
+- three simple Crewmate task mechanics and a task-completion win condition
 - data-driven ship map loaded from `Assets/Resources/Maps/production_room_preview_01.json`
 - production room prefabs for the first three rooms, loaded from `Assets/Resources/RoomPrefabs/Production/`
 - room-based walkable areas, doorways, obstacles, current-room detection, and CPU navigation targets
 - gameplay points loaded from map data: tasks, sabotages, vents, spawns, and emergency meeting point
 - room labels and player roster/status readout for faster testing
 - generated crewmate-style runtime sprites with body, visor, and backpack layers
-- hold-to-complete task and repair interactions
+- data-transfer, circuit-pulse, and calibration task interactions
+- five random starting tasks per Crewmate, with two timed task waves
+- task-count HUD plus flashing and audible alerts for newly assigned tasks
+- 180-second task deadline with a synchronized failure cut-in and Impostor win
 - progress bars for tasks, repairs, and meetings
 - task/repair overlay panel with a simple animated progress mini-game
 - sabotage panels for Lights, Reactor, and Communications
@@ -68,7 +79,7 @@ This keeps the prototype free of the VR, Meta account, avatar, and voice-chat de
 
 ## Production Room Preview
 
-The active map is `Assets/Resources/Maps/production_room_preview_01.json`.
+The `FusionTest.unity` preview map is `Assets/Resources/Maps/production_room_preview_01.json`.
 
 It currently defines:
 
@@ -111,7 +122,12 @@ Each room prefab has this hierarchy:
 - Player bodies use generated placeholder sprites, so no external character art is required for testing.
 - Movement is limited to rooms, corridors, and doorways instead of the full rectangular map.
 - The HUD shows the local player's current room or hallway.
-- Crewmates get task stations from the map data and complete nearby tasks by holding `E`.
+- Crewmates receive five random tasks from the map data at round start.
+- One additional task is assigned after 30 seconds and again 45 seconds later.
+- The HUD shows personal completed/assigned tasks and aggregate Crew progress.
+- New timed tasks trigger a flashing alert and a short generated notification tone.
+- The final 30 seconds show a deadline warning; unfinished tasks at 180 seconds trigger a four-second cut-in before the Impostor result.
+- Data Transfer tasks use hold `E`, Circuit Pulse tasks use four `E` presses, and Calibration tasks use hold/release in the 70-82% target band.
 - Crewmates win if all assigned tasks are completed.
 - Impostors can trigger sabotage near red panels with `F`.
 - Lights and Communications stay active until a Crewmate repairs them by holding `E`.
