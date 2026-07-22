@@ -1,0 +1,76 @@
+{
+  "mapId": "production_room_preview_01",
+  "gridSize": 1,
+  "playBounds": { "x": -60, "y": -42.5, "width": 120, "height": 85 },
+  "rooms": [
+    { "id": "central_meeting", "displayName": "Central Meeting", "bounds": { "x": -17, "y": -14, "width": 34, "height": 28 }, "label": { "x": 0, "y": 11.5 } },
+    { "id": "reactor", "displayName": "Reactor", "bounds": { "x": -41, "y": -12, "width": 24, "height": 24 }, "label": { "x": -35.5, "y": 10.2 } },
+    { "id": "medical", "displayName": "Medical", "bounds": { "x": 17, "y": 4, "width": 22, "height": 20 }, "label": { "x": 27.5, "y": 22.1 } }
+  ],
+  "corridors": [],
+  "doorways": [
+    { "id": "door_reactor_central", "displayName": "Reactor Door", "bounds": { "x": -18.4, "y": -6.4, "width": 2.8, "height": 8.2 } },
+    { "id": "door_central_medical", "displayName": "Medical Door", "bounds": { "x": 15.6, "y": 4.8, "width": 2.8, "height": 8.4 } }
+  ],
+  "obstacles": [
+    { "id": "central_meeting_table", "displayName": "Meeting Table", "bounds": { "x": -5.3, "y": -3.1, "width": 10.6, "height": 6.2 } },
+    { "id": "central_west_console", "displayName": "Manifest Console", "bounds": { "x": -16.2, "y": 1.8, "width": 1.5, "height": 6 } },
+    { "id": "central_east_console", "displayName": "Status Console", "bounds": { "x": 14.5, "y": -7.7, "width": 1.6, "height": 5.8 } },
+    { "id": "reactor_upper_cutout", "displayName": "Reactor L Cutout", "bounds": { "x": -26, "y": 0, "width": 9, "height": 12 } },
+    { "id": "reactor_core", "displayName": "Reactor Core", "bounds": { "x": -37.5, "y": -6.4, "width": 5, "height": 12.8 } },
+    { "id": "reactor_coolant_tank", "displayName": "Coolant Tank", "bounds": { "x": -40.8, "y": -5.6, "width": 2.6, "height": 9 } },
+    { "id": "reactor_heat_exchanger", "displayName": "Heat Exchanger", "bounds": { "x": -22.3, "y": -11.2, "width": 3.8, "height": 6.7 } },
+    { "id": "medical_scanner", "displayName": "Scanner Bed", "bounds": { "x": 23.6, "y": 11.7, "width": 7.8, "height": 2.7 } },
+    { "id": "medical_sample_fridge", "displayName": "Sample Fridge", "bounds": { "x": 17.0, "y": 18.0, "width": 2.8, "height": 4.5 } },
+    { "id": "medical_recovery_pod", "displayName": "Recovery Pod", "bounds": { "x": 33.4, "y": 7.2, "width": 4.2, "height": 2.4 } }
+  ],
+  "navigationWaypoints": [
+    { "id": "wp_central_south", "position": { "x": 0, "y": -8.8 } },
+    { "id": "wp_central_north", "position": { "x": 0, "y": 7.6 } },
+    { "id": "wp_central_west_door", "position": { "x": -15.4, "y": -2.2 } },
+    { "id": "wp_central_med_door", "position": { "x": 15.4, "y": 8.4 } },
+    { "id": "wp_reactor_entry", "position": { "x": -20.8, "y": -3.2 } },
+    { "id": "wp_reactor_core_top", "position": { "x": -31.4, "y": 8.1 } },
+    { "id": "wp_reactor_lower", "position": { "x": -27.2, "y": -8.8 } },
+    { "id": "wp_med_entry", "position": { "x": 19.2, "y": 10.5 } },
+    { "id": "wp_med_scanner", "position": { "x": 26.5, "y": 9.8 } },
+    { "id": "wp_med_records", "position": { "x": 34.0, "y": 19.4 } }
+  ],
+  "spawnPoints": [
+    { "id": "spawn_01", "position": { "x": -10.2, "y": -9.1 } },
+    { "id": "spawn_02", "position": { "x": -6.8, "y": -9.1 } },
+    { "id": "spawn_03", "position": { "x": -3.4, "y": -9.1 } },
+    { "id": "spawn_04", "position": { "x": 0, "y": -9.1 } },
+    { "id": "spawn_05", "position": { "x": 3.4, "y": -9.1 } },
+    { "id": "spawn_06", "position": { "x": 6.8, "y": -9.1 } },
+    { "id": "spawn_07", "position": { "x": 10.2, "y": -9.1 } },
+    { "id": "spawn_08", "position": { "x": -10.2, "y": 8.8 } },
+    { "id": "spawn_09", "position": { "x": -6.8, "y": 8.8 } },
+    { "id": "spawn_10", "position": { "x": -3.4, "y": 8.8 } }
+  ],
+  "taskPoints": [
+    { "id": "task_manifest", "displayName": "Crew Manifest", "roomId": "central_meeting", "position": { "x": -10.1, "y": 4.2 } },
+    { "id": "task_diagnostics", "displayName": "Emergency Diagnostics", "roomId": "central_meeting", "position": { "x": 9.5, "y": 4.2 } },
+    { "id": "task_briefing", "displayName": "Navigation Briefing", "roomId": "central_meeting", "position": { "x": 9.7, "y": -5.2 } },
+    { "id": "task_reactor_stabilize", "displayName": "Stabilize Reactor", "roomId": "reactor", "position": { "x": -32.2, "y": 7.0 } },
+    { "id": "task_reactor_coolant", "displayName": "Coolant Flow", "roomId": "reactor", "position": { "x": -37.2, "y": -8.6 } },
+    { "id": "task_reactor_turbine", "displayName": "Turbine Governor", "roomId": "reactor", "position": { "x": -23.5, "y": -8.8 } },
+    { "id": "task_reactor_rods", "displayName": "Control Rods", "roomId": "reactor", "position": { "x": -29.4, "y": 9.5 } },
+    { "id": "task_med_scan", "displayName": "Med Scan", "roomId": "medical", "position": { "x": 25.9, "y": 10.9 } },
+    { "id": "task_med_records", "displayName": "Sort Records", "roomId": "medical", "position": { "x": 34.2, "y": 18.2 } },
+    { "id": "task_med_samples", "displayName": "Analyze Samples", "roomId": "medical", "position": { "x": 21.2, "y": 20.3 } },
+    { "id": "task_med_sterilize", "displayName": "Sterilize Bay", "roomId": "medical", "position": { "x": 32.1, "y": 6.8 } }
+  ],
+  "sabotagePoints": [
+    { "id": "sabotage_reactor", "displayName": "Reactor", "roomId": "reactor", "kind": "Reactor", "hasCountdown": true, "position": { "x": -31.2, "y": 0.0 } },
+    { "id": "sabotage_lights", "displayName": "Lights", "roomId": "central_meeting", "kind": "Lights", "hasCountdown": false, "position": { "x": 12.2, "y": 6.8 } },
+    { "id": "sabotage_comms", "displayName": "Comms", "roomId": "central_meeting", "kind": "Communications", "hasCountdown": false, "position": { "x": -12.4, "y": -7.0 } },
+    { "id": "sabotage_med_oxygen", "displayName": "Medical Oxygen", "roomId": "medical", "kind": "Communications", "hasCountdown": false, "position": { "x": 37.1, "y": 11.0 } }
+  ],
+  "ventNodes": [
+    { "id": "vent_central", "displayName": "Central Meeting", "roomId": "central_meeting", "groupId": "preview_alpha", "position": { "x": -13.2, "y": -9.4 } },
+    { "id": "vent_reactor", "displayName": "Reactor", "roomId": "reactor", "groupId": "preview_alpha", "position": { "x": -21.2, "y": -1.2 } },
+    { "id": "vent_medical", "displayName": "Medical", "roomId": "medical", "groupId": "preview_alpha", "position": { "x": 20.4, "y": 8.2 } }
+  ],
+  "meetingPoint": { "id": "meeting_button", "displayName": "Emergency Button", "roomId": "central_meeting", "position": { "x": 0, "y": 3.85 } }
+}

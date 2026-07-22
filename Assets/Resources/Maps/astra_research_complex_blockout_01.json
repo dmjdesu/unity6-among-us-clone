@@ -1,0 +1,3119 @@
+{
+    "mapId": "astra_research_complex_blockout_01",
+    "gridSize": 1.0,
+    "playBounds": {
+        "x": -75.0,
+        "y": -58.0,
+        "width": 150.0,
+        "height": 116.0
+    },
+    "rooms": [
+        {
+            "id": "central_lounge",
+            "displayName": "Central Lounge",
+            "bounds": {
+                "x": -16.0,
+                "y": -12.0,
+                "width": 32.0,
+                "height": 24.0
+            },
+            "label": {
+                "x": 0.0,
+                "y": 0.0
+            }
+        },
+        {
+            "id": "medical_lab",
+            "displayName": "Medical Lab",
+            "bounds": {
+                "x": -59.0,
+                "y": 3.5,
+                "width": 22.0,
+                "height": 17.0
+            },
+            "label": {
+                "x": -48.0,
+                "y": 12.0
+            }
+        },
+        {
+            "id": "xenobiology_lab",
+            "displayName": "Xenobiology Lab",
+            "bounds": {
+                "x": -50.0,
+                "y": 28.0,
+                "width": 24.0,
+                "height": 18.0
+            },
+            "label": {
+                "x": -38.0,
+                "y": 37.0
+            }
+        },
+        {
+            "id": "observation_deck",
+            "displayName": "Observation Deck",
+            "bounds": {
+                "x": -10.0,
+                "y": 40.0,
+                "width": 20.0,
+                "height": 14.0
+            },
+            "label": {
+                "x": 0.0,
+                "y": 47.0
+            }
+        },
+        {
+            "id": "communications",
+            "displayName": "Communications",
+            "bounds": {
+                "x": 26.0,
+                "y": 28.0,
+                "width": 18.0,
+                "height": 14.0
+            },
+            "label": {
+                "x": 35.0,
+                "y": 35.0
+            }
+        },
+        {
+            "id": "security_control",
+            "displayName": "Security Control",
+            "bounds": {
+                "x": 41.0,
+                "y": 4.5,
+                "width": 18.0,
+                "height": 15.0
+            },
+            "label": {
+                "x": 50.0,
+                "y": 12.0
+            }
+        },
+        {
+            "id": "engine_maintenance",
+            "displayName": "Engine Maintenance",
+            "bounds": {
+                "x": 36.0,
+                "y": -26.0,
+                "width": 26.0,
+                "height": 18.0
+            },
+            "label": {
+                "x": 49.0,
+                "y": -17.0
+            }
+        },
+        {
+            "id": "reactor_core",
+            "displayName": "Reactor Core",
+            "bounds": {
+                "x": 24.0,
+                "y": -54.0,
+                "width": 26.0,
+                "height": 22.0
+            },
+            "label": {
+                "x": 37.0,
+                "y": -43.0
+            }
+        },
+        {
+            "id": "power_distribution",
+            "displayName": "Power Distribution",
+            "bounds": {
+                "x": -2.0,
+                "y": -51.5,
+                "width": 18.0,
+                "height": 15.0
+            },
+            "label": {
+                "x": 7.0,
+                "y": -44.0
+            }
+        },
+        {
+            "id": "cargo_storage",
+            "displayName": "Cargo Storage",
+            "bounds": {
+                "x": -34.0,
+                "y": -40.0,
+                "width": 30.0,
+                "height": 22.0
+            },
+            "label": {
+                "x": -19.0,
+                "y": -29.0
+            }
+        },
+        {
+            "id": "life_support",
+            "displayName": "Life Support",
+            "bounds": {
+                "x": -61.0,
+                "y": -26.0,
+                "width": 22.0,
+                "height": 16.0
+            },
+            "label": {
+                "x": -50.0,
+                "y": -18.0
+            }
+        }
+    ],
+    "corridors": [
+        {
+            "id": "corridor_cell_run_000",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 16.0,
+                "y": -47.0,
+                "width": 8.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_001",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -4.0,
+                "y": -43.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_002",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 14.0,
+                "y": -46.0,
+                "width": 12.0,
+                "height": 4.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_003",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -5.0,
+                "y": -42.0,
+                "width": 5.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_004",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 16.0,
+                "y": -42.0,
+                "width": 8.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_005",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -7.0,
+                "y": -41.0,
+                "width": 7.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_006",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -8.0,
+                "y": -40.0,
+                "width": 8.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_007",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -9.0,
+                "y": -39.0,
+                "width": 8.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_008",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 6.0,
+                "y": -38.0,
+                "width": 2.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_009",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -9.0,
+                "y": -38.0,
+                "width": 7.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_010",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -9.0,
+                "y": -37.0,
+                "width": 5.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_011",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -9.0,
+                "y": -36.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_012",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 40.0,
+                "y": -35.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_013",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 40.0,
+                "y": -34.0,
+                "width": 5.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_014",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 40.0,
+                "y": -32.0,
+                "width": 6.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_015",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 41.0,
+                "y": -31.0,
+                "width": 6.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_016",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -36.0,
+                "y": -29.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_017",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 42.0,
+                "y": -29.0,
+                "width": 6.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_018",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -37.0,
+                "y": -28.0,
+                "width": 5.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_019",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -39.0,
+                "y": -27.0,
+                "width": 7.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_020",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 43.0,
+                "y": -28.0,
+                "width": 5.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_021",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 44.0,
+                "y": -26.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_022",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -40.0,
+                "y": -26.0,
+                "width": 8.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_023",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -41.0,
+                "y": -25.0,
+                "width": 8.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_024",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -41.0,
+                "y": -24.0,
+                "width": 7.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_025",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -41.0,
+                "y": -23.0,
+                "width": 5.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_026",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -41.0,
+                "y": -22.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_027",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -14.0,
+                "y": -21.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_028",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 5.0,
+                "y": -37.0,
+                "width": 4.0,
+                "height": 18.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_029",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -15.0,
+                "y": -20.0,
+                "width": 6.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_030",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 4.0,
+                "y": -19.0,
+                "width": 5.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_031",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -15.0,
+                "y": -18.0,
+                "width": 7.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_032",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -15.0,
+                "y": -17.0,
+                "width": 8.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_033",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -40.0,
+                "y": -16.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_034",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -14.0,
+                "y": -16.0,
+                "width": 8.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_035",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -13.0,
+                "y": -15.0,
+                "width": 8.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_036",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -40.0,
+                "y": -15.0,
+                "width": 7.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_037",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -12.0,
+                "y": -14.0,
+                "width": 8.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_038",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -39.0,
+                "y": -14.0,
+                "width": 9.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_039",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -11.0,
+                "y": -13.0,
+                "width": 7.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_040",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -36.0,
+                "y": -13.0,
+                "width": 8.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_041",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -34.0,
+                "y": -12.0,
+                "width": 9.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_042",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 4.0,
+                "y": -18.0,
+                "width": 4.0,
+                "height": 7.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_043",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 5.0,
+                "y": -11.0,
+                "width": 2.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_044",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -52.0,
+                "y": -12.0,
+                "width": 4.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_045",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -31.0,
+                "y": -11.0,
+                "width": 9.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_046",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -10.0,
+                "y": -12.0,
+                "width": 6.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_047",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -28.0,
+                "y": -10.0,
+                "width": 8.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_048",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -9.0,
+                "y": -10.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_049",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -25.0,
+                "y": -9.0,
+                "width": 7.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_050",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 48.0,
+                "y": -10.0,
+                "width": 4.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_051",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -23.0,
+                "y": -8.0,
+                "width": 7.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_052",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -21.0,
+                "y": -7.0,
+                "width": 6.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_053",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -19.0,
+                "y": -6.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_054",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -52.0,
+                "y": -10.0,
+                "width": 5.0,
+                "height": 13.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_055",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 47.0,
+                "y": -8.0,
+                "width": 6.0,
+                "height": 12.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_056",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -21.0,
+                "y": 4.0,
+                "width": 7.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_057",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -51.0,
+                "y": 3.0,
+                "width": 4.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_058",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 14.0,
+                "y": 4.0,
+                "width": 7.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_059",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -26.0,
+                "y": 5.0,
+                "width": 12.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_060",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 14.0,
+                "y": 5.0,
+                "width": 12.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_061",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 48.0,
+                "y": 4.0,
+                "width": 4.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_062",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 14.0,
+                "y": 6.0,
+                "width": 17.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_063",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -30.0,
+                "y": 6.0,
+                "width": 16.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_064",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 14.0,
+                "y": 7.0,
+                "width": 27.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_065",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -37.0,
+                "y": 7.0,
+                "width": 23.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_066",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 16.0,
+                "y": 8.0,
+                "width": 27.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_067",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -39.0,
+                "y": 8.0,
+                "width": 23.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_068",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 21.0,
+                "y": 9.0,
+                "width": 22.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_069",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -39.0,
+                "y": 9.0,
+                "width": 19.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_070",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 26.0,
+                "y": 10.0,
+                "width": 17.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_071",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -39.0,
+                "y": 10.0,
+                "width": 14.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_072",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 31.0,
+                "y": 11.0,
+                "width": 12.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_073",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -39.0,
+                "y": 11.0,
+                "width": 9.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_074",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 45.0,
+                "y": 18.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_075",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -48.0,
+                "y": 18.0,
+                "width": 4.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_076",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 44.0,
+                "y": 19.0,
+                "width": 5.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_077",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 43.0,
+                "y": 21.0,
+                "width": 6.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_078",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 42.0,
+                "y": 22.0,
+                "width": 6.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_079",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -48.0,
+                "y": 20.0,
+                "width": 5.0,
+                "height": 4.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_080",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 41.0,
+                "y": 24.0,
+                "width": 6.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_081",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 40.0,
+                "y": 26.0,
+                "width": 6.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_082",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -47.0,
+                "y": 24.0,
+                "width": 5.0,
+                "height": 4.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_083",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 40.0,
+                "y": 27.0,
+                "width": 5.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_084",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -46.0,
+                "y": 28.0,
+                "width": 4.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_085",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 40.0,
+                "y": 29.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_086",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -13.0,
+                "y": 30.0,
+                "width": 39.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_087",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -25.0,
+                "y": 31.0,
+                "width": 52.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_088",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -26.0,
+                "y": 32.0,
+                "width": 53.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_089",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -26.0,
+                "y": 33.0,
+                "width": 14.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_090",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 22.0,
+                "y": 38.0,
+                "width": 5.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_091",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 20.0,
+                "y": 39.0,
+                "width": 7.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_092",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -27.0,
+                "y": 40.0,
+                "width": 6.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_093",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 17.0,
+                "y": 40.0,
+                "width": 10.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_094",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 15.0,
+                "y": 41.0,
+                "width": 12.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_095",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -27.0,
+                "y": 41.0,
+                "width": 10.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_096",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 12.0,
+                "y": 42.0,
+                "width": 13.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_097",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -27.0,
+                "y": 42.0,
+                "width": 14.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_098",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 10.0,
+                "y": 43.0,
+                "width": 13.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_099",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -27.0,
+                "y": 43.0,
+                "width": 17.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_100",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 8.0,
+                "y": 44.0,
+                "width": 12.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_101",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -25.0,
+                "y": 44.0,
+                "width": 17.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_102",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 8.0,
+                "y": 45.0,
+                "width": 10.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_103",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -22.0,
+                "y": 45.0,
+                "width": 14.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_104",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 8.0,
+                "y": 46.0,
+                "width": 7.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_105",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -18.0,
+                "y": 46.0,
+                "width": 10.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_106",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": 8.0,
+                "y": 47.0,
+                "width": 5.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "corridor_cell_run_107",
+            "displayName": "Astra Corridor",
+            "bounds": {
+                "x": -14.0,
+                "y": 47.0,
+                "width": 6.0,
+                "height": 1.0
+            }
+        }
+    ],
+    "doorways": [],
+    "obstacles": [
+        {
+            "id": "shape_wall_000",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 24.0,
+                "y": -54.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_001",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 46.0,
+                "y": -54.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_002",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 24.0,
+                "y": -53.0,
+                "width": 3.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_003",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 47.0,
+                "y": -53.0,
+                "width": 3.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_004",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 48.0,
+                "y": -52.0,
+                "width": 2.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_005",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 24.0,
+                "y": -52.0,
+                "width": 2.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_006",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 49.0,
+                "y": -51.0,
+                "width": 1.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_007",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 24.0,
+                "y": -51.0,
+                "width": 1.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_008",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -34.0,
+                "y": -40.0,
+                "width": 20.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_009",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -34.0,
+                "y": -39.0,
+                "width": 7.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_010",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 24.0,
+                "y": -36.0,
+                "width": 1.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_011",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 49.0,
+                "y": -36.0,
+                "width": 1.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_012",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 48.0,
+                "y": -35.0,
+                "width": 2.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_013",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 24.0,
+                "y": -35.0,
+                "width": 2.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_014",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 47.0,
+                "y": -34.0,
+                "width": 3.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_015",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 24.0,
+                "y": -34.0,
+                "width": 3.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_016",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 46.0,
+                "y": -33.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_017",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 24.0,
+                "y": -33.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_018",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -42.0,
+                "y": -26.0,
+                "width": 2.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_019",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -61.0,
+                "y": -26.0,
+                "width": 3.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_020",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -61.0,
+                "y": -25.0,
+                "width": 2.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_021",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -61.0,
+                "y": -24.0,
+                "width": 1.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_022",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 58.0,
+                "y": -26.0,
+                "width": 4.0,
+                "height": 3.0
+            }
+        },
+        {
+            "id": "shape_wall_023",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 36.0,
+                "y": -26.0,
+                "width": 5.0,
+                "height": 4.0
+            }
+        },
+        {
+            "id": "shape_wall_024",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -34.0,
+                "y": -22.0,
+                "width": 1.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_025",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -34.0,
+                "y": -21.0,
+                "width": 2.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_026",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -34.0,
+                "y": -20.0,
+                "width": 3.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_027",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -34.0,
+                "y": -19.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_028",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -40.0,
+                "y": -13.0,
+                "width": 1.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_029",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -61.0,
+                "y": -13.0,
+                "width": 1.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_030",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 11.0,
+                "y": -12.0,
+                "width": 5.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_031",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -16.0,
+                "y": -12.0,
+                "width": 5.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_032",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -41.0,
+                "y": -12.0,
+                "width": 2.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_033",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -61.0,
+                "y": -12.0,
+                "width": 2.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_034",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -42.0,
+                "y": -11.0,
+                "width": 3.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_035",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -61.0,
+                "y": -11.0,
+                "width": 3.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_036",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -16.0,
+                "y": -11.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_037",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 12.0,
+                "y": -11.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_038",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 13.0,
+                "y": -10.0,
+                "width": 3.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_039",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -16.0,
+                "y": -10.0,
+                "width": 3.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_040",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 57.0,
+                "y": -12.0,
+                "width": 5.0,
+                "height": 4.0
+            }
+        },
+        {
+            "id": "shape_wall_041",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 14.0,
+                "y": -9.0,
+                "width": 2.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_042",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -16.0,
+                "y": -9.0,
+                "width": 2.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_043",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 15.0,
+                "y": -8.0,
+                "width": 1.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_044",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -16.0,
+                "y": -8.0,
+                "width": 1.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_045",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -59.0,
+                "y": 3.0,
+                "width": 2.0,
+                "height": 5.0
+            }
+        },
+        {
+            "id": "shape_wall_046",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 14.0,
+                "y": 8.0,
+                "width": 2.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_047",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -16.0,
+                "y": 8.0,
+                "width": 2.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_048",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 13.0,
+                "y": 9.0,
+                "width": 3.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_049",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -16.0,
+                "y": 9.0,
+                "width": 3.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_050",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 54.0,
+                "y": 4.0,
+                "width": 5.0,
+                "height": 7.0
+            }
+        },
+        {
+            "id": "shape_wall_051",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 12.0,
+                "y": 10.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_052",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -16.0,
+                "y": 10.0,
+                "width": 4.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_053",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 11.0,
+                "y": 11.0,
+                "width": 5.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_054",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -16.0,
+                "y": 11.0,
+                "width": 5.0,
+                "height": 1.0
+            }
+        },
+        {
+            "id": "shape_wall_055",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -59.0,
+                "y": 8.0,
+                "width": 1.0,
+                "height": 8.0
+            }
+        },
+        {
+            "id": "shape_wall_056",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -38.0,
+                "y": 12.0,
+                "width": 1.0,
+                "height": 4.0
+            }
+        },
+        {
+            "id": "shape_wall_057",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -39.0,
+                "y": 16.0,
+                "width": 2.0,
+                "height": 4.0
+            }
+        },
+        {
+            "id": "shape_wall_058",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 26.0,
+                "y": 28.0,
+                "width": 2.0,
+                "height": 3.0
+            }
+        },
+        {
+            "id": "shape_wall_059",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 26.0,
+                "y": 33.0,
+                "width": 1.0,
+                "height": 5.0
+            }
+        },
+        {
+            "id": "shape_wall_060",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 43.0,
+                "y": 32.0,
+                "width": 1.0,
+                "height": 7.0
+            }
+        },
+        {
+            "id": "shape_wall_061",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 42.0,
+                "y": 39.0,
+                "width": 2.0,
+                "height": 3.0
+            }
+        },
+        {
+            "id": "shape_wall_062",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 9.0,
+                "y": 42.0,
+                "width": 1.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "shape_wall_063",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -10.0,
+                "y": 42.0,
+                "width": 1.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "shape_wall_064",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -50.0,
+                "y": 38.0,
+                "width": 8.0,
+                "height": 8.0
+            }
+        },
+        {
+            "id": "shape_wall_065",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 8.0,
+                "y": 48.0,
+                "width": 2.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "shape_wall_066",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -10.0,
+                "y": 48.0,
+                "width": 2.0,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "shape_wall_067",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": -10.0,
+                "y": 50.0,
+                "width": 3.0,
+                "height": 4.0
+            }
+        },
+        {
+            "id": "shape_wall_068",
+            "displayName": "Room Shape Cutout",
+            "bounds": {
+                "x": 7.0,
+                "y": 50.0,
+                "width": 3.0,
+                "height": 4.0
+            }
+        },
+        {
+            "id": "medical_scanner",
+            "displayName": "Medical Scanner Bed",
+            "bounds": {
+                "x": -53.5,
+                "y": 10.699999809265137,
+                "width": 7.199999809265137,
+                "height": 2.200000047683716
+            }
+        },
+        {
+            "id": "medical_sample_fridge",
+            "displayName": "Sample Fridge",
+            "bounds": {
+                "x": -58.0,
+                "y": 15.100000381469727,
+                "width": 2.799999952316284,
+                "height": 4.199999809265137
+            }
+        },
+        {
+            "id": "medical_recovery_pod",
+            "displayName": "Recovery Pod",
+            "bounds": {
+                "x": -43.79999923706055,
+                "y": 5.400000095367432,
+                "width": 3.799999952316284,
+                "height": 2.4000000953674318
+            }
+        },
+        {
+            "id": "xeno_containment_tank",
+            "displayName": "Containment Tank",
+            "bounds": {
+                "x": -45.79999923706055,
+                "y": 33.79999923706055,
+                "width": 5.199999809265137,
+                "height": 8.399999618530274
+            }
+        },
+        {
+            "id": "xeno_specimen_table",
+            "displayName": "Specimen Table",
+            "bounds": {
+                "x": -35.0,
+                "y": 40.70000076293945,
+                "width": 6.199999809265137,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "observation_console",
+            "displayName": "Observation Console",
+            "bounds": {
+                "x": -5.5,
+                "y": 49.79999923706055,
+                "width": 11.0,
+                "height": 1.600000023841858
+            }
+        },
+        {
+            "id": "communications_antenna_console",
+            "displayName": "Antenna Control Console",
+            "bounds": {
+                "x": 32.20000076293945,
+                "y": 36.099998474121097,
+                "width": 5.599999904632568,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "communications_server_rack",
+            "displayName": "Server Rack",
+            "bounds": {
+                "x": 40.599998474121097,
+                "y": 30.600000381469728,
+                "width": 2.299999952316284,
+                "height": 5.0
+            }
+        },
+        {
+            "id": "security_monitor_wall",
+            "displayName": "Monitor Wall",
+            "bounds": {
+                "x": 50.0,
+                "y": 16.200000762939454,
+                "width": 8.399999618530274,
+                "height": 1.7999999523162842
+            }
+        },
+        {
+            "id": "security_console",
+            "displayName": "Security Console",
+            "bounds": {
+                "x": 43.70000076293945,
+                "y": 9.0,
+                "width": 3.200000047683716,
+                "height": 4.599999904632568
+            }
+        },
+        {
+            "id": "engine_primary_block",
+            "displayName": "Engine Block",
+            "bounds": {
+                "x": 45.0,
+                "y": -20.700000762939454,
+                "width": 9.5,
+                "height": 7.199999809265137
+            }
+        },
+        {
+            "id": "engine_turbine_housing",
+            "displayName": "Turbine Housing",
+            "bounds": {
+                "x": 56.5,
+                "y": -20.899999618530275,
+                "width": 4.800000190734863,
+                "height": 6.199999809265137
+            }
+        },
+        {
+            "id": "engine_tool_wall",
+            "displayName": "Tool Wall",
+            "bounds": {
+                "x": 38.29999923706055,
+                "y": -12.300000190734864,
+                "width": 4.599999904632568,
+                "height": 3.200000047683716
+            }
+        },
+        {
+            "id": "reactor_core_block",
+            "displayName": "Reactor Core",
+            "bounds": {
+                "x": 36.400001525878909,
+                "y": -46.0,
+                "width": 6.800000190734863,
+                "height": 10.199999809265137
+            }
+        },
+        {
+            "id": "reactor_coolant_tanks",
+            "displayName": "Coolant Tanks",
+            "bounds": {
+                "x": 27.600000381469728,
+                "y": -47.79999923706055,
+                "width": 3.200000047683716,
+                "height": 7.199999809265137
+            }
+        },
+        {
+            "id": "reactor_service_barrier",
+            "displayName": "Service Barrier",
+            "bounds": {
+                "x": 44.20000076293945,
+                "y": -38.5,
+                "width": 4.400000095367432,
+                "height": 2.4000000953674318
+            }
+        },
+        {
+            "id": "power_west_breakers",
+            "displayName": "West Breaker Panels",
+            "bounds": {
+                "x": -0.8999999761581421,
+                "y": -47.5,
+                "width": 2.200000047683716,
+                "height": 7.800000190734863
+            }
+        },
+        {
+            "id": "power_east_breakers",
+            "displayName": "East Breaker Panels",
+            "bounds": {
+                "x": 13.699999809265137,
+                "y": -46.5,
+                "width": 2.0,
+                "height": 7.199999809265137
+            }
+        },
+        {
+            "id": "power_transformer",
+            "displayName": "Transformer",
+            "bounds": {
+                "x": 6.099999904632568,
+                "y": -48.599998474121097,
+                "width": 4.199999809265137,
+                "height": 2.799999952316284
+            }
+        },
+        {
+            "id": "cargo_crate_cluster_a",
+            "displayName": "Cargo Crates A",
+            "bounds": {
+                "x": -29.200000762939454,
+                "y": -34.099998474121097,
+                "width": 6.300000190734863,
+                "height": 4.800000190734863
+            }
+        },
+        {
+            "id": "cargo_crate_cluster_b",
+            "displayName": "Cargo Crates B",
+            "bounds": {
+                "x": -17.0,
+                "y": -26.799999237060548,
+                "width": 7.199999809265137,
+                "height": 4.0
+            }
+        },
+        {
+            "id": "cargo_crate_cluster_c",
+            "displayName": "Cargo Crates C",
+            "bounds": {
+                "x": -8.699999809265137,
+                "y": -37.29999923706055,
+                "width": 4.199999809265137,
+                "height": 4.800000190734863
+            }
+        },
+        {
+            "id": "cargo_low_shelf",
+            "displayName": "Low Cargo Shelf",
+            "bounds": {
+                "x": -25.799999237060548,
+                "y": -21.200000762939454,
+                "width": 5.199999809265137,
+                "height": 2.0
+            }
+        },
+        {
+            "id": "life_support_oxygen_tanks",
+            "displayName": "Oxygen Tanks",
+            "bounds": {
+                "x": -56.400001525878909,
+                "y": -20.5,
+                "width": 3.200000047683716,
+                "height": 7.199999809265137
+            }
+        },
+        {
+            "id": "life_support_filter_bank",
+            "displayName": "Filter Bank",
+            "bounds": {
+                "x": -47.599998474121097,
+                "y": -23.200000762939454,
+                "width": 4.800000190734863,
+                "height": 2.5999999046325685
+            }
+        },
+        {
+            "id": "life_support_valves",
+            "displayName": "Valve Manifold",
+            "bounds": {
+                "x": -59.5,
+                "y": -13.100000381469727,
+                "width": 3.799999952316284,
+                "height": 2.0
+            }
+        }
+    ],
+    "navigationWaypoints": [
+        {
+            "id": "wp_central_lounge",
+            "displayName": "Central Lounge",
+            "roomId": "central_lounge",
+            "position": {
+                "x": 0.0,
+                "y": 0.0
+            }
+        },
+        {
+            "id": "wp_medical_lab",
+            "displayName": "Medical Lab",
+            "roomId": "medical_lab",
+            "position": {
+                "x": -49.5,
+                "y": 13.5
+            }
+        },
+        {
+            "id": "wp_xenobiology_lab",
+            "displayName": "Xenobiology Lab",
+            "roomId": "xenobiology_lab",
+            "position": {
+                "x": -38.0,
+                "y": 37.0
+            }
+        },
+        {
+            "id": "wp_observation_deck",
+            "displayName": "Observation Deck",
+            "roomId": "observation_deck",
+            "position": {
+                "x": 0.0,
+                "y": 47.0
+            }
+        },
+        {
+            "id": "wp_communications",
+            "displayName": "Communications",
+            "roomId": "communications",
+            "position": {
+                "x": 35.0,
+                "y": 35.0
+            }
+        },
+        {
+            "id": "wp_security_control",
+            "displayName": "Security Control",
+            "roomId": "security_control",
+            "position": {
+                "x": 50.0,
+                "y": 12.0
+            }
+        },
+        {
+            "id": "wp_engine_maintenance",
+            "displayName": "Engine Maintenance",
+            "roomId": "engine_maintenance",
+            "position": {
+                "x": 44.5,
+                "y": -21.5
+            }
+        },
+        {
+            "id": "wp_reactor_core",
+            "displayName": "Reactor Core",
+            "roomId": "reactor_core",
+            "position": {
+                "x": 35.5,
+                "y": -44.5
+            }
+        },
+        {
+            "id": "wp_power_distribution",
+            "displayName": "Power Distribution",
+            "roomId": "power_distribution",
+            "position": {
+                "x": 7.0,
+                "y": -44.0
+            }
+        },
+        {
+            "id": "wp_cargo_storage",
+            "displayName": "Cargo Storage",
+            "roomId": "cargo_storage",
+            "position": {
+                "x": -19.0,
+                "y": -29.0
+            }
+        },
+        {
+            "id": "wp_life_support",
+            "displayName": "Life Support",
+            "roomId": "life_support",
+            "position": {
+                "x": -50.0,
+                "y": -18.0
+            }
+        },
+        {
+            "id": "wp_medical_to_xenobiology_00",
+            "displayName": "medical_to_xenobiology",
+            "roomId": "",
+            "position": {
+                "x": -46.0,
+                "y": 20.0
+            }
+        },
+        {
+            "id": "wp_medical_to_xenobiology_01",
+            "displayName": "medical_to_xenobiology",
+            "roomId": "",
+            "position": {
+                "x": -44.0,
+                "y": 28.0
+            }
+        },
+        {
+            "id": "wp_xenobiology_to_observation_00",
+            "displayName": "xenobiology_to_observation",
+            "roomId": "",
+            "position": {
+                "x": -25.0,
+                "y": 42.0
+            }
+        },
+        {
+            "id": "wp_xenobiology_to_observation_01",
+            "displayName": "xenobiology_to_observation",
+            "roomId": "",
+            "position": {
+                "x": -10.0,
+                "y": 46.0
+            }
+        },
+        {
+            "id": "wp_observation_to_communications_00",
+            "displayName": "observation_to_communications",
+            "roomId": "",
+            "position": {
+                "x": 10.0,
+                "y": 46.0
+            }
+        },
+        {
+            "id": "wp_observation_to_communications_01",
+            "displayName": "observation_to_communications",
+            "roomId": "",
+            "position": {
+                "x": 25.0,
+                "y": 40.0
+            }
+        },
+        {
+            "id": "wp_communications_to_security_00",
+            "displayName": "communications_to_security",
+            "roomId": "",
+            "position": {
+                "x": 42.0,
+                "y": 28.0
+            }
+        },
+        {
+            "id": "wp_communications_to_security_01",
+            "displayName": "communications_to_security",
+            "roomId": "",
+            "position": {
+                "x": 47.0,
+                "y": 20.0
+            }
+        },
+        {
+            "id": "wp_security_to_engine_00",
+            "displayName": "security_to_engine",
+            "roomId": "",
+            "position": {
+                "x": 50.0,
+                "y": 4.0
+            }
+        },
+        {
+            "id": "wp_security_to_engine_01",
+            "displayName": "security_to_engine",
+            "roomId": "",
+            "position": {
+                "x": 50.0,
+                "y": -8.0
+            }
+        },
+        {
+            "id": "wp_engine_to_reactor_00",
+            "displayName": "engine_to_reactor",
+            "roomId": "",
+            "position": {
+                "x": 46.0,
+                "y": -27.0
+            }
+        },
+        {
+            "id": "wp_engine_to_reactor_01",
+            "displayName": "engine_to_reactor",
+            "roomId": "",
+            "position": {
+                "x": 42.0,
+                "y": -33.0
+            }
+        },
+        {
+            "id": "wp_reactor_to_power_00",
+            "displayName": "reactor_to_power",
+            "roomId": "",
+            "position": {
+                "x": 24.0,
+                "y": -44.0
+            }
+        },
+        {
+            "id": "wp_reactor_to_power_01",
+            "displayName": "reactor_to_power",
+            "roomId": "",
+            "position": {
+                "x": 16.75,
+                "y": -44.75
+            }
+        },
+        {
+            "id": "wp_power_to_cargo_00",
+            "displayName": "power_to_cargo",
+            "roomId": "",
+            "position": {
+                "x": -2.0,
+                "y": -41.0
+            }
+        },
+        {
+            "id": "wp_power_to_cargo_01",
+            "displayName": "power_to_cargo",
+            "roomId": "",
+            "position": {
+                "x": -8.5,
+                "y": -38.5
+            }
+        },
+        {
+            "id": "wp_cargo_to_life_support_00",
+            "displayName": "cargo_to_life_support",
+            "roomId": "",
+            "position": {
+                "x": -34.0,
+                "y": -27.0
+            }
+        },
+        {
+            "id": "wp_cargo_to_life_support_01",
+            "displayName": "cargo_to_life_support",
+            "roomId": "",
+            "position": {
+                "x": -39.0,
+                "y": -23.0
+            }
+        },
+        {
+            "id": "wp_life_support_to_medical_00",
+            "displayName": "life_support_to_medical",
+            "roomId": "",
+            "position": {
+                "x": -50.0,
+                "y": -10.0
+            }
+        },
+        {
+            "id": "wp_life_support_to_medical_01",
+            "displayName": "life_support_to_medical",
+            "roomId": "",
+            "position": {
+                "x": -49.0,
+                "y": 3.0
+            }
+        },
+        {
+            "id": "wp_central_to_medical_00",
+            "displayName": "central_to_medical",
+            "roomId": "",
+            "position": {
+                "x": -16.0,
+                "y": 6.0
+            }
+        },
+        {
+            "id": "wp_central_to_medical_01",
+            "displayName": "central_to_medical",
+            "roomId": "",
+            "position": {
+                "x": -30.0,
+                "y": 9.0
+            }
+        },
+        {
+            "id": "wp_central_to_medical_02",
+            "displayName": "central_to_medical",
+            "roomId": "",
+            "position": {
+                "x": -37.0,
+                "y": 10.0
+            }
+        },
+        {
+            "id": "wp_central_to_security_00",
+            "displayName": "central_to_security",
+            "roomId": "",
+            "position": {
+                "x": 16.0,
+                "y": 6.0
+            }
+        },
+        {
+            "id": "wp_central_to_security_01",
+            "displayName": "central_to_security",
+            "roomId": "",
+            "position": {
+                "x": 31.0,
+                "y": 9.0
+            }
+        },
+        {
+            "id": "wp_central_to_security_02",
+            "displayName": "central_to_security",
+            "roomId": "",
+            "position": {
+                "x": 41.0,
+                "y": 10.0
+            }
+        },
+        {
+            "id": "wp_central_to_cargo_00",
+            "displayName": "central_to_cargo",
+            "roomId": "",
+            "position": {
+                "x": -7.0,
+                "y": -12.0
+            }
+        },
+        {
+            "id": "wp_central_to_cargo_01",
+            "displayName": "central_to_cargo",
+            "roomId": "",
+            "position": {
+                "x": -12.0,
+                "y": -18.0
+            }
+        },
+        {
+            "id": "wp_central_to_power_00",
+            "displayName": "central_to_power",
+            "roomId": "",
+            "position": {
+                "x": 6.0,
+                "y": -12.0
+            }
+        },
+        {
+            "id": "wp_central_to_power_01",
+            "displayName": "central_to_power",
+            "roomId": "",
+            "position": {
+                "x": 7.0,
+                "y": -25.0
+            }
+        },
+        {
+            "id": "wp_central_to_power_02",
+            "displayName": "central_to_power",
+            "roomId": "",
+            "position": {
+                "x": 7.0,
+                "y": -36.0
+            }
+        },
+        {
+            "id": "wp_xenobiology_to_communications_00",
+            "displayName": "xenobiology_to_communications",
+            "roomId": "",
+            "position": {
+                "x": -25.0,
+                "y": 33.0
+            }
+        },
+        {
+            "id": "wp_xenobiology_to_communications_01",
+            "displayName": "xenobiology_to_communications",
+            "roomId": "",
+            "position": {
+                "x": 0.0,
+                "y": 31.0
+            }
+        },
+        {
+            "id": "wp_xenobiology_to_communications_02",
+            "displayName": "xenobiology_to_communications",
+            "roomId": "",
+            "position": {
+                "x": 26.0,
+                "y": 32.0
+            }
+        },
+        {
+            "id": "wp_life_support_to_central_west_00",
+            "displayName": "life_support_to_central_west",
+            "roomId": "",
+            "position": {
+                "x": -39.0,
+                "y": -15.0
+            }
+        },
+        {
+            "id": "wp_life_support_to_central_west_01",
+            "displayName": "life_support_to_central_west",
+            "roomId": "",
+            "position": {
+                "x": -25.0,
+                "y": -10.0
+            }
+        },
+        {
+            "id": "wp_life_support_to_central_west_02",
+            "displayName": "life_support_to_central_west",
+            "roomId": "",
+            "position": {
+                "x": -16.0,
+                "y": -6.0
+            }
+        }
+    ],
+    "spawnPoints": [
+        {
+            "id": "spawn_01",
+            "displayName": "Spawn 01",
+            "roomId": "central_lounge",
+            "position": {
+                "x": -8.0,
+                "y": 3.0
+            }
+        },
+        {
+            "id": "spawn_02",
+            "displayName": "Spawn 02",
+            "roomId": "central_lounge",
+            "position": {
+                "x": -4.0,
+                "y": 5.0
+            }
+        },
+        {
+            "id": "spawn_03",
+            "displayName": "Spawn 03",
+            "roomId": "central_lounge",
+            "position": {
+                "x": 0.0,
+                "y": 6.0
+            }
+        },
+        {
+            "id": "spawn_04",
+            "displayName": "Spawn 04",
+            "roomId": "central_lounge",
+            "position": {
+                "x": 4.0,
+                "y": 5.0
+            }
+        },
+        {
+            "id": "spawn_05",
+            "displayName": "Spawn 05",
+            "roomId": "central_lounge",
+            "position": {
+                "x": 8.0,
+                "y": 3.0
+            }
+        },
+        {
+            "id": "spawn_06",
+            "displayName": "Spawn 06",
+            "roomId": "central_lounge",
+            "position": {
+                "x": -8.0,
+                "y": -3.0
+            }
+        },
+        {
+            "id": "spawn_07",
+            "displayName": "Spawn 07",
+            "roomId": "central_lounge",
+            "position": {
+                "x": -4.0,
+                "y": -5.0
+            }
+        },
+        {
+            "id": "spawn_08",
+            "displayName": "Spawn 08",
+            "roomId": "central_lounge",
+            "position": {
+                "x": 0.0,
+                "y": -6.0
+            }
+        },
+        {
+            "id": "spawn_09",
+            "displayName": "Spawn 09",
+            "roomId": "central_lounge",
+            "position": {
+                "x": 4.0,
+                "y": -5.0
+            }
+        },
+        {
+            "id": "spawn_10",
+            "displayName": "Spawn 10",
+            "roomId": "central_lounge",
+            "position": {
+                "x": 8.0,
+                "y": -3.0
+            }
+        },
+        {
+            "id": "spawn_11",
+            "displayName": "Spawn 11",
+            "roomId": "central_lounge",
+            "position": {
+                "x": -11.0,
+                "y": 0.0
+            }
+        },
+        {
+            "id": "spawn_12",
+            "displayName": "Spawn 12",
+            "roomId": "central_lounge",
+            "position": {
+                "x": 11.0,
+                "y": 0.0
+            }
+        },
+        {
+            "id": "spawn_13",
+            "displayName": "Spawn 13",
+            "roomId": "central_lounge",
+            "position": {
+                "x": -6.0,
+                "y": 0.0
+            }
+        },
+        {
+            "id": "spawn_14",
+            "displayName": "Spawn 14",
+            "roomId": "central_lounge",
+            "position": {
+                "x": 6.0,
+                "y": 0.0
+            }
+        },
+        {
+            "id": "spawn_15",
+            "displayName": "Spawn 15",
+            "roomId": "central_lounge",
+            "position": {
+                "x": 0.0,
+                "y": 0.0
+            }
+        }
+    ],
+    "taskPoints": [
+        {
+            "id": "task_central_lounge_01",
+            "displayName": "Review Emergency Log",
+            "roomId": "central_lounge",
+            "position": {
+                "x": -10.0,
+                "y": 7.0
+            }
+        },
+        {
+            "id": "task_medical_lab_01",
+            "displayName": "Run Med Scanner",
+            "roomId": "medical_lab",
+            "position": {
+                "x": -53.5,
+                "y": 7.0
+            }
+        },
+        {
+            "id": "task_medical_lab_02",
+            "displayName": "Analyze Blood Sample",
+            "roomId": "medical_lab",
+            "position": {
+                "x": -42.0,
+                "y": 17.0
+            }
+        },
+        {
+            "id": "task_xenobiology_lab_01",
+            "displayName": "Calibrate Containment",
+            "roomId": "xenobiology_lab",
+            "position": {
+                "x": -46.0,
+                "y": 32.0
+            }
+        },
+        {
+            "id": "task_xenobiology_lab_02",
+            "displayName": "Catalog Specimen",
+            "roomId": "xenobiology_lab",
+            "position": {
+                "x": -31.0,
+                "y": 40.0
+            }
+        },
+        {
+            "id": "task_observation_deck_01",
+            "displayName": "Align Telescope",
+            "roomId": "observation_deck",
+            "position": {
+                "x": 0.0,
+                "y": 43.0
+            }
+        },
+        {
+            "id": "task_communications_01",
+            "displayName": "Upload Research Data",
+            "roomId": "communications",
+            "position": {
+                "x": 29.0,
+                "y": 36.0
+            }
+        },
+        {
+            "id": "task_communications_02",
+            "displayName": "Tune Antenna Array",
+            "roomId": "communications",
+            "position": {
+                "x": 39.5,
+                "y": 29.5
+            }
+        },
+        {
+            "id": "task_security_control_01",
+            "displayName": "Review Camera Feed",
+            "roomId": "security_control",
+            "position": {
+                "x": 43.25,
+                "y": 8.25
+            }
+        },
+        {
+            "id": "task_security_control_02",
+            "displayName": "Reset Door Logs",
+            "roomId": "security_control",
+            "position": {
+                "x": 53.25,
+                "y": 15.25
+            }
+        },
+        {
+            "id": "task_engine_maintenance_01",
+            "displayName": "Tune Engine",
+            "roomId": "engine_maintenance",
+            "position": {
+                "x": 39.0,
+                "y": -13.0
+            }
+        },
+        {
+            "id": "task_engine_maintenance_02",
+            "displayName": "Prime Coolant Pump",
+            "roomId": "engine_maintenance",
+            "position": {
+                "x": 50.0,
+                "y": -10.0
+            }
+        },
+        {
+            "id": "task_engine_maintenance_03",
+            "displayName": "Inspect Turbine",
+            "roomId": "engine_maintenance",
+            "position": {
+                "x": 59.0,
+                "y": -22.0
+            }
+        },
+        {
+            "id": "task_reactor_core_01",
+            "displayName": "Stabilize Core",
+            "roomId": "reactor_core",
+            "position": {
+                "x": 28.0,
+                "y": -36.0
+            }
+        },
+        {
+            "id": "task_reactor_core_02",
+            "displayName": "Balance Control Rods",
+            "roomId": "reactor_core",
+            "position": {
+                "x": 45.0,
+                "y": -50.0
+            }
+        },
+        {
+            "id": "task_power_distribution_01",
+            "displayName": "Divert Power",
+            "roomId": "power_distribution",
+            "position": {
+                "x": 2.0,
+                "y": -38.0
+            }
+        },
+        {
+            "id": "task_power_distribution_02",
+            "displayName": "Reset Breakers",
+            "roomId": "power_distribution",
+            "position": {
+                "x": 8.0,
+                "y": -39.0
+            }
+        },
+        {
+            "id": "task_power_distribution_03",
+            "displayName": "Trace Cable Fault",
+            "roomId": "power_distribution",
+            "position": {
+                "x": 13.0,
+                "y": -45.0
+            }
+        },
+        {
+            "id": "task_cargo_storage_01",
+            "displayName": "Scan Cargo",
+            "roomId": "cargo_storage",
+            "position": {
+                "x": -31.0,
+                "y": -22.0
+            }
+        },
+        {
+            "id": "task_cargo_storage_02",
+            "displayName": "Sort Supply Crates",
+            "roomId": "cargo_storage",
+            "position": {
+                "x": -8.75,
+                "y": -31.25
+            }
+        },
+        {
+            "id": "task_life_support_01",
+            "displayName": "Clean Oxygen Filter",
+            "roomId": "life_support",
+            "position": {
+                "x": -57.75,
+                "y": -13.75
+            }
+        },
+        {
+            "id": "task_life_support_02",
+            "displayName": "Check Air Tanks",
+            "roomId": "life_support",
+            "position": {
+                "x": -43.0,
+                "y": -19.0
+            }
+        }
+    ],
+    "sabotagePoints": [
+        {
+            "id": "sabotage_reactor",
+            "displayName": "Reactor Core Sabotage",
+            "roomId": "reactor_core",
+            "position": {
+                "x": 30.0,
+                "y": -36.0
+            },
+            "kind": "Reactor",
+            "hasCountdown": true
+        },
+        {
+            "id": "sabotage_power",
+            "displayName": "Power Distribution Sabotage",
+            "roomId": "power_distribution",
+            "position": {
+                "x": 8.0,
+                "y": -38.0
+            },
+            "kind": "Lights",
+            "hasCountdown": false
+        },
+        {
+            "id": "sabotage_comms",
+            "displayName": "Communications Sabotage",
+            "roomId": "communications",
+            "position": {
+                "x": 35.0,
+                "y": 33.0
+            },
+            "kind": "Communications",
+            "hasCountdown": false
+        },
+        {
+            "id": "sabotage_life_support",
+            "displayName": "Oxygen Processing Sabotage",
+            "roomId": "life_support",
+            "position": {
+                "x": -47.0,
+                "y": -13.0
+            },
+            "kind": "Oxygen",
+            "hasCountdown": false
+        }
+    ],
+    "ventNodes": [
+        {
+            "id": "vent_vent_group_north_medical_lab",
+            "displayName": "Medical Lab Vent",
+            "roomId": "medical_lab",
+            "position": {
+                "x": -55.5,
+                "y": 7.0
+            },
+            "groupId": "vent_group_north"
+        },
+        {
+            "id": "vent_vent_group_north_xenobiology_lab",
+            "displayName": "Xenobiology Lab Vent",
+            "roomId": "xenobiology_lab",
+            "position": {
+                "x": -32.0,
+                "y": 40.0
+            },
+            "groupId": "vent_group_north"
+        },
+        {
+            "id": "vent_vent_group_north_communications",
+            "displayName": "Communications Vent",
+            "roomId": "communications",
+            "position": {
+                "x": 30.0,
+                "y": 31.0
+            },
+            "groupId": "vent_group_north"
+        },
+        {
+            "id": "vent_vent_group_east_security_control",
+            "displayName": "Security Control Vent",
+            "roomId": "security_control",
+            "position": {
+                "x": 55.0,
+                "y": 15.5
+            },
+            "groupId": "vent_group_east"
+        },
+        {
+            "id": "vent_vent_group_east_engine_maintenance",
+            "displayName": "Engine Maintenance Vent",
+            "roomId": "engine_maintenance",
+            "position": {
+                "x": 40.0,
+                "y": -21.0
+            },
+            "groupId": "vent_group_east"
+        },
+        {
+            "id": "vent_vent_group_east_reactor_core",
+            "displayName": "Reactor Core Vent",
+            "roomId": "reactor_core",
+            "position": {
+                "x": 45.0,
+                "y": -50.0
+            },
+            "groupId": "vent_group_east"
+        },
+        {
+            "id": "vent_vent_group_west_south_life_support",
+            "displayName": "Life Support Vent",
+            "roomId": "life_support",
+            "position": {
+                "x": -57.0,
+                "y": -22.0
+            },
+            "groupId": "vent_group_west_south"
+        },
+        {
+            "id": "vent_vent_group_west_south_cargo_storage",
+            "displayName": "Cargo Storage Vent",
+            "roomId": "cargo_storage",
+            "position": {
+                "x": -27.0,
+                "y": -22.0
+            },
+            "groupId": "vent_group_west_south"
+        },
+        {
+            "id": "vent_vent_group_west_south_power_distribution",
+            "displayName": "Power Distribution Vent",
+            "roomId": "power_distribution",
+            "position": {
+                "x": 12.0,
+                "y": -40.5
+            },
+            "groupId": "vent_group_west_south"
+        }
+    ],
+    "meetingPoint": {
+        "id": "emergency_meeting",
+        "displayName": "Emergency Meeting",
+        "roomId": "central_lounge",
+        "position": {
+            "x": 0.0,
+            "y": 0.0
+        }
+    }
+}

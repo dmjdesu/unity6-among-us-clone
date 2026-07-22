@@ -1,0 +1,1643 @@
+{
+    "layoutId": "C",
+    "layoutName": "Layout C: Multiple Hubs",
+    "layoutType": "複数ハブ型",
+    "seed": 52741,
+    "playBounds": {
+        "x": -85.0,
+        "y": -62.0,
+        "width": 170.0,
+        "height": 124.0
+    },
+    "areas": [
+        {
+            "id": "central_village",
+            "displayName": "Central Village",
+            "japaneseName": "中央集落",
+            "bounds": {
+                "x": -20.0,
+                "y": -15.0,
+                "width": 40.0,
+                "height": 31.0
+            },
+            "label": {
+                "x": 0.0,
+                "y": 1.0
+            },
+            "character": "open hub"
+        },
+        {
+            "id": "northern_forest",
+            "displayName": "Northern Forest",
+            "japaneseName": "北の森",
+            "bounds": {
+                "x": -47.0,
+                "y": 29.0,
+                "width": 48.0,
+                "height": 34.0
+            },
+            "label": {
+                "x": -23.0,
+                "y": 46.0
+            },
+            "character": "occluded forest"
+        },
+        {
+            "id": "eastern_ruins",
+            "displayName": "Eastern Ruins",
+            "japaneseName": "東の遺跡",
+            "bounds": {
+                "x": 35.0,
+                "y": 4.0,
+                "width": 43.0,
+                "height": 34.0
+            },
+            "label": {
+                "x": 56.0,
+                "y": 21.0
+            },
+            "character": "ruin rooms"
+        },
+        {
+            "id": "southern_lake",
+            "displayName": "Southern Lake",
+            "japaneseName": "南の湖",
+            "bounds": {
+                "x": -25.0,
+                "y": -56.0,
+                "width": 52.0,
+                "height": 31.0
+            },
+            "label": {
+                "x": 1.0,
+                "y": -40.0
+            },
+            "character": "lake loop"
+        },
+        {
+            "id": "western_camp",
+            "displayName": "Western Camp",
+            "japaneseName": "西のキャンプ",
+            "bounds": {
+                "x": -78.0,
+                "y": -18.0,
+                "width": 42.0,
+                "height": 35.0
+            },
+            "label": {
+                "x": -57.0,
+                "y": 0.0
+            },
+            "character": "task camp"
+        },
+        {
+            "id": "ancient_sanctuary",
+            "displayName": "Ancient Sanctuary",
+            "japaneseName": "古代の聖域",
+            "bounds": {
+                "x": 16.0,
+                "y": 34.0,
+                "width": 46.0,
+                "height": 31.0
+            },
+            "label": {
+                "x": 39.0,
+                "y": 49.0
+            },
+            "character": "danger semi-dead-end"
+        },
+        {
+            "id": "rocky_pass",
+            "displayName": "Rocky Pass",
+            "japaneseName": "岩山の峠",
+            "bounds": {
+                "x": -80.0,
+                "y": 17.0,
+                "width": 38.0,
+                "height": 44.0
+            },
+            "label": {
+                "x": -61.0,
+                "y": 39.0
+            },
+            "character": "narrow pursuit"
+        },
+        {
+            "id": "riverside_crossing",
+            "displayName": "Riverside Crossing",
+            "japaneseName": "川辺の渡り場",
+            "bounds": {
+                "x": 24.0,
+                "y": -37.0,
+                "width": 52.0,
+                "height": 27.0
+            },
+            "label": {
+                "x": 50.0,
+                "y": -23.0
+            },
+            "character": "crossing"
+        },
+        {
+            "id": "abandoned_outpost",
+            "displayName": "Abandoned Outpost",
+            "japaneseName": "放棄された前哨地",
+            "bounds": {
+                "x": -76.0,
+                "y": -54.0,
+                "width": 37.0,
+                "height": 29.0
+            },
+            "label": {
+                "x": -57.0,
+                "y": -40.0
+            },
+            "character": "blind corner"
+        }
+    ],
+    "corridors": [
+        {
+            "id": "central_west",
+            "displayName": "Central Village to Western Camp",
+            "bounds": {
+                "x": -39.0,
+                "y": -4.0,
+                "width": 20.0,
+                "height": 7.0
+            },
+            "width": 7.0,
+            "kind": "wide"
+        },
+        {
+            "id": "central_east",
+            "displayName": "Central Village to Eastern Ruins",
+            "bounds": {
+                "x": 19.0,
+                "y": 2.0,
+                "width": 17.0,
+                "height": 7.0
+            },
+            "width": 7.0,
+            "kind": "wide"
+        },
+        {
+            "id": "central_north",
+            "displayName": "Central Village to Northern Forest",
+            "bounds": {
+                "x": -12.0,
+                "y": 15.0,
+                "width": 8.0,
+                "height": 16.0
+            },
+            "width": 8.0,
+            "kind": "normal"
+        },
+        {
+            "id": "central_south",
+            "displayName": "Central Village to Southern Lake",
+            "bounds": {
+                "x": -4.0,
+                "y": -27.0,
+                "width": 8.0,
+                "height": 13.0
+            },
+            "width": 8.0,
+            "kind": "normal"
+        },
+        {
+            "id": "west_rocky",
+            "displayName": "Western Camp to Rocky Pass",
+            "bounds": {
+                "x": -65.0,
+                "y": 14.0,
+                "width": 7.0,
+                "height": 7.0
+            },
+            "width": 7.0,
+            "kind": "narrow"
+        },
+        {
+            "id": "rocky_north",
+            "displayName": "Rocky Pass to Northern Forest",
+            "bounds": {
+                "x": -45.0,
+                "y": 34.0,
+                "width": 8.0,
+                "height": 8.0
+            },
+            "width": 8.0,
+            "kind": "narrow"
+        },
+        {
+            "id": "north_sanctuary",
+            "displayName": "Northern Forest to Sanctuary",
+            "bounds": {
+                "x": 0.0,
+                "y": 43.0,
+                "width": 18.0,
+                "height": 7.0
+            },
+            "width": 7.0,
+            "kind": "wide"
+        },
+        {
+            "id": "sanctuary_east",
+            "displayName": "Ancient Sanctuary to Eastern Ruins",
+            "bounds": {
+                "x": 54.0,
+                "y": 30.0,
+                "width": 7.0,
+                "height": 9.0
+            },
+            "width": 7.0,
+            "kind": "normal"
+        },
+        {
+            "id": "east_riverside",
+            "displayName": "Eastern Ruins to Riverside",
+            "bounds": {
+                "x": 56.0,
+                "y": -11.0,
+                "width": 7.0,
+                "height": 16.0
+            },
+            "width": 7.0,
+            "kind": "normal"
+        },
+        {
+            "id": "riverside_south",
+            "displayName": "Riverside Crossing to Southern Lake",
+            "bounds": {
+                "x": 22.0,
+                "y": -36.0,
+                "width": 8.0,
+                "height": 9.0
+            },
+            "width": 8.0,
+            "kind": "bridge"
+        },
+        {
+            "id": "south_outpost",
+            "displayName": "Southern Lake to Abandoned Outpost",
+            "bounds": {
+                "x": -40.0,
+                "y": -45.0,
+                "width": 16.0,
+                "height": 7.0
+            },
+            "width": 7.0,
+            "kind": "normal"
+        },
+        {
+            "id": "outpost_west",
+            "displayName": "Abandoned Outpost to Western Camp",
+            "bounds": {
+                "x": -63.0,
+                "y": -26.0,
+                "width": 7.0,
+                "height": 9.0
+            },
+            "width": 7.0,
+            "kind": "narrow"
+        },
+        {
+            "id": "western_south_bypass",
+            "displayName": "Western Camp to Southern Lake Bypass",
+            "bounds": {
+                "x": -38.0,
+                "y": -28.0,
+                "width": 14.0,
+                "height": 6.0
+            },
+            "width": 6.0,
+            "kind": "normal"
+        },
+        {
+            "id": "north_east_bypass",
+            "displayName": "Northern Forest to Eastern Ruins Bypass",
+            "bounds": {
+                "x": 0.0,
+                "y": 31.0,
+                "width": 36.0,
+                "height": 6.0
+            },
+            "width": 6.0,
+            "kind": "normal"
+        },
+        {
+            "id": "rocky_outpost_bypass",
+            "displayName": "Rocky Pass to Outpost Bypass",
+            "bounds": {
+                "x": -77.0,
+                "y": -25.0,
+                "width": 6.0,
+                "height": 42.0
+            },
+            "width": 6.0,
+            "kind": "narrow"
+        }
+    ],
+    "connections": [
+        {
+            "id": "central_west",
+            "fromAreaId": "central_village",
+            "toAreaId": "western_camp",
+            "bounds": {
+                "x": -39.0,
+                "y": -4.0,
+                "width": 20.0,
+                "height": 7.0
+            },
+            "width": 7.0,
+            "kind": "wide"
+        },
+        {
+            "id": "central_east",
+            "fromAreaId": "central_village",
+            "toAreaId": "eastern_ruins",
+            "bounds": {
+                "x": 19.0,
+                "y": 2.0,
+                "width": 17.0,
+                "height": 7.0
+            },
+            "width": 7.0,
+            "kind": "wide"
+        },
+        {
+            "id": "central_north",
+            "fromAreaId": "central_village",
+            "toAreaId": "northern_forest",
+            "bounds": {
+                "x": -12.0,
+                "y": 15.0,
+                "width": 8.0,
+                "height": 16.0
+            },
+            "width": 8.0,
+            "kind": "normal"
+        },
+        {
+            "id": "central_south",
+            "fromAreaId": "central_village",
+            "toAreaId": "southern_lake",
+            "bounds": {
+                "x": -4.0,
+                "y": -27.0,
+                "width": 8.0,
+                "height": 13.0
+            },
+            "width": 8.0,
+            "kind": "normal"
+        },
+        {
+            "id": "west_rocky",
+            "fromAreaId": "western_camp",
+            "toAreaId": "rocky_pass",
+            "bounds": {
+                "x": -65.0,
+                "y": 14.0,
+                "width": 7.0,
+                "height": 7.0
+            },
+            "width": 7.0,
+            "kind": "narrow"
+        },
+        {
+            "id": "rocky_north",
+            "fromAreaId": "rocky_pass",
+            "toAreaId": "northern_forest",
+            "bounds": {
+                "x": -45.0,
+                "y": 34.0,
+                "width": 8.0,
+                "height": 8.0
+            },
+            "width": 8.0,
+            "kind": "narrow"
+        },
+        {
+            "id": "north_sanctuary",
+            "fromAreaId": "northern_forest",
+            "toAreaId": "ancient_sanctuary",
+            "bounds": {
+                "x": 0.0,
+                "y": 43.0,
+                "width": 18.0,
+                "height": 7.0
+            },
+            "width": 7.0,
+            "kind": "wide"
+        },
+        {
+            "id": "sanctuary_east",
+            "fromAreaId": "ancient_sanctuary",
+            "toAreaId": "eastern_ruins",
+            "bounds": {
+                "x": 54.0,
+                "y": 30.0,
+                "width": 7.0,
+                "height": 9.0
+            },
+            "width": 7.0,
+            "kind": "normal"
+        },
+        {
+            "id": "east_riverside",
+            "fromAreaId": "eastern_ruins",
+            "toAreaId": "riverside_crossing",
+            "bounds": {
+                "x": 56.0,
+                "y": -11.0,
+                "width": 7.0,
+                "height": 16.0
+            },
+            "width": 7.0,
+            "kind": "normal"
+        },
+        {
+            "id": "riverside_south",
+            "fromAreaId": "riverside_crossing",
+            "toAreaId": "southern_lake",
+            "bounds": {
+                "x": 22.0,
+                "y": -36.0,
+                "width": 8.0,
+                "height": 9.0
+            },
+            "width": 8.0,
+            "kind": "bridge"
+        },
+        {
+            "id": "south_outpost",
+            "fromAreaId": "southern_lake",
+            "toAreaId": "abandoned_outpost",
+            "bounds": {
+                "x": -40.0,
+                "y": -45.0,
+                "width": 16.0,
+                "height": 7.0
+            },
+            "width": 7.0,
+            "kind": "normal"
+        },
+        {
+            "id": "outpost_west",
+            "fromAreaId": "abandoned_outpost",
+            "toAreaId": "western_camp",
+            "bounds": {
+                "x": -63.0,
+                "y": -26.0,
+                "width": 7.0,
+                "height": 9.0
+            },
+            "width": 7.0,
+            "kind": "narrow"
+        },
+        {
+            "id": "western_south_bypass",
+            "fromAreaId": "western_camp",
+            "toAreaId": "southern_lake",
+            "bounds": {
+                "x": -38.0,
+                "y": -28.0,
+                "width": 14.0,
+                "height": 6.0
+            },
+            "width": 6.0,
+            "kind": "normal"
+        },
+        {
+            "id": "north_east_bypass",
+            "fromAreaId": "northern_forest",
+            "toAreaId": "eastern_ruins",
+            "bounds": {
+                "x": 0.0,
+                "y": 31.0,
+                "width": 36.0,
+                "height": 6.0
+            },
+            "width": 6.0,
+            "kind": "normal"
+        },
+        {
+            "id": "rocky_outpost_bypass",
+            "fromAreaId": "rocky_pass",
+            "toAreaId": "abandoned_outpost",
+            "bounds": {
+                "x": -77.0,
+                "y": -25.0,
+                "width": 6.0,
+                "height": 42.0
+            },
+            "width": 6.0,
+            "kind": "narrow"
+        }
+    ],
+    "obstacles": [
+        {
+            "id": "central_house_west",
+            "displayName": "West House",
+            "kind": "building",
+            "bounds": {
+                "x": -15.0,
+                "y": 6.5,
+                "width": 8.0,
+                "height": 6.0
+            }
+        },
+        {
+            "id": "central_house_east",
+            "displayName": "East House",
+            "kind": "building",
+            "bounds": {
+                "x": 9.0,
+                "y": -11.5,
+                "width": 8.0,
+                "height": 6.0
+            }
+        },
+        {
+            "id": "central_pillars",
+            "displayName": "Central Pillars",
+            "kind": "pillar",
+            "bounds": {
+                "x": -3.0,
+                "y": 4.5,
+                "width": 6.0,
+                "height": 4.0
+            }
+        },
+        {
+            "id": "central_tree_group",
+            "displayName": "Village Trees",
+            "kind": "tree",
+            "bounds": {
+                "x": 10.0,
+                "y": 8.5,
+                "width": 7.0,
+                "height": 8.0
+            }
+        },
+        {
+            "id": "forest_west_trees",
+            "displayName": "West Forest Trees",
+            "kind": "tree",
+            "bounds": {
+                "x": -44.0,
+                "y": 37.0,
+                "width": 13.0,
+                "height": 17.0
+            }
+        },
+        {
+            "id": "forest_middle_trees",
+            "displayName": "Middle Forest Trees",
+            "kind": "tree",
+            "bounds": {
+                "x": -26.0,
+                "y": 36.0,
+                "width": 11.0,
+                "height": 17.0
+            }
+        },
+        {
+            "id": "forest_east_trees",
+            "displayName": "East Forest Trees",
+            "kind": "tree",
+            "bounds": {
+                "x": -13.0,
+                "y": 34.0,
+                "width": 11.0,
+                "height": 14.0
+            }
+        },
+        {
+            "id": "forest_deadfall",
+            "displayName": "Deadfall Bypass",
+            "kind": "tree",
+            "bounds": {
+                "x": -13.0,
+                "y": 54.0,
+                "width": 10.0,
+                "height": 5.0
+            }
+        },
+        {
+            "id": "ruins_wall_north",
+            "displayName": "North Ruin Wall",
+            "kind": "wall",
+            "bounds": {
+                "x": 39.0,
+                "y": 30.0,
+                "width": 28.0,
+                "height": 4.0
+            }
+        },
+        {
+            "id": "ruins_wall_south",
+            "displayName": "South Ruin Wall",
+            "kind": "wall",
+            "bounds": {
+                "x": 45.0,
+                "y": 10.0,
+                "width": 24.0,
+                "height": 4.0
+            }
+        },
+        {
+            "id": "ruins_columns_a",
+            "displayName": "Ruin Columns A",
+            "kind": "pillar",
+            "bounds": {
+                "x": 46.5,
+                "y": 19.0,
+                "width": 5.0,
+                "height": 8.0
+            }
+        },
+        {
+            "id": "ruins_columns_b",
+            "displayName": "Ruin Columns B",
+            "kind": "pillar",
+            "bounds": {
+                "x": 63.5,
+                "y": 23.0,
+                "width": 5.0,
+                "height": 8.0
+            }
+        },
+        {
+            "id": "lake_west_water",
+            "displayName": "Lake West Water",
+            "kind": "water",
+            "bounds": {
+                "x": -20.0,
+                "y": -52.0,
+                "width": 14.0,
+                "height": 18.0
+            }
+        },
+        {
+            "id": "lake_center_north_water",
+            "displayName": "Lake North Water",
+            "kind": "water",
+            "bounds": {
+                "x": -5.0,
+                "y": -43.0,
+                "width": 12.0,
+                "height": 8.0
+            }
+        },
+        {
+            "id": "lake_center_south_water",
+            "displayName": "Lake South Water",
+            "kind": "water",
+            "bounds": {
+                "x": -5.0,
+                "y": -52.0,
+                "width": 12.0,
+                "height": 5.0
+            }
+        },
+        {
+            "id": "lake_east_water",
+            "displayName": "Lake East Water",
+            "kind": "water",
+            "bounds": {
+                "x": 8.0,
+                "y": -52.0,
+                "width": 14.0,
+                "height": 18.0
+            }
+        },
+        {
+            "id": "lake_cliff_south",
+            "displayName": "Lake South Cliff",
+            "kind": "cliff",
+            "bounds": {
+                "x": -21.0,
+                "y": -55.0,
+                "width": 44.0,
+                "height": 3.0
+            }
+        },
+        {
+            "id": "camp_tree_line",
+            "displayName": "Camp Tree Line",
+            "kind": "tree",
+            "bounds": {
+                "x": -75.0,
+                "y": 0.0,
+                "width": 10.0,
+                "height": 13.0
+            }
+        },
+        {
+            "id": "camp_storage_wall",
+            "displayName": "Camp Storage Wall",
+            "kind": "wall",
+            "bounds": {
+                "x": -52.0,
+                "y": 5.5,
+                "width": 11.0,
+                "height": 5.0
+            }
+        },
+        {
+            "id": "camp_fire_ring",
+            "displayName": "Camp Fire Ring",
+            "kind": "pillar",
+            "bounds": {
+                "x": -64.0,
+                "y": -4.5,
+                "width": 7.0,
+                "height": 5.0
+            }
+        },
+        {
+            "id": "sanctuary_altar",
+            "displayName": "Sanctuary Altar",
+            "kind": "pillar",
+            "bounds": {
+                "x": 33.0,
+                "y": 46.5,
+                "width": 12.0,
+                "height": 8.0
+            }
+        },
+        {
+            "id": "sanctuary_back_wall",
+            "displayName": "Sanctuary Back Wall",
+            "kind": "wall",
+            "bounds": {
+                "x": 21.0,
+                "y": 58.0,
+                "width": 36.0,
+                "height": 4.0
+            }
+        },
+        {
+            "id": "sanctuary_tree_cover",
+            "displayName": "Sanctuary Tree Cover",
+            "kind": "tree",
+            "bounds": {
+                "x": 50.0,
+                "y": 39.0,
+                "width": 8.0,
+                "height": 10.0
+            }
+        },
+        {
+            "id": "rocky_cliff_west",
+            "displayName": "Rocky West Cliff",
+            "kind": "cliff",
+            "bounds": {
+                "x": -77.0,
+                "y": 21.0,
+                "width": 10.0,
+                "height": 34.0
+            }
+        },
+        {
+            "id": "rocky_cliff_east",
+            "displayName": "Rocky East Cliff",
+            "kind": "cliff",
+            "bounds": {
+                "x": -55.0,
+                "y": 27.0,
+                "width": 10.0,
+                "height": 25.0
+            }
+        },
+        {
+            "id": "rocky_mid_rocks",
+            "displayName": "Rocky Mid Rocks",
+            "kind": "cliff",
+            "bounds": {
+                "x": -66.0,
+                "y": 35.0,
+                "width": 9.0,
+                "height": 8.0
+            }
+        },
+        {
+            "id": "river_west_water",
+            "displayName": "River West Water",
+            "kind": "river",
+            "bounds": {
+                "x": 27.0,
+                "y": -26.5,
+                "width": 14.0,
+                "height": 6.0
+            }
+        },
+        {
+            "id": "river_mid_water",
+            "displayName": "River Middle Water",
+            "kind": "river",
+            "bounds": {
+                "x": 42.0,
+                "y": -26.5,
+                "width": 16.0,
+                "height": 6.0
+            }
+        },
+        {
+            "id": "river_east_water",
+            "displayName": "River East Water",
+            "kind": "river",
+            "bounds": {
+                "x": 60.0,
+                "y": -26.5,
+                "width": 13.0,
+                "height": 6.0
+            }
+        },
+        {
+            "id": "riverbank_tree",
+            "displayName": "Riverbank Trees",
+            "kind": "tree",
+            "bounds": {
+                "x": 30.0,
+                "y": -18.0,
+                "width": 9.0,
+                "height": 6.0
+            }
+        },
+        {
+            "id": "outpost_wall_north",
+            "displayName": "Outpost North Wall",
+            "kind": "wall",
+            "bounds": {
+                "x": -72.0,
+                "y": -32.0,
+                "width": 28.0,
+                "height": 4.0
+            }
+        },
+        {
+            "id": "outpost_wall_east",
+            "displayName": "Outpost East Wall",
+            "kind": "wall",
+            "bounds": {
+                "x": -47.0,
+                "y": -47.0,
+                "width": 4.0,
+                "height": 13.0
+            }
+        },
+        {
+            "id": "outpost_tree_cover",
+            "displayName": "Outpost Tree Cover",
+            "kind": "tree",
+            "bounds": {
+                "x": -72.0,
+                "y": -49.0,
+                "width": 10.0,
+                "height": 9.0
+            }
+        }
+    ],
+    "navigationWaypoints": [
+        {
+            "id": "wp_central_village",
+            "displayName": "Central Village",
+            "roomId": "central_village",
+            "position": {
+                "x": 0.0,
+                "y": 0.5
+            }
+        },
+        {
+            "id": "wp_northern_forest",
+            "displayName": "Northern Forest",
+            "roomId": "northern_forest",
+            "position": {
+                "x": -29.75,
+                "y": 39.25
+            }
+        },
+        {
+            "id": "wp_eastern_ruins",
+            "displayName": "Eastern Ruins",
+            "roomId": "eastern_ruins",
+            "position": {
+                "x": 56.5,
+                "y": 21.0
+            }
+        },
+        {
+            "id": "wp_southern_lake",
+            "displayName": "Southern Lake",
+            "roomId": "southern_lake",
+            "position": {
+                "x": -3.5,
+                "y": -33.75
+            }
+        },
+        {
+            "id": "wp_western_camp",
+            "displayName": "Western Camp",
+            "roomId": "western_camp",
+            "position": {
+                "x": -56.25,
+                "y": -1.25
+            }
+        },
+        {
+            "id": "wp_ancient_sanctuary",
+            "displayName": "Ancient Sanctuary",
+            "roomId": "ancient_sanctuary",
+            "position": {
+                "x": 32.25,
+                "y": 42.75
+            }
+        },
+        {
+            "id": "wp_rocky_pass",
+            "displayName": "Rocky Pass",
+            "roomId": "rocky_pass",
+            "position": {
+                "x": -65.5,
+                "y": 32.25
+            }
+        },
+        {
+            "id": "wp_riverside_crossing",
+            "displayName": "Riverside Crossing",
+            "roomId": "riverside_crossing",
+            "position": {
+                "x": 43.25,
+                "y": -30.25
+            }
+        },
+        {
+            "id": "wp_abandoned_outpost",
+            "displayName": "Abandoned Outpost",
+            "roomId": "abandoned_outpost",
+            "position": {
+                "x": -57.5,
+                "y": -39.5
+            }
+        },
+        {
+            "id": "wp_central_west",
+            "displayName": "Central Village to Western Camp",
+            "roomId": "",
+            "position": {
+                "x": -29.0,
+                "y": -0.5
+            }
+        },
+        {
+            "id": "wp_central_east",
+            "displayName": "Central Village to Eastern Ruins",
+            "roomId": "",
+            "position": {
+                "x": 27.5,
+                "y": 5.5
+            }
+        },
+        {
+            "id": "wp_central_north",
+            "displayName": "Central Village to Northern Forest",
+            "roomId": "",
+            "position": {
+                "x": -8.0,
+                "y": 23.0
+            }
+        },
+        {
+            "id": "wp_central_south",
+            "displayName": "Central Village to Southern Lake",
+            "roomId": "",
+            "position": {
+                "x": 0.0,
+                "y": -20.5
+            }
+        },
+        {
+            "id": "wp_west_rocky",
+            "displayName": "Western Camp to Rocky Pass",
+            "roomId": "",
+            "position": {
+                "x": -61.5,
+                "y": 17.5
+            }
+        },
+        {
+            "id": "wp_rocky_north",
+            "displayName": "Rocky Pass to Northern Forest",
+            "roomId": "",
+            "position": {
+                "x": -41.0,
+                "y": 38.0
+            }
+        },
+        {
+            "id": "wp_north_sanctuary",
+            "displayName": "Northern Forest to Sanctuary",
+            "roomId": "",
+            "position": {
+                "x": 9.0,
+                "y": 46.5
+            }
+        },
+        {
+            "id": "wp_sanctuary_east",
+            "displayName": "Ancient Sanctuary to Eastern Ruins",
+            "roomId": "",
+            "position": {
+                "x": 57.5,
+                "y": 34.5
+            }
+        },
+        {
+            "id": "wp_east_riverside",
+            "displayName": "Eastern Ruins to Riverside",
+            "roomId": "",
+            "position": {
+                "x": 59.5,
+                "y": -3.0
+            }
+        },
+        {
+            "id": "wp_riverside_south",
+            "displayName": "Riverside Crossing to Southern Lake",
+            "roomId": "",
+            "position": {
+                "x": 26.0,
+                "y": -31.5
+            }
+        },
+        {
+            "id": "wp_south_outpost",
+            "displayName": "Southern Lake to Abandoned Outpost",
+            "roomId": "",
+            "position": {
+                "x": -32.0,
+                "y": -41.5
+            }
+        },
+        {
+            "id": "wp_outpost_west",
+            "displayName": "Abandoned Outpost to Western Camp",
+            "roomId": "",
+            "position": {
+                "x": -59.5,
+                "y": -21.5
+            }
+        },
+        {
+            "id": "wp_western_south_bypass",
+            "displayName": "Western Camp to Southern Lake Bypass",
+            "roomId": "",
+            "position": {
+                "x": -31.0,
+                "y": -25.0
+            }
+        },
+        {
+            "id": "wp_north_east_bypass",
+            "displayName": "Northern Forest to Eastern Ruins Bypass",
+            "roomId": "",
+            "position": {
+                "x": 18.0,
+                "y": 34.0
+            }
+        },
+        {
+            "id": "wp_rocky_outpost_bypass",
+            "displayName": "Rocky Pass to Outpost Bypass",
+            "roomId": "",
+            "position": {
+                "x": -74.0,
+                "y": -4.0
+            }
+        }
+    ],
+    "spawnPoints": [
+        {
+            "id": "spawn_01",
+            "displayName": "Spawn 01",
+            "roomId": "central_village",
+            "position": {
+                "x": -12.0,
+                "y": -7.5
+            }
+        },
+        {
+            "id": "spawn_02",
+            "displayName": "Spawn 02",
+            "roomId": "central_village",
+            "position": {
+                "x": 0.0,
+                "y": -8.5
+            }
+        },
+        {
+            "id": "spawn_03",
+            "displayName": "Spawn 03",
+            "roomId": "central_village",
+            "position": {
+                "x": 9.0,
+                "y": -4.5
+            }
+        },
+        {
+            "id": "spawn_04",
+            "displayName": "Spawn 04",
+            "roomId": "central_village",
+            "position": {
+                "x": -16.0,
+                "y": 5.5
+            }
+        },
+        {
+            "id": "spawn_05",
+            "displayName": "Spawn 05",
+            "roomId": "central_village",
+            "position": {
+                "x": 11.25,
+                "y": 7.75
+            }
+        },
+        {
+            "id": "spawn_06",
+            "displayName": "Spawn 06",
+            "roomId": "western_camp",
+            "position": {
+                "x": -50.0,
+                "y": -9.5
+            }
+        },
+        {
+            "id": "spawn_07",
+            "displayName": "Spawn 07",
+            "roomId": "eastern_ruins",
+            "position": {
+                "x": 45.5,
+                "y": 9.0
+            }
+        },
+        {
+            "id": "spawn_08",
+            "displayName": "Spawn 08",
+            "roomId": "northern_forest",
+            "position": {
+                "x": -14.0,
+                "y": 36.0
+            }
+        },
+        {
+            "id": "spawn_09",
+            "displayName": "Spawn 09",
+            "roomId": "southern_lake",
+            "position": {
+                "x": 1.0,
+                "y": -29.5
+            }
+        },
+        {
+            "id": "spawn_10",
+            "displayName": "Spawn 10",
+            "roomId": "riverside_crossing",
+            "position": {
+                "x": 40.0,
+                "y": -14.5
+            }
+        },
+        {
+            "id": "spawn_11",
+            "displayName": "Spawn 11",
+            "roomId": "ancient_sanctuary",
+            "position": {
+                "x": 27.0,
+                "y": 40.5
+            }
+        },
+        {
+            "id": "spawn_12",
+            "displayName": "Spawn 12",
+            "roomId": "rocky_pass",
+            "position": {
+                "x": -48.0,
+                "y": 26.0
+            }
+        },
+        {
+            "id": "spawn_13",
+            "displayName": "Spawn 13",
+            "roomId": "abandoned_outpost",
+            "position": {
+                "x": -49.5,
+                "y": -34.5
+            }
+        },
+        {
+            "id": "spawn_14",
+            "displayName": "Spawn 14",
+            "roomId": "western_camp",
+            "position": {
+                "x": -47.0,
+                "y": 11.5
+            }
+        },
+        {
+            "id": "spawn_15",
+            "displayName": "Spawn 15",
+            "roomId": "eastern_ruins",
+            "position": {
+                "x": 67.75,
+                "y": 31.75
+            }
+        }
+    ],
+    "taskPoints": [
+        {
+            "id": "task_central_village_a",
+            "displayName": "Central Village Check A",
+            "roomId": "central_village",
+            "position": {
+                "x": -11.149999618530274,
+                "y": 5.330000400543213
+            }
+        },
+        {
+            "id": "task_central_village_b",
+            "displayName": "Central Village Check B",
+            "roomId": "central_village",
+            "position": {
+                "x": 9.25,
+                "y": -4.950000286102295
+            }
+        },
+        {
+            "id": "task_northern_forest_a",
+            "displayName": "Northern Forest Check A",
+            "roomId": "northern_forest",
+            "position": {
+                "x": -38.47999954223633,
+                "y": 55.119998931884769
+            }
+        },
+        {
+            "id": "task_northern_forest_b",
+            "displayName": "Northern Forest Check B",
+            "roomId": "northern_forest",
+            "position": {
+                "x": -14.0,
+                "y": 36.20000076293945
+            }
+        },
+        {
+            "id": "task_eastern_ruins_a",
+            "displayName": "Eastern Ruins Check A",
+            "roomId": "eastern_ruins",
+            "position": {
+                "x": 45.31999969482422,
+                "y": 27.1200008392334
+            }
+        },
+        {
+            "id": "task_eastern_ruins_b",
+            "displayName": "Eastern Ruins Check B",
+            "roomId": "eastern_ruins",
+            "position": {
+                "x": 66.5,
+                "y": 14.949999809265137
+            }
+        },
+        {
+            "id": "task_southern_lake_a",
+            "displayName": "Southern Lake Check A",
+            "roomId": "southern_lake",
+            "position": {
+                "x": -15.519999504089356,
+                "y": -33.41999816894531
+            }
+        },
+        {
+            "id": "task_southern_lake_b",
+            "displayName": "Southern Lake Check B",
+            "roomId": "southern_lake",
+            "position": {
+                "x": 7.25,
+                "y": -44.45000076293945
+            }
+        },
+        {
+            "id": "task_western_camp_a",
+            "displayName": "Western Camp Check A",
+            "roomId": "western_camp",
+            "position": {
+                "x": -74.66999816894531,
+                "y": -0.9499998092651367
+            }
+        },
+        {
+            "id": "task_western_camp_b",
+            "displayName": "Western Camp Check B",
+            "roomId": "western_camp",
+            "position": {
+                "x": -46.5,
+                "y": -7.5
+            }
+        },
+        {
+            "id": "task_ancient_sanctuary_a",
+            "displayName": "Ancient Sanctuary Check A",
+            "roomId": "ancient_sanctuary",
+            "position": {
+                "x": 27.040000915527345,
+                "y": 55.08000183105469
+            }
+        },
+        {
+            "id": "task_ancient_sanctuary_b",
+            "displayName": "Ancient Sanctuary Check B",
+            "roomId": "ancient_sanctuary",
+            "position": {
+                "x": 47.5,
+                "y": 40.29999923706055
+            }
+        },
+        {
+            "id": "task_rocky_pass_a",
+            "displayName": "Rocky Pass Check A",
+            "roomId": "rocky_pass",
+            "position": {
+                "x": -77.62999725341797,
+                "y": 40.16999816894531
+            }
+        },
+        {
+            "id": "task_rocky_pass_b",
+            "displayName": "Rocky Pass Check B",
+            "roomId": "rocky_pass",
+            "position": {
+                "x": -58.25,
+                "y": 23.450000762939454
+            }
+        },
+        {
+            "id": "task_riverside_crossing_a",
+            "displayName": "Riverside Crossing Check A",
+            "roomId": "riverside_crossing",
+            "position": {
+                "x": 36.47999954223633,
+                "y": -18.639999389648439
+            }
+        },
+        {
+            "id": "task_riverside_crossing_b",
+            "displayName": "Riverside Crossing Check B",
+            "roomId": "riverside_crossing",
+            "position": {
+                "x": 63.0,
+                "y": -28.899999618530275
+            }
+        },
+        {
+            "id": "task_abandoned_outpost_a",
+            "displayName": "Abandoned Outpost Check A",
+            "roomId": "abandoned_outpost",
+            "position": {
+                "x": -67.12000274658203,
+                "y": -34.279998779296878
+            }
+        },
+        {
+            "id": "task_abandoned_outpost_b",
+            "displayName": "Abandoned Outpost Check B",
+            "roomId": "abandoned_outpost",
+            "position": {
+                "x": -48.25,
+                "y": -45.29999923706055
+            }
+        }
+    ],
+    "sabotagePoints": [
+        {
+            "id": "sabotage_sanctuary_beacon",
+            "displayName": "Sanctuary Beacon",
+            "roomId": "ancient_sanctuary",
+            "position": {
+                "x": 27.0,
+                "y": 56.5
+            },
+            "kind": "Reactor",
+            "hasCountdown": true
+        },
+        {
+            "id": "sabotage_camp_lanterns",
+            "displayName": "Camp Lanterns",
+            "roomId": "western_camp",
+            "position": {
+                "x": -64.25,
+                "y": 7.75
+            },
+            "kind": "Lights",
+            "hasCountdown": false
+        },
+        {
+            "id": "sabotage_ruin_signal",
+            "displayName": "Ruin Signal",
+            "roomId": "eastern_ruins",
+            "position": {
+                "x": 69.0,
+                "y": 33.0
+            },
+            "kind": "Communications",
+            "hasCountdown": false
+        },
+        {
+            "id": "sabotage_crossing_marker",
+            "displayName": "Crossing Marker",
+            "roomId": "riverside_crossing",
+            "position": {
+                "x": 61.0,
+                "y": -32.5
+            },
+            "kind": "Communications",
+            "hasCountdown": false
+        }
+    ],
+    "ventNodes": [
+        {
+            "id": "vent_western_camp",
+            "displayName": "Western Camp Vent",
+            "roomId": "western_camp",
+            "position": {
+                "x": -52.60013198852539,
+                "y": -2.785538911819458
+            },
+            "groupId": "alpha"
+        },
+        {
+            "id": "vent_rocky_pass",
+            "displayName": "Rocky Pass Vent",
+            "roomId": "rocky_pass",
+            "position": {
+                "x": -61.45803451538086,
+                "y": 44.245452880859378
+            },
+            "groupId": "alpha"
+        },
+        {
+            "id": "vent_northern_forest",
+            "displayName": "Northern Forest Vent",
+            "roomId": "northern_forest",
+            "position": {
+                "x": -29.821247100830079,
+                "y": 46.461734771728519
+            },
+            "groupId": "alpha"
+        },
+        {
+            "id": "vent_eastern_ruins",
+            "displayName": "Eastern Ruins Vent",
+            "roomId": "eastern_ruins",
+            "position": {
+                "x": 54.55133056640625,
+                "y": 22.899837493896486
+            },
+            "groupId": "beta"
+        },
+        {
+            "id": "vent_ancient_sanctuary",
+            "displayName": "Ancient Sanctuary Vent",
+            "roomId": "ancient_sanctuary",
+            "position": {
+                "x": 37.78850173950195,
+                "y": 55.34036636352539
+            },
+            "groupId": "beta"
+        },
+        {
+            "id": "vent_riverside_crossing",
+            "displayName": "Riverside Crossing Vent",
+            "roomId": "riverside_crossing",
+            "position": {
+                "x": 49.2849235534668,
+                "y": -29.293502807617189
+            },
+            "groupId": "beta"
+        },
+        {
+            "id": "vent_southern_lake",
+            "displayName": "Southern Lake Vent",
+            "roomId": "southern_lake",
+            "position": {
+                "x": -10.197751998901368,
+                "y": -33.05730438232422
+            },
+            "groupId": "gamma"
+        },
+        {
+            "id": "vent_abandoned_outpost",
+            "displayName": "Abandoned Outpost Vent",
+            "roomId": "abandoned_outpost",
+            "position": {
+                "x": -59.83237075805664,
+                "y": -38.54463195800781
+            },
+            "groupId": "gamma"
+        },
+        {
+            "id": "vent_central_village",
+            "displayName": "Central Village Vent",
+            "roomId": "central_village",
+            "position": {
+                "x": 1.5739136934280396,
+                "y": -0.9729330539703369
+            },
+            "groupId": "gamma"
+        }
+    ],
+    "meetingPoint": {
+        "id": "meeting_village_bell",
+        "displayName": "Emergency Bell",
+        "roomId": "central_village",
+        "position": {
+            "x": 0.0,
+            "y": 2.5
+        }
+    },
+    "killTestAreas": [
+        {
+            "id": "kill_ruins_wall",
+            "displayName": "Ruins Wall Kill Check",
+            "bounds": {
+                "x": 49.0,
+                "y": 11.0,
+                "width": 10.0,
+                "height": 9.0
+            }
+        },
+        {
+            "id": "kill_forest_sidepath",
+            "displayName": "Forest Sidepath Kill Check",
+            "bounds": {
+                "x": -38.0,
+                "y": 41.0,
+                "width": 11.0,
+                "height": 8.0
+            }
+        },
+        {
+            "id": "kill_sanctuary_altar",
+            "displayName": "Sanctuary Altar Kill Check",
+            "bounds": {
+                "x": 33.0,
+                "y": 47.0,
+                "width": 11.0,
+                "height": 8.0
+            }
+        }
+    ],
+    "reportTestAreas": [
+        {
+            "id": "report_central_lane",
+            "displayName": "Central Report Check",
+            "bounds": {
+                "x": -8.0,
+                "y": -6.0,
+                "width": 16.0,
+                "height": 9.0
+            }
+        },
+        {
+            "id": "report_riverside_bridge",
+            "displayName": "Riverside Report Check",
+            "bounds": {
+                "x": 39.0,
+                "y": -30.0,
+                "width": 13.0,
+                "height": 8.0
+            }
+        },
+        {
+            "id": "report_outpost_corner",
+            "displayName": "Outpost Report Check",
+            "bounds": {
+                "x": -67.0,
+                "y": -49.0,
+                "width": 12.0,
+                "height": 8.0
+            }
+        }
+    ],
+    "sightlineAreas": [
+        "Central Village",
+        "Riverside Crossing",
+        "Southern Lake outer path"
+    ],
+    "occludedAreas": [
+        "Northern Forest",
+        "Eastern Ruins",
+        "Ancient Sanctuary",
+        "Abandoned Outpost"
+    ]
+}

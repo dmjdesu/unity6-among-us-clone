@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Game/Maps/AstraResearchComplex_Blockout.unity
+    guid: 1cd593a2332284cb485c43e9e6d81687
+  - enabled: 1
+    path: Assets/Game/Maps/ForgottenPlainsLargePrototype.unity
+    guid: 131d73da4bcc64d73a3fa152ca7a15fb
+  - enabled: 1
+    path: Assets/Game/Maps/ForgottenPlainsGamePrototype.unity
+    guid: 16f278ff49a042f2b4f13105414608ce
+  - enabled: 1
+    path: Assets/Scenes/FusionTest.unity
+    guid: 2ed138f95657e73439e33f5d972905dd
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects:

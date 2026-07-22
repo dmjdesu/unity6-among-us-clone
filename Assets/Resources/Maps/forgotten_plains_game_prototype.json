@@ -1,0 +1,91 @@
+{
+  "mapId": "forgotten_plains_game_prototype",
+  "gridSize": 1,
+  "playBounds": { "x": -16, "y": -9.5, "width": 32, "height": 30.5 },
+  "rooms": [
+    { "id": "central_field", "displayName": "Central Field", "bounds": { "x": -8, "y": -4, "width": 16, "height": 11 }, "label": { "x": 0, "y": 1.2 } },
+    { "id": "north_forest", "displayName": "North Forest", "bounds": { "x": -13.5, "y": 7, "width": 27, "height": 13.2 }, "label": { "x": 0, "y": 16.6 } },
+    { "id": "east_ruins", "displayName": "East Ruins", "bounds": { "x": 6, "y": -0.8, "width": 9.5, "height": 12.2 }, "label": { "x": 11.4, "y": 7.7 } },
+    { "id": "south_meadow", "displayName": "South Meadow", "bounds": { "x": -9, "y": -9, "width": 18, "height": 5.8 }, "label": { "x": 0, "y": -4.9 } },
+    { "id": "west_camp", "displayName": "West Camp", "bounds": { "x": -15.5, "y": -0.8, "width": 9.5, "height": 12.2 }, "label": { "x": -11.2, "y": 6.6 } }
+  ],
+  "corridors": [
+    { "id": "north_path", "displayName": "North Path", "bounds": { "x": -4.5, "y": 5.4, "width": 9, "height": 3.4 } },
+    { "id": "south_meadow_path", "displayName": "South Meadow Path", "bounds": { "x": -4.8, "y": -5, "width": 9.6, "height": 2.4 } },
+    { "id": "west_path", "displayName": "West Path", "bounds": { "x": -8.2, "y": 1.5, "width": 3.4, "height": 4.8 } },
+    { "id": "east_path", "displayName": "East Path", "bounds": { "x": 4.8, "y": 1.5, "width": 3.4, "height": 4.8 } }
+  ],
+  "doorways": [
+    { "id": "door_central_north", "displayName": "North Field Gap", "bounds": { "x": -2.1, "y": 6.4, "width": 4.2, "height": 1.4 } },
+    { "id": "door_central_south", "displayName": "South Meadow Gap", "bounds": { "x": -2.6, "y": -4.5, "width": 5.2, "height": 1.2 } },
+    { "id": "door_central_west", "displayName": "West Camp Gap", "bounds": { "x": -7.1, "y": 2, "width": 1.6, "height": 3.5 } },
+    { "id": "door_central_east", "displayName": "East Ruins Gap", "bounds": { "x": 5.5, "y": 2, "width": 1.6, "height": 3.5 } }
+  ],
+  "obstacles": [
+    { "id": "north_cliff_band", "displayName": "North Cliff Band", "bounds": { "x": -2.2, "y": 17.4, "width": 6.8, "height": 2.1 } },
+    { "id": "northwest_tree_mass", "displayName": "Northwest Tree Mass", "bounds": { "x": -14.7, "y": 12.2, "width": 4.6, "height": 5.8 } },
+    { "id": "northeast_tree_mass", "displayName": "Northeast Tree Mass", "bounds": { "x": 9.8, "y": 12.8, "width": 4.7, "height": 5.2 } },
+    { "id": "west_camp_tree_line", "displayName": "West Camp Tree Line", "bounds": { "x": -14.8, "y": 2, "width": 3.8, "height": 6.1 } },
+    { "id": "east_ruin_columns", "displayName": "East Ruin Columns", "bounds": { "x": 9.5, "y": 3, "width": 2.3, "height": 4.8 } },
+    { "id": "east_ruin_wall", "displayName": "East Ruin Wall", "bounds": { "x": 13, "y": 0.2, "width": 1.7, "height": 7.2 } },
+    { "id": "central_pillar_cluster", "displayName": "Central Pillar Cluster", "bounds": { "x": -1, "y": 3.6, "width": 2, "height": 2 } },
+    { "id": "southwest_cliff", "displayName": "Southwest Cliff", "bounds": { "x": -15.8, "y": -7, "width": 3, "height": 5 } },
+    { "id": "southeast_cliff", "displayName": "Southeast Cliff", "bounds": { "x": 12.7, "y": -7, "width": 3.1, "height": 5.5 } }
+  ],
+  "navigationWaypoints": [
+    { "id": "wp_central", "position": { "x": 0, "y": 0 } },
+    { "id": "wp_central_west", "position": { "x": -6.2, "y": 2.4 } },
+    { "id": "wp_central_east", "position": { "x": 6.2, "y": 2.4 } },
+    { "id": "wp_north_entry", "position": { "x": 0, "y": 8.8 } },
+    { "id": "wp_north_west", "position": { "x": -7.5, "y": 13.2 } },
+    { "id": "wp_north_east", "position": { "x": 7.4, "y": 13.4 } },
+    { "id": "wp_west_camp", "position": { "x": -10, "y": 4.6 } },
+    { "id": "wp_east_ruins", "position": { "x": 8.2, "y": 5.1 } },
+    { "id": "wp_south_meadow", "position": { "x": 0, "y": -4.7 } },
+    { "id": "wp_south_west", "position": { "x": -7.7, "y": -4.8 } },
+    { "id": "wp_south_east", "position": { "x": 7.7, "y": -4.8 } }
+  ],
+  "spawnPoints": [
+    { "id": "spawn_01", "position": { "x": -6, "y": -2.5 } },
+    { "id": "spawn_02", "position": { "x": -3.8, "y": -2.6 } },
+    { "id": "spawn_03", "position": { "x": -1.6, "y": -2.7 } },
+    { "id": "spawn_04", "position": { "x": 0.6, "y": -2.65 } },
+    { "id": "spawn_05", "position": { "x": 2.8, "y": -2.55 } },
+    { "id": "spawn_06", "position": { "x": 5, "y": -2.4 } },
+    { "id": "spawn_07", "position": { "x": -6.5, "y": 0.1 } },
+    { "id": "spawn_08", "position": { "x": 5.8, "y": 0.1 } },
+    { "id": "spawn_09", "position": { "x": -10, "y": 1.2 } },
+    { "id": "spawn_10", "position": { "x": 10, "y": 1.2 } },
+    { "id": "spawn_11", "position": { "x": -10, "y": 6.2 } },
+    { "id": "spawn_12", "position": { "x": 10, "y": 8.8 } },
+    { "id": "spawn_13", "position": { "x": -2, "y": 7.8 } },
+    { "id": "spawn_14", "position": { "x": 2, "y": 7.8 } },
+    { "id": "spawn_15", "position": { "x": 0, "y": -4.8 } }
+  ],
+  "taskPoints": [
+    { "id": "task_west_tree_roots", "displayName": "Check Tree Roots", "roomId": "west_camp", "position": { "x": -10.4, "y": 7.2 } },
+    { "id": "task_central_pillar", "displayName": "Inspect Old Pillar", "roomId": "central_field", "position": { "x": -1.4, "y": 6.3 } },
+    { "id": "task_north_tree", "displayName": "Read Forest Marker", "roomId": "north_forest", "position": { "x": -6.2, "y": 15.7 } },
+    { "id": "task_east_ruin_column", "displayName": "Align Ruin Column", "roomId": "east_ruins", "position": { "x": 8.3, "y": 3.4 } },
+    { "id": "task_south_marker", "displayName": "Check South Marker", "roomId": "south_meadow", "position": { "x": -4.5, "y": -5.1 } },
+    { "id": "task_west_camp", "displayName": "Check Camp Supply", "roomId": "west_camp", "position": { "x": -12.3, "y": -0.1 } },
+    { "id": "task_east_gate", "displayName": "Inspect Ruin Gate", "roomId": "east_ruins", "position": { "x": 12.3, "y": 8.2 } },
+    { "id": "task_central_marker", "displayName": "Record Field Marker", "roomId": "central_field", "position": { "x": 4.2, "y": 5.2 } },
+    { "id": "task_south_grass", "displayName": "Check South Grass", "roomId": "south_meadow", "position": { "x": 5.6, "y": -4.7 } }
+  ],
+  "sabotagePoints": [
+    { "id": "sabotage_beacon", "displayName": "Ancient Beacon", "roomId": "central_field", "kind": "Reactor", "hasCountdown": true, "position": { "x": -1.8, "y": 6.4 } },
+    { "id": "sabotage_west_torch", "displayName": "West Torch Line", "roomId": "west_camp", "kind": "Lights", "hasCountdown": false, "position": { "x": -10.3, "y": 6 } },
+    { "id": "sabotage_ruin_signal", "displayName": "Ruin Signal", "roomId": "east_ruins", "kind": "Communications", "hasCountdown": false, "position": { "x": 12, "y": 2 } },
+    { "id": "sabotage_south_marker", "displayName": "South Marker", "roomId": "south_meadow", "kind": "Communications", "hasCountdown": false, "position": { "x": 0, "y": -5 } }
+  ],
+  "ventNodes": [
+    { "id": "vent_west_camp", "displayName": "West Camp Vent", "roomId": "west_camp", "groupId": "plains_alpha", "position": { "x": -9.2, "y": 9.1 } },
+    { "id": "vent_north_forest", "displayName": "North Forest Vent", "roomId": "north_forest", "groupId": "plains_alpha", "position": { "x": 6.5, "y": 15.5 } },
+    { "id": "vent_east_ruins", "displayName": "East Ruins Vent", "roomId": "east_ruins", "groupId": "plains_alpha", "position": { "x": 7.5, "y": 9.7 } },
+    { "id": "vent_south_meadow", "displayName": "South Meadow Vent", "roomId": "south_meadow", "groupId": "plains_beta", "position": { "x": -6.5, "y": -4.8 } },
+    { "id": "vent_central_field", "displayName": "Central Field Vent", "roomId": "central_field", "groupId": "plains_beta", "position": { "x": 6.4, "y": -0.9 } },
+    { "id": "vent_east_lower", "displayName": "Lower Ruins Vent", "roomId": "east_ruins", "groupId": "plains_beta", "position": { "x": 14.2, "y": -0.4 } }
+  ],
+  "meetingPoint": { "id": "meeting_stone", "displayName": "Emergency Stone", "roomId": "central_field", "position": { "x": 0, "y": 0.25 } }
+}

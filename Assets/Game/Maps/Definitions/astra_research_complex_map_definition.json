@@ -1,0 +1,722 @@
+{
+  "schemaVersion": "1.0",
+  "mapId": "astra_research_complex_blockout_01",
+  "displayName": "Astra Research Complex",
+  "displayNameJa": "アストラ研究複合施設",
+  "purpose": "Among Us風ゲームの導線・遭遇・タスク・キル・通報・会議を検証するためのオリジナル白地図",
+  "coordinateSystem": {
+    "plane": "XY",
+    "units": "Unity Units",
+    "playerColliderDiameter": 1.0,
+    "origin": "Central Lounge center"
+  },
+  "bounds": {
+    "minX": -75,
+    "maxX": 75,
+    "minY": -58,
+    "maxY": 58
+  },
+  "camera": {
+    "projection": "Orthographic",
+    "orthographicSize": 6.0
+  },
+  "designRules": {
+    "minimumMajorLoops": 3,
+    "maximumDeadEndRooms": 2,
+    "defaultMainCorridorWidth": 5.0,
+    "defaultNarrowCorridorWidth": 3.0,
+    "minimumMajorRoomEntrances": 2,
+    "symmetry": "asymmetric"
+  },
+  "rooms": [
+    {
+      "id": "central_lounge",
+      "displayName": "Central Lounge",
+      "displayNameJa": "中央ラウンジ",
+      "center": {
+        "x": 0,
+        "y": 0
+      },
+      "size": {
+        "width": 32,
+        "height": 24
+      },
+      "shape": "cut_corner_octagon",
+      "importance": "hub",
+      "entranceCountTarget": 4,
+      "artAnchor": "emergency_meeting_table",
+      "dangerProfile": "high_traffic_low_isolation"
+    },
+    {
+      "id": "medical_lab",
+      "displayName": "Medical Lab",
+      "displayNameJa": "医療研究室",
+      "center": {
+        "x": -48,
+        "y": 12
+      },
+      "size": {
+        "width": 22,
+        "height": 17
+      },
+      "shape": "offset_rectangle",
+      "importance": "major",
+      "entranceCountTarget": 3,
+      "artAnchor": "medical_scanner",
+      "dangerProfile": "medium"
+    },
+    {
+      "id": "xenobiology_lab",
+      "displayName": "Xenobiology Lab",
+      "displayNameJa": "異生物研究室",
+      "center": {
+        "x": -38,
+        "y": 37
+      },
+      "size": {
+        "width": 24,
+        "height": 18
+      },
+      "shape": "l_shape",
+      "importance": "major",
+      "entranceCountTarget": 3,
+      "artAnchor": "containment_tank",
+      "dangerProfile": "medium_high"
+    },
+    {
+      "id": "observation_deck",
+      "displayName": "Observation Deck",
+      "displayNameJa": "観測デッキ",
+      "center": {
+        "x": 0,
+        "y": 47
+      },
+      "size": {
+        "width": 20,
+        "height": 14
+      },
+      "shape": "trapezoid",
+      "importance": "minor",
+      "entranceCountTarget": 2,
+      "artAnchor": "panoramic_window",
+      "dangerProfile": "high_isolation"
+    },
+    {
+      "id": "communications",
+      "displayName": "Communications",
+      "displayNameJa": "通信室",
+      "center": {
+        "x": 35,
+        "y": 35
+      },
+      "size": {
+        "width": 18,
+        "height": 14
+      },
+      "shape": "offset_rectangle",
+      "importance": "major",
+      "entranceCountTarget": 3,
+      "artAnchor": "antenna_control_console",
+      "dangerProfile": "medium_high"
+    },
+    {
+      "id": "security_control",
+      "displayName": "Security Control",
+      "displayNameJa": "保安管制室",
+      "center": {
+        "x": 50,
+        "y": 12
+      },
+      "size": {
+        "width": 18,
+        "height": 15
+      },
+      "shape": "l_shape",
+      "importance": "major",
+      "entranceCountTarget": 3,
+      "artAnchor": "monitor_wall",
+      "dangerProfile": "high_traffic"
+    },
+    {
+      "id": "engine_maintenance",
+      "displayName": "Engine Maintenance",
+      "displayNameJa": "エンジン整備室",
+      "center": {
+        "x": 49,
+        "y": -17
+      },
+      "size": {
+        "width": 26,
+        "height": 18
+      },
+      "shape": "stepped_rectangle",
+      "importance": "major",
+      "entranceCountTarget": 3,
+      "artAnchor": "engine_block",
+      "dangerProfile": "high_occlusion"
+    },
+    {
+      "id": "reactor_core",
+      "displayName": "Reactor Core",
+      "displayNameJa": "動力炉",
+      "center": {
+        "x": 37,
+        "y": -43
+      },
+      "size": {
+        "width": 26,
+        "height": 22
+      },
+      "shape": "cut_corner_rectangle",
+      "importance": "major",
+      "entranceCountTarget": 2,
+      "artAnchor": "reactor_core",
+      "dangerProfile": "high_isolation"
+    },
+    {
+      "id": "power_distribution",
+      "displayName": "Power Distribution",
+      "displayNameJa": "配電室",
+      "center": {
+        "x": 7,
+        "y": -44
+      },
+      "size": {
+        "width": 18,
+        "height": 15
+      },
+      "shape": "narrow_rectangle",
+      "importance": "major",
+      "entranceCountTarget": 3,
+      "artAnchor": "breaker_panels",
+      "dangerProfile": "high_occlusion"
+    },
+    {
+      "id": "cargo_storage",
+      "displayName": "Cargo Storage",
+      "displayNameJa": "貨物倉庫",
+      "center": {
+        "x": -19,
+        "y": -29
+      },
+      "size": {
+        "width": 30,
+        "height": 22
+      },
+      "shape": "irregular_rectangle",
+      "importance": "major",
+      "entranceCountTarget": 4,
+      "artAnchor": "cargo_crates",
+      "dangerProfile": "high_occlusion"
+    },
+    {
+      "id": "life_support",
+      "displayName": "Life Support",
+      "displayNameJa": "生命維持室",
+      "center": {
+        "x": -50,
+        "y": -18
+      },
+      "size": {
+        "width": 22,
+        "height": 16
+      },
+      "shape": "rounded_rectangle",
+      "importance": "major",
+      "entranceCountTarget": 3,
+      "artAnchor": "oxygen_processing_tanks",
+      "dangerProfile": "medium"
+    }
+  ],
+  "connections": [
+    {
+      "id": "medical_to_xenobiology",
+      "from": "medical_lab",
+      "to": "xenobiology_lab",
+      "type": "main_corridor",
+      "width": 5.0,
+      "path": [
+        {
+          "x": -46,
+          "y": 20
+        },
+        {
+          "x": -44,
+          "y": 28
+        }
+      ]
+    },
+    {
+      "id": "xenobiology_to_observation",
+      "from": "xenobiology_lab",
+      "to": "observation_deck",
+      "type": "main_corridor",
+      "width": 5.0,
+      "path": [
+        {
+          "x": -25,
+          "y": 42
+        },
+        {
+          "x": -10,
+          "y": 46
+        }
+      ]
+    },
+    {
+      "id": "observation_to_communications",
+      "from": "observation_deck",
+      "to": "communications",
+      "type": "main_corridor",
+      "width": 5.0,
+      "path": [
+        {
+          "x": 10,
+          "y": 46
+        },
+        {
+          "x": 25,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "id": "communications_to_security",
+      "from": "communications",
+      "to": "security_control",
+      "type": "main_corridor",
+      "width": 5.0,
+      "path": [
+        {
+          "x": 42,
+          "y": 28
+        },
+        {
+          "x": 47,
+          "y": 20
+        }
+      ]
+    },
+    {
+      "id": "security_to_engine",
+      "from": "security_control",
+      "to": "engine_maintenance",
+      "type": "main_corridor",
+      "width": 5.0,
+      "path": [
+        {
+          "x": 50,
+          "y": 4
+        },
+        {
+          "x": 50,
+          "y": -8
+        }
+      ]
+    },
+    {
+      "id": "engine_to_reactor",
+      "from": "engine_maintenance",
+      "to": "reactor_core",
+      "type": "main_corridor",
+      "width": 5.0,
+      "path": [
+        {
+          "x": 46,
+          "y": -27
+        },
+        {
+          "x": 42,
+          "y": -33
+        }
+      ]
+    },
+    {
+      "id": "reactor_to_power",
+      "from": "reactor_core",
+      "to": "power_distribution",
+      "type": "main_corridor",
+      "width": 5.0,
+      "path": [
+        {
+          "x": 24,
+          "y": -44
+        },
+        {
+          "x": 16,
+          "y": -44
+        }
+      ]
+    },
+    {
+      "id": "power_to_cargo",
+      "from": "power_distribution",
+      "to": "cargo_storage",
+      "type": "main_corridor",
+      "width": 5.0,
+      "path": [
+        {
+          "x": -2,
+          "y": -41
+        },
+        {
+          "x": -7,
+          "y": -37
+        }
+      ]
+    },
+    {
+      "id": "cargo_to_life_support",
+      "from": "cargo_storage",
+      "to": "life_support",
+      "type": "main_corridor",
+      "width": 5.0,
+      "path": [
+        {
+          "x": -34,
+          "y": -27
+        },
+        {
+          "x": -39,
+          "y": -23
+        }
+      ]
+    },
+    {
+      "id": "life_support_to_medical",
+      "from": "life_support",
+      "to": "medical_lab",
+      "type": "main_corridor",
+      "width": 5.0,
+      "path": [
+        {
+          "x": -50,
+          "y": -10
+        },
+        {
+          "x": -49,
+          "y": 3
+        }
+      ]
+    },
+    {
+      "id": "central_to_medical",
+      "from": "central_lounge",
+      "to": "medical_lab",
+      "type": "spoke_corridor",
+      "width": 5.0,
+      "path": [
+        {
+          "x": -16,
+          "y": 6
+        },
+        {
+          "x": -30,
+          "y": 9
+        },
+        {
+          "x": -37,
+          "y": 10
+        }
+      ]
+    },
+    {
+      "id": "central_to_security",
+      "from": "central_lounge",
+      "to": "security_control",
+      "type": "spoke_corridor",
+      "width": 5.0,
+      "path": [
+        {
+          "x": 16,
+          "y": 6
+        },
+        {
+          "x": 31,
+          "y": 9
+        },
+        {
+          "x": 41,
+          "y": 10
+        }
+      ]
+    },
+    {
+      "id": "central_to_cargo",
+      "from": "central_lounge",
+      "to": "cargo_storage",
+      "type": "spoke_corridor",
+      "width": 6.0,
+      "path": [
+        {
+          "x": -7,
+          "y": -12
+        },
+        {
+          "x": -12,
+          "y": -18
+        }
+      ]
+    },
+    {
+      "id": "central_to_power",
+      "from": "central_lounge",
+      "to": "power_distribution",
+      "type": "spoke_corridor",
+      "width": 4.0,
+      "path": [
+        {
+          "x": 6,
+          "y": -12
+        },
+        {
+          "x": 7,
+          "y": -25
+        },
+        {
+          "x": 7,
+          "y": -36
+        }
+      ]
+    },
+    {
+      "id": "xenobiology_to_communications",
+      "from": "xenobiology_lab",
+      "to": "communications",
+      "type": "narrow_service_corridor",
+      "width": 3.0,
+      "path": [
+        {
+          "x": -25,
+          "y": 33
+        },
+        {
+          "x": 0,
+          "y": 31
+        },
+        {
+          "x": 26,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "life_support_to_central_west",
+      "from": "life_support",
+      "to": "central_lounge",
+      "type": "narrow_service_corridor",
+      "width": 3.0,
+      "path": [
+        {
+          "x": -39,
+          "y": -15
+        },
+        {
+          "x": -25,
+          "y": -10
+        },
+        {
+          "x": -16,
+          "y": -6
+        }
+      ]
+    }
+  ],
+  "spawnPoints": [
+    {
+      "id": "spawn_01",
+      "roomId": "central_lounge",
+      "position": {
+        "x": -8,
+        "y": 3
+      }
+    },
+    {
+      "id": "spawn_02",
+      "roomId": "central_lounge",
+      "position": {
+        "x": -4,
+        "y": 5
+      }
+    },
+    {
+      "id": "spawn_03",
+      "roomId": "central_lounge",
+      "position": {
+        "x": 0,
+        "y": 6
+      }
+    },
+    {
+      "id": "spawn_04",
+      "roomId": "central_lounge",
+      "position": {
+        "x": 4,
+        "y": 5
+      }
+    },
+    {
+      "id": "spawn_05",
+      "roomId": "central_lounge",
+      "position": {
+        "x": 8,
+        "y": 3
+      }
+    },
+    {
+      "id": "spawn_06",
+      "roomId": "central_lounge",
+      "position": {
+        "x": -8,
+        "y": -3
+      }
+    },
+    {
+      "id": "spawn_07",
+      "roomId": "central_lounge",
+      "position": {
+        "x": -4,
+        "y": -5
+      }
+    },
+    {
+      "id": "spawn_08",
+      "roomId": "central_lounge",
+      "position": {
+        "x": 0,
+        "y": -6
+      }
+    },
+    {
+      "id": "spawn_09",
+      "roomId": "central_lounge",
+      "position": {
+        "x": 4,
+        "y": -5
+      }
+    },
+    {
+      "id": "spawn_10",
+      "roomId": "central_lounge",
+      "position": {
+        "x": 8,
+        "y": -3
+      }
+    },
+    {
+      "id": "spawn_11",
+      "roomId": "central_lounge",
+      "position": {
+        "x": -11,
+        "y": 0
+      }
+    },
+    {
+      "id": "spawn_12",
+      "roomId": "central_lounge",
+      "position": {
+        "x": 11,
+        "y": 0
+      }
+    },
+    {
+      "id": "spawn_13",
+      "roomId": "central_lounge",
+      "position": {
+        "x": -6,
+        "y": 0
+      }
+    },
+    {
+      "id": "spawn_14",
+      "roomId": "central_lounge",
+      "position": {
+        "x": 6,
+        "y": 0
+      }
+    },
+    {
+      "id": "spawn_15",
+      "roomId": "central_lounge",
+      "position": {
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "meetingPoint": {
+    "id": "emergency_meeting",
+    "roomId": "central_lounge",
+    "position": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "taskDistribution": {
+    "minimumTaskPoints": 22,
+    "perRoom": {
+      "central_lounge": 1,
+      "medical_lab": 2,
+      "xenobiology_lab": 2,
+      "observation_deck": 1,
+      "communications": 2,
+      "security_control": 2,
+      "engine_maintenance": 3,
+      "reactor_core": 2,
+      "power_distribution": 3,
+      "cargo_storage": 2,
+      "life_support": 2
+    }
+  },
+  "sabotagePoints": [
+    {
+      "id": "sabotage_reactor",
+      "roomId": "reactor_core"
+    },
+    {
+      "id": "sabotage_power",
+      "roomId": "power_distribution"
+    },
+    {
+      "id": "sabotage_comms",
+      "roomId": "communications"
+    },
+    {
+      "id": "sabotage_life_support",
+      "roomId": "life_support"
+    }
+  ],
+  "ventGroups": [
+    {
+      "id": "vent_group_north",
+      "rooms": [
+        "medical_lab",
+        "xenobiology_lab",
+        "communications"
+      ]
+    },
+    {
+      "id": "vent_group_east",
+      "rooms": [
+        "security_control",
+        "engine_maintenance",
+        "reactor_core"
+      ]
+    },
+    {
+      "id": "vent_group_west_south",
+      "rooms": [
+        "life_support",
+        "cargo_storage",
+        "power_distribution"
+      ]
+    }
+  ],
+  "validationTargets": {
+    "allRoomsReachable": true,
+    "minimumIndependentRoutesBetweenWestAndEast": 3,
+    "minimumIndependentRoutesBetweenNorthAndSouth": 3,
+    "maximumSinglePathDependency": 0,
+    "maximumDeadEndRooms": 1
+  }
+}

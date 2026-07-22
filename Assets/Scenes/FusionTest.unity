@@ -225,7 +225,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -369,8 +369,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a60f09678fd4d644bedf3af646f9a2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AmongUsClone.BasicSpawner
+  _defaultRoomName: among-us-style
+  _maxPlayerCount: 10
+  _minimumPlayersToStart: 1
+  _impostorCount: 1
+  _preferHostAsImpostorForTesting: 1
+  _testCpuPlayerCount: 5
+  _killRange: 1.45
+  _reportRange: 1.7
+  _meetingDurationSeconds: 30
+  _botMoveSpeed: 1.6
+  _botVoteDelay: 1.5
+  _botVoteInterval: 0.45
+  _taskUseRange: 1.1
+  _botTaskPauseSeconds: 3.5
+  _taskMarkerScale: 0.75
+  _sabotageUseRange: 1.2
+  _sabotageCooldownSeconds: 18
+  _reactorCountdownSeconds: 45
+  _ventUseRange: 0.9
+  _emergencyUseRange: 1.15
+  _emergencyCooldownSeconds: 25
+  _taskChannelSeconds: 1.35
+  _repairChannelSeconds: 2
   _playerPrefab:
     RawGuidValue: 5b9b6d2a3c0de4c4cb276b08c681cd73
+  _spawnOrigin: {x: -1.8, y: 0.35}
+  _spawnSpacing: {x: 0.9, y: 0.75}
+  _spawnColumns: 5
 --- !u!4 &1216838359
 Transform:
   m_ObjectHideFlags: 0

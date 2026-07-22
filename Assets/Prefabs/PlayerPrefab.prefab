@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5110289773565917824}
   - component: {fileID: 3255501314745709067}
-  - component: {fileID: 3087171298113389335}
-  - component: {fileID: 7333917238195175508}
   - component: {fileID: -6474976643115772436}
   m_Layer: 0
   m_Name: PlayerPrefab
@@ -53,53 +51,8 @@ MonoBehaviour:
   Flags: 262145
   NestedObjects: []
   NetworkedBehaviours:
-  - {fileID: 7333917238195175508}
   - {fileID: -6474976643115772436}
   ForceRemoteRenderTimeframe: 0
---- !u!143 &3087171298113389335
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4799392164972769500}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7333917238195175508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4799392164972769500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 378411a89480da345945c2f888327a2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Fusion.Unity::Fusion.NetworkCharacterController
-  _stateAuthorityChangeErrorCorrectionDelta: 0
-  gravity: -20
-  jumpImpulse: 8
-  acceleration: 10
-  braking: 10
-  maxSpeed: 2
-  rotationSpeed: 15
 --- !u!114 &-6474976643115772436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,6 +65,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 031a036364e7d1b4894c4b450cf15cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  _moveSpeed: 4.5
+  _collisionRadius: 0.5
+  _killCooldownSeconds: 10
+  _proxyInterpolationSpeed: 18
+  _followLocalPlayer: 1
+  _cameraFollowSpeed: 14
+  _bodyRenderer: {fileID: 4973346913303582288}
+  _characterBodySprite: {fileID: 21300000, guid: 45326424b4d07934984cf41ad858d32b, type: 3}
+  _characterHeadSprite: {fileID: 21300000, guid: 814bff80774c25f47a52bb4ced3012ed, type: 3}
+  _characterLeftFootSprite: {fileID: 21300000, guid: 9bf00a93a102fec40b5a4c42099f56f8, type: 3}
+  _characterRightFootSprite: {fileID: 21300000, guid: 6bb65cd73687f7a4ca2143ca3a5f204a, type: 3}
+  _characterWeaponSprite: {fileID: 21300000, guid: ba75aa2474d9c1942a4f502fbf66db9e, type: 3}
+  _characterShadowSprite: {fileID: 21300000, guid: 87dd2d469b826384c9bd6d4de7aa6b76, type: 3}
 --- !u!1 &6646095487379919501
 GameObject:
   m_ObjectHideFlags: 0
