@@ -38,6 +38,8 @@ The Astra blockout contains 11 connected rooms, 16 designed connections, 15 spaw
 
 Each Crewmate starts with five random assignments drawn from the 22 stations. Additional assignments arrive at 30 seconds and 75 seconds with a flashing HUD alert and notification tone.
 
+During a round, the task tracker lists every incomplete assignment with its room, distance, and direction. A screen-edge pointer guides the player toward the nearest assignment, while assigned task stations glow in the world and the nearest station pulses. Impostors receive the same guidance in purple for their fake tasks.
+
 The Crew has 180 seconds to finish all assignments. The HUD shows the remaining time and switches to an urgent warning during the final 30 seconds. If tasks remain incomplete, a four-second failure cut-in and alarm play before the server awards the Impostors the win.
 
 ## Migration Notes

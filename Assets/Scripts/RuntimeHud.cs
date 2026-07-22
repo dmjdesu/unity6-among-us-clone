@@ -12,12 +12,14 @@ namespace AmongUsClone
         private const int MaxRosterRows = 10;
         private const int MaxVoteButtons = 12;
         private const int MaxControlRows = 7;
+        private const int MaxTaskTrackerRows = 7;
 
         private static readonly Color PanelColor = new Color(0.035f, 0.05f, 0.07f, 0.9f);
         private static readonly Color PanelMutedColor = new Color(0.06f, 0.08f, 0.1f, 0.84f);
         private static readonly Color TextColor = new Color(0.9f, 0.95f, 0.98f, 1f);
         private static readonly Color MutedTextColor = new Color(0.62f, 0.72f, 0.78f, 1f);
         private static readonly Color CrewColor = new Color(0.13f, 0.9f, 0.78f, 1f);
+        private static readonly Color FakeTaskColor = new Color(0.72f, 0.38f, 1f, 1f);
         private static readonly Color AlertColor = new Color(1f, 0.27f, 0.18f, 1f);
         private static readonly Color GoldColor = new Color(1f, 0.78f, 0.2f, 1f);
 
@@ -32,6 +34,8 @@ namespace AmongUsClone
         private GameObject _meetingPanel;
         private GameObject _taskPanel;
         private GameObject _taskFailurePanel;
+        private GameObject _taskTrackerPanel;
+        private GameObject _taskDirectionPanel;
         private InputField _roomInput;
         private Text _statusText;
         private Text _sessionText;
@@ -61,11 +65,15 @@ namespace AmongUsClone
         private Image _taskFailureBannerImage;
         private Text _taskFailureTitleText;
         private Text _taskFailureSubtitleText;
+        private Text _taskTrackerTitleText;
+        private Text _taskDirectionArrowText;
+        private Text _taskDirectionLabelText;
         private readonly List<Text> _rosterRows = new List<Text>();
         private readonly List<Button> _voteButtons = new List<Button>();
         private readonly List<Text> _voteButtonLabels = new List<Text>();
         private readonly List<Text> _controlRows = new List<Text>();
         private readonly List<Image> _taskWireFills = new List<Image>();
+        private readonly List<Text> _taskTrackerRows = new List<Text>();
         private string _lastRoomName = string.Empty;
         private AudioSource _taskAlertAudioSource;
         private AudioClip _taskAlertClip;
@@ -104,6 +112,7 @@ namespace AmongUsClone
             UpdateActionPanel();
             UpdateControlsPanel();
             UpdateMeetingPanel();
+            UpdateTaskNavigation();
             UpdateTaskPanel();
             UpdateTaskFailureCutIn();
         }
@@ -188,7 +197,189 @@ namespace AmongUsClone
             _taskFill = CreateBar(_taskPanel.transform, CrewColor, 16f);
             _taskPercentText = CreateText(_taskPanel.transform, string.Empty, 14, FontStyle.Bold, TextAnchor.MiddleCenter);
             CreateTaskVisualizer(_taskPanel.transform);
+            CreateTaskNavigation();
             CreateTaskFailureCutIn();
+        }
+
+        private void CreateTaskNavigation()
+        {
+            _taskTrackerPanel = CreatePanel(
+                "Task Tracker",
+                _canvasRoot.transform,
+                new Vector2(360f, 250f),
+                new Vector2(0f, 1f),
+                new Vector2(18f, -282f),
+                PanelMutedColor);
+            _taskTrackerPanel.GetComponent<Image>().raycastTarget = false;
+            AddVerticalLayout(_taskTrackerPanel, 10, 4f);
+            _taskTrackerTitleText = CreateText(_taskTrackerPanel.transform, "YOUR TASKS", 16, FontStyle.Bold, TextAnchor.MiddleLeft, CrewColor);
+            _taskTrackerTitleText.raycastTarget = false;
+            for (var i = 0; i < MaxTaskTrackerRows; i++)
+            {
+                var row = CreateText(_taskTrackerPanel.transform, string.Empty, 12, FontStyle.Normal, TextAnchor.MiddleLeft, MutedTextColor);
+                row.raycastTarget = false;
+                _taskTrackerRows.Add(row);
+            }
+
+            _taskDirectionPanel = CreatePanel(
+                "Nearest Task Direction",
+                _canvasRoot.transform,
+                new Vector2(220f, 66f),
+                new Vector2(0.5f, 0.5f),
+                Vector2.zero,
+                new Color(0.025f, 0.12f, 0.11f, 0.94f));
+            _taskDirectionPanel.GetComponent<Image>().raycastTarget = false;
+            AddVerticalLayout(_taskDirectionPanel, 5, 0f);
+            _taskDirectionArrowText = CreateText(_taskDirectionPanel.transform, "▲", 21, FontStyle.Bold, TextAnchor.MiddleCenter, CrewColor);
+            _taskDirectionLabelText = CreateText(_taskDirectionPanel.transform, string.Empty, 12, FontStyle.Bold, TextAnchor.MiddleCenter, TextColor);
+            _taskDirectionArrowText.raycastTarget = false;
+            _taskDirectionLabelText.raycastTarget = false;
+            _taskTrackerPanel.SetActive(false);
+            _taskDirectionPanel.SetActive(false);
+        }
+
+        private void UpdateTaskNavigation()
+        {
+            var localPlayer = _spawner.LocalPlayer;
+            var visible = _spawner.IsConnected &&
+                !_spawner.IsStarting &&
+                localPlayer != null &&
+                localPlayer.MatchState == MatchState.Playing &&
+                localPlayer.IsAlive &&
+                (localPlayer.Role == PlayerRole.Crewmate || localPlayer.Role == PlayerRole.Impostor) &&
+                !localPlayer.TaskDeadlineFailed;
+            _taskTrackerPanel.SetActive(visible);
+            if (!visible)
+            {
+                _taskDirectionPanel.SetActive(false);
+                return;
+            }
+
+            var incompleteTasks = new List<TaskStation>();
+            foreach (var station in ShipMap.TaskStations)
+            {
+                if (localPlayer.HasAssignedTask(station.Id) && !localPlayer.HasCompletedTask(station.Id))
+                {
+                    incompleteTasks.Add(station);
+                }
+            }
+
+            incompleteTasks.Sort((left, right) =>
+                Vector2.Distance(localPlayer.NetworkedPosition, left.Position)
+                    .CompareTo(Vector2.Distance(localPlayer.NetworkedPosition, right.Position)));
+            var guideColor = localPlayer.Role == PlayerRole.Impostor ? FakeTaskColor : CrewColor;
+            _taskTrackerTitleText.text = localPlayer.Role == PlayerRole.Impostor
+                ? $"FAKE TASKS  {localPlayer.CompletedTaskCount}/{localPlayer.AssignedTaskCount}"
+                : $"YOUR TASKS  {localPlayer.CompletedTaskCount}/{localPlayer.AssignedTaskCount}";
+            _taskTrackerTitleText.color = guideColor;
+            if (incompleteTasks.Count == 0)
+            {
+                SetTaskTrackerRow(0, localPlayer.Role == PlayerRole.Impostor ? "ALL FAKE TASKS COMPLETE" : "ALL TASKS COMPLETE", guideColor);
+                for (var i = 1; i < _taskTrackerRows.Count; i++)
+                {
+                    _taskTrackerRows[i].gameObject.SetActive(false);
+                }
+
+                _taskDirectionPanel.SetActive(false);
+                return;
+            }
+
+            var displayedTasks = Mathf.Min(incompleteTasks.Count, MaxTaskTrackerRows);
+            for (var i = 0; i < displayedTasks; i++)
+            {
+                if (i == MaxTaskTrackerRows - 1 && incompleteTasks.Count > MaxTaskTrackerRows)
+                {
+                    SetTaskTrackerRow(i, $"+{incompleteTasks.Count - i} MORE TASKS", MutedTextColor);
+                    continue;
+                }
+
+                var station = incompleteTasks[i];
+                var offset = station.Position - localPlayer.NetworkedPosition;
+                var distance = offset.magnitude;
+                var roomName = ShipMap.GetRoomName(station.Position);
+                var location = roomName == "Ship" ? station.Name : roomName;
+                SetTaskTrackerRow(
+                    i,
+                    $"{GetDirectionGlyph(offset)}  {station.Name} | {location} | {distance:0}m",
+                    i == 0 ? guideColor : MutedTextColor);
+            }
+
+            for (var i = displayedTasks; i < _taskTrackerRows.Count; i++)
+            {
+                _taskTrackerRows[i].gameObject.SetActive(false);
+            }
+
+            var nearestTask = incompleteTasks[0];
+            var nearestDistance = Vector2.Distance(localPlayer.NetworkedPosition, nearestTask.Position);
+            var hideForSabotage = localPlayer.ActiveSabotage != SabotageType.None;
+            _taskDirectionPanel.SetActive(!hideForSabotage);
+            if (!hideForSabotage)
+            {
+                UpdateTaskDirectionMarker(nearestTask, nearestDistance, localPlayer.Role == PlayerRole.Impostor);
+            }
+        }
+
+        private void SetTaskTrackerRow(int index, string value, Color color)
+        {
+            var row = _taskTrackerRows[index];
+            row.gameObject.SetActive(true);
+            row.text = value;
+            row.color = color;
+        }
+
+        private void UpdateTaskDirectionMarker(TaskStation task, float distance, bool fakeTask)
+        {
+            var mainCamera = Camera.main;
+            var canvasRect = _canvasRoot.GetComponent<RectTransform>();
+            if (mainCamera == null || canvasRect == null)
+            {
+                _taskDirectionPanel.SetActive(false);
+                return;
+            }
+
+            var viewport = mainCamera.WorldToViewportPoint(task.Position);
+            var screenDirection = new Vector2(
+                (viewport.x - 0.5f) * canvasRect.rect.width,
+                (viewport.y - 0.5f) * canvasRect.rect.height);
+            if (screenDirection.sqrMagnitude < 0.001f)
+            {
+                screenDirection = Vector2.up;
+            }
+
+            var direction = screenDirection.normalized;
+            var horizontalLimit = Mathf.Max(40f, canvasRect.rect.width * 0.5f - 132f);
+            var verticalLimit = Mathf.Max(40f, canvasRect.rect.height * 0.5f - 58f);
+            var horizontalScale = Mathf.Abs(direction.x) < 0.001f ? float.MaxValue : horizontalLimit / Mathf.Abs(direction.x);
+            var verticalScale = Mathf.Abs(direction.y) < 0.001f ? float.MaxValue : verticalLimit / Mathf.Abs(direction.y);
+            var markerPosition = direction * Mathf.Min(horizontalScale, verticalScale);
+            _taskDirectionPanel.GetComponent<RectTransform>().anchoredPosition = markerPosition;
+            _taskDirectionArrowText.rectTransform.localRotation = Quaternion.Euler(
+                0f,
+                0f,
+                Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f);
+
+            var roomName = ShipMap.GetRoomName(task.Position);
+            _taskDirectionLabelText.text = distance <= 1.25f
+                ? $"{task.Name} | PRESS E"
+                : $"{roomName} | {distance:0}m";
+            var panelImage = _taskDirectionPanel.GetComponent<Image>();
+            panelImage.color = distance <= 1.25f
+                ? Color.Lerp(new Color(0.18f, 0.13f, 0.025f, 0.96f), new Color(0.45f, 0.3f, 0.035f, 0.98f), Mathf.PingPong(Time.time * 3f, 1f))
+                : fakeTask ? new Color(0.12f, 0.045f, 0.18f, 0.94f) : new Color(0.025f, 0.12f, 0.11f, 0.94f);
+            _taskDirectionArrowText.color = distance <= 1.25f ? GoldColor : fakeTask ? FakeTaskColor : CrewColor;
+        }
+
+        private static string GetDirectionGlyph(Vector2 offset)
+        {
+            var angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
+            if (angle >= -22.5f && angle < 22.5f) return "→";
+            if (angle >= 22.5f && angle < 67.5f) return "↗";
+            if (angle >= 67.5f && angle < 112.5f) return "↑";
+            if (angle >= 112.5f && angle < 157.5f) return "↖";
+            if (angle >= 157.5f || angle < -157.5f) return "←";
+            if (angle >= -157.5f && angle < -112.5f) return "↙";
+            if (angle >= -112.5f && angle < -67.5f) return "↓";
+            return "↘";
         }
 
         private void UpdateLobby()

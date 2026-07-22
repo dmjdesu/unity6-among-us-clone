@@ -106,6 +106,7 @@ namespace AmongUsClone
         private readonly Dictionary<int, float> _botActionCooldowns = new Dictionary<int, float>();
         private readonly Dictionary<int, ChannelState> _channels = new Dictionary<int, ChannelState>();
         private readonly Dictionary<int, int> _votes = new Dictionary<int, int>();
+        private readonly Dictionary<int, Renderer> _taskMarkerRenderers = new Dictionary<int, Renderer>();
         private int _nextPlayerNumber = 1;
         private int? _queuedVoteTargetNumber;
         private bool _meetingActive;
@@ -162,10 +163,10 @@ namespace AmongUsClone
         {
             EnsureRuntimeHud();
             ShipMap.EnsureVisuals();
+            EnsureTaskStationMarkers();
 
             if (!ShipMap.UsesSceneProvidedEnvironment)
             {
-                EnsureTaskStationMarkers();
                 EnsureSabotageStationMarkers();
                 EnsureVentMarkers();
                 EnsureEmergencyMarker();
@@ -182,6 +183,8 @@ namespace AmongUsClone
 
         private void Update()
         {
+            UpdateTaskStationMarkers();
+
             if (_runner == null || !_runner.IsServer || !_roundStarted)
             {
                 return;
@@ -2464,8 +2467,9 @@ namespace AmongUsClone
                 var marker = GameObject.CreatePrimitive(PrimitiveType.Quad);
                 marker.name = $"Task Station - {station.Name}";
                 marker.transform.SetParent(root.transform);
-                marker.transform.position = new Vector3(station.Position.x, station.Position.y, 0.1f);
+                marker.transform.position = new Vector3(station.Position.x, station.Position.y, -0.25f);
                 marker.transform.localScale = new Vector3(_taskMarkerScale, _taskMarkerScale, 1f);
+                marker.transform.rotation = Quaternion.Euler(0f, 0f, 45f);
 
                 var collider = marker.GetComponent<Collider>();
                 if (collider != null)
@@ -2476,8 +2480,64 @@ namespace AmongUsClone
                 var renderer = marker.GetComponent<Renderer>();
                 if (renderer != null && markerMaterial != null)
                 {
-                    renderer.material = markerMaterial;
+                    renderer.material = new Material(markerMaterial);
+                    renderer.sortingLayerName = "PropsFront";
+                    renderer.sortingOrder = 80;
+                    renderer.enabled = false;
+                    _taskMarkerRenderers[station.Id] = renderer;
                 }
+            }
+        }
+
+        private void UpdateTaskStationMarkers()
+        {
+            if (_taskMarkerRenderers.Count == 0)
+            {
+                return;
+            }
+
+            var localPlayer = GetLocalPlayer();
+            var showAssignments = localPlayer != null &&
+                localPlayer.MatchState == MatchState.Playing &&
+                localPlayer.IsAlive &&
+                (localPlayer.Role == PlayerRole.Crewmate || localPlayer.Role == PlayerRole.Impostor) &&
+                !localPlayer.TaskDeadlineFailed;
+            var nearestTaskId = -1;
+            var nearestDistance = float.MaxValue;
+            if (showAssignments && TryGetNearestIncompleteTask(localPlayer, out var nearest, out nearestDistance))
+            {
+                nearestTaskId = nearest.Id;
+            }
+
+            foreach (var station in TaskStations)
+            {
+                if (!_taskMarkerRenderers.TryGetValue(station.Id, out var renderer) || renderer == null)
+                {
+                    continue;
+                }
+
+                var active = showAssignments &&
+                    localPlayer.HasAssignedTask(station.Id) &&
+                    !localPlayer.HasCompletedTask(station.Id);
+                renderer.enabled = active;
+                if (!active)
+                {
+                    continue;
+                }
+
+                var isNearest = station.Id == nearestTaskId;
+                var inRange = isNearest && nearestDistance <= _taskUseRange;
+                var pulse = isNearest ? 1f + Mathf.PingPong(Time.time * 0.45f, 0.28f) : 0.72f;
+                renderer.transform.localScale = Vector3.one * (_taskMarkerScale * pulse);
+                renderer.transform.Rotate(0f, 0f, isNearest ? 42f * Time.deltaTime : 12f * Time.deltaTime);
+                var taskColor = localPlayer.Role == PlayerRole.Impostor
+                    ? new Color(0.72f, 0.38f, 1f, 0.96f)
+                    : new Color(0.13f, 0.9f, 0.78f, 0.96f);
+                renderer.material.color = inRange
+                    ? new Color(1f, 0.78f, 0.2f, 1f)
+                    : isNearest
+                        ? taskColor
+                        : new Color(taskColor.r, taskColor.g, taskColor.b, 0.48f);
             }
         }
 

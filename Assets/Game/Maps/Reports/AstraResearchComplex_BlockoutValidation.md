@@ -66,6 +66,7 @@ Overall: PASS
 - Move with WASD or arrow keys and confirm walls, obstacles, cut corners, and the map boundary block traversal.
 - Verify camera follow at Orthographic Size 6; the full 150 x 116 map should not fit on screen.
 - Confirm the HUD shows `Your tasks: completed/assigned` and aggregate Crew progress.
+- Confirm the task tracker shows each incomplete assignment's room, distance, and direction; the nearest task also has a screen-edge pointer and pulsing world marker.
 - Confirm timed task alerts occur at 30 seconds and 75 seconds with a flashing message and notification tone.
 - Confirm the task deadline counts down from 180 seconds in the HUD.
 - Leave tasks incomplete and confirm a 4-second failure cut-in appears before the Impostor victory result.
