@@ -486,12 +486,6 @@ namespace AmongUsClone
 
         private void DrawLocalTaskStatus(Player localPlayer)
         {
-            if (localPlayer.Role == PlayerRole.Impostor)
-            {
-                GUILayout.Label("Fake tasks: none assigned yet");
-                return;
-            }
-
             if (localPlayer.ActiveSabotage == SabotageType.Communications)
             {
                 GUILayout.Label("Tasks blocked: fix Communications");
@@ -505,7 +499,7 @@ namespace AmongUsClone
 
             if (localPlayer.AllTasksComplete)
             {
-                GUILayout.Label("Your tasks: complete");
+                GUILayout.Label(localPlayer.Role == PlayerRole.Impostor ? "Fake tasks: complete" : "Your tasks: complete");
                 return;
             }
 
@@ -518,7 +512,9 @@ namespace AmongUsClone
                 return;
             }
 
-            GUILayout.Label($"Your tasks: {localPlayer.CompletedTaskCount}/{localPlayer.AssignedTaskCount}");
+            GUILayout.Label(localPlayer.Role == PlayerRole.Impostor
+                ? $"Fake tasks: {localPlayer.CompletedTaskCount}/{localPlayer.AssignedTaskCount}"
+                : $"Your tasks: {localPlayer.CompletedTaskCount}/{localPlayer.AssignedTaskCount}");
             if (TryGetNearestIncompleteTask(localPlayer, out var station, out var distance))
             {
                 var label = distance <= _taskUseRange
@@ -1284,7 +1280,7 @@ namespace AmongUsClone
             for (var i = 0; i < players.Count; i++)
             {
                 var role = i < impostorsToAssign ? PlayerRole.Impostor : PlayerRole.Crewmate;
-                var taskMask = role == PlayerRole.Crewmate ? CreateTaskAssignmentMask() : 0;
+                var taskMask = CreateTaskAssignmentMask();
                 players[i].BeginRound(role, roundSpawnPositions[i], taskMask, _taskDeadlineEndsAt);
 
                 if (players[i].IsBot)

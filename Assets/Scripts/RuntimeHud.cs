@@ -233,7 +233,9 @@ namespace AmongUsClone
             _spawner.GetTaskProgressForHud(out var completedTasks, out var totalTasks);
             var taskSummary = localPlayer != null && localPlayer.Role == PlayerRole.Crewmate && localPlayer.AssignedTaskCount > 0
                 ? $"Your tasks: {localPlayer.CompletedTaskCount}/{localPlayer.AssignedTaskCount}   Crew total: {completedTasks}/{totalTasks}"
-                : totalTasks > 0 ? $"Crew tasks: {completedTasks}/{totalTasks}" : "Crew tasks: waiting";
+                : localPlayer != null && localPlayer.Role == PlayerRole.Impostor && localPlayer.AssignedTaskCount > 0
+                    ? $"Fake tasks: {localPlayer.CompletedTaskCount}/{localPlayer.AssignedTaskCount}   Crew total: {completedTasks}/{totalTasks}"
+                    : totalTasks > 0 ? $"Crew tasks: {completedTasks}/{totalTasks}" : "Crew tasks: waiting";
             var deadlineRemaining = localPlayer == null || localPlayer.TaskDeadlineEndsAt <= 0f
                 ? 0f
                 : Mathf.Max(0f, localPlayer.TaskDeadlineEndsAt - Time.time);
@@ -581,7 +583,14 @@ namespace AmongUsClone
                 var vent = _spawner.TryGetNearestVentInfo(localPlayer, out var ventName, out var ventDistance, out var ventReady)
                     ? (ventReady ? $"V vent at {ventName}" : $"Vent: {ventName} {ventDistance:0.0}m")
                     : "No vent";
-                return $"{kill}   {sabotage}   {vent}";
+                var fakeTask = localPlayer.AllTasksComplete
+                    ? "Fake tasks complete"
+                    : _spawner.TryGetNearestTaskInfo(localPlayer, out var fakeTaskName, out var fakeTaskKind, out var fakeTaskDistance, out var fakeTaskInRange)
+                        ? fakeTaskInRange
+                            ? $"Fake: {BasicSpawner.GetTaskInstruction(fakeTaskKind)} at {fakeTaskName}"
+                            : $"Fake task: {fakeTaskName} {fakeTaskDistance:0.0}m"
+                        : "No fake task";
+                return $"{kill}   {fakeTask}   {sabotage}   {vent}";
             }
 
             return "Move with WASD or arrow keys.";

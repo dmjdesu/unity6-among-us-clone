@@ -128,7 +128,11 @@ namespace AmongUsClone
         public string DisplayName => IsBot ? $"CPU {PlayerNumber}" : $"Player {PlayerNumber}";
         public float KillCooldownRemaining => Mathf.Max(0f, _killCooldownSeconds - (Time.time - LastKillTime));
         public bool IsKillReady => KillCooldownRemaining <= 0f;
-        public bool CanDoTasks => MatchState == MatchState.Playing && IsAlive && Role == PlayerRole.Crewmate && AssignedTaskCount > 0 && !TaskDeadlineFailed;
+        public bool CanDoTasks => MatchState == MatchState.Playing &&
+            IsAlive &&
+            (Role == PlayerRole.Crewmate || Role == PlayerRole.Impostor) &&
+            AssignedTaskCount > 0 &&
+            !TaskDeadlineFailed;
         public int CompletedTaskCount => CountTasks(CompletedTaskMask & AssignedTaskMask);
         public bool AllTasksComplete => AssignedTaskCount > 0 && CompletedTaskCount >= AssignedTaskCount;
         public SabotageType ActiveSabotage => (SabotageType)ActiveSabotageId;
@@ -346,7 +350,7 @@ namespace AmongUsClone
             VotedTargetNumber = SkipVoteTarget;
             MeetingReporterNumber = 0;
             MeetingBodyNumber = 0;
-            AssignedTaskMask = role == PlayerRole.Crewmate ? taskMask & 0x3fffffff : 0;
+            AssignedTaskMask = role == PlayerRole.Crewmate || role == PlayerRole.Impostor ? taskMask & 0x3fffffff : 0;
             AssignedTaskCount = CountTasks(AssignedTaskMask);
             CompletedTaskMask = 0;
             LastAssignedTaskId = -1;

@@ -63,6 +63,7 @@ Ported concepts:
 - generated crewmate-style runtime sprites with body, visor, and backpack layers
 - data-transfer, circuit-pulse, and calibration task interactions
 - five random starting tasks per Crewmate, with two timed task waves
+- fake task assignments for Impostors that can be performed locally without adding to Crew progress
 - task-count HUD plus flashing and audible alerts for newly assigned tasks
 - 180-second task deadline with a synchronized failure cut-in and Impostor win
 - progress bars for tasks, repairs, and meetings
@@ -117,6 +118,7 @@ Each room prefab has this hierarchy:
 - The host can toggle whether the host is forced to be the Impostor for faster kill testing.
 - One player is assigned Impostor by default.
 - Other players become Crewmates.
+- Impostors receive fake task assignments; completing them only updates the Impostor's own HUD and does not advance Crew task progress.
 - Late joiners become Spectators until the next restart.
 - Dead players are shown as flattened dark bodies.
 - Player bodies use generated placeholder sprites, so no external character art is required for testing.
