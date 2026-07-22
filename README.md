@@ -2,6 +2,16 @@
 
 Unity 6 + Photon Fusion based prototype for an Among Us style 2D multiplayer game.
 
+## License and Attribution
+
+This repository is derived from [`chocowriter/unity6-among-us-clone`](https://github.com/chocowriter/unity6-among-us-clone).
+The original project is licensed under the MIT License; see [`LICENSE`](LICENSE), which keeps the original copyright notice.
+
+Third-party Unity packages and imported art assets remain under their own licenses. In particular, see:
+
+- `Assets/Jovial Games/Simple 2D Cute Characters/License.pdf`
+- `Assets/Photon/Fusion/Plugins/NanoSockets/libnanosockets_LICENSE.txt`
+
 ## Run
 
 1. Open this folder in Unity `6000.3.6f1`.
