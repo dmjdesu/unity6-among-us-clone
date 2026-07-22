@@ -16,7 +16,6 @@ namespace AmongUsClone
         private const string RootName = "Ship Map";
         private const string AstraRuntimeBlockoutRootName = "Astra Runtime Visible Blockout";
         private const float WallThickness = 0.12f;
-        private const float WalkableEdgeInset = 0.015f;
         private const float PreviewCameraSize = 6f;
 
         private static readonly RoomPrefabPlacement[] ProductionRoomPlacements =
@@ -87,6 +86,7 @@ namespace AmongUsClone
             public string MapId;
             public Rect PlayBounds;
             public RoomArea[] Rooms = Array.Empty<RoomArea>();
+            public Rect[] RoomBounds = Array.Empty<Rect>();
             public Rect[] Corridors = Array.Empty<Rect>();
             public Rect[] Doorways = Array.Empty<Rect>();
             public Rect[] Obstacles = Array.Empty<Rect>();
@@ -438,6 +438,7 @@ namespace AmongUsClone
                 MapId = string.IsNullOrWhiteSpace(definition.mapId) ? "fallback_ship" : definition.mapId,
                 PlayBounds = definition.playBounds.ToRect(),
                 Rooms = BuildRooms(definition.rooms),
+                RoomBounds = BuildRoomBounds(definition.rooms),
                 Corridors = BuildRects(definition.corridors),
                 Doorways = BuildRects(definition.doorways),
                 Obstacles = BuildRects(definition.obstacles),
@@ -475,6 +476,22 @@ namespace AmongUsClone
             }
 
             return rooms;
+        }
+
+        private static Rect[] BuildRoomBounds(RoomDefinition[] definitions)
+        {
+            if (definitions == null || definitions.Length == 0)
+            {
+                return Array.Empty<Rect>();
+            }
+
+            var bounds = new Rect[definitions.Length];
+            for (var i = 0; i < definitions.Length; i++)
+            {
+                bounds[i] = definitions[i].bounds.ToRect();
+            }
+
+            return bounds;
         }
 
         private static Rect[] BuildRects(RectFeatureDefinition[] definitions)
@@ -574,51 +591,13 @@ namespace AmongUsClone
 
         private static bool IsBlocked(Vector2 position, float radius)
         {
-            if (!IsInsideWalkableArea(position, radius))
-            {
-                return true;
-            }
-
-            foreach (var obstacle in Map.Obstacles)
-            {
-                if (Inflate(obstacle, radius).Contains(position))
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        private static bool IsInsideWalkableArea(Vector2 position, float radius)
-        {
-            var inset = Mathf.Min(WalkableEdgeInset, Mathf.Max(0f, radius) * 0.1f);
-
-            foreach (var room in Map.Rooms)
-            {
-                if (Inset(room.Bounds, inset).Contains(position))
-                {
-                    return true;
-                }
-            }
-
-            foreach (var corridor in Map.Corridors)
-            {
-                if (Inset(corridor, inset).Contains(position))
-                {
-                    return true;
-                }
-            }
-
-            foreach (var doorway in Map.Doorways)
-            {
-                if (Inset(doorway, inset).Contains(position))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return ShipMapGeometry.IsBlocked(
+                position,
+                radius,
+                Map.RoomBounds,
+                Map.Corridors,
+                Map.Doorways,
+                Map.Obstacles);
         }
 
         private static Vector2 FindNearestOpenPosition(Vector2 position, float radius)
@@ -652,21 +631,6 @@ namespace AmongUsClone
             return new Vector2(
                 Mathf.Clamp(position.x, Map.PlayBounds.xMin + radius, Map.PlayBounds.xMax - radius),
                 Mathf.Clamp(position.y, Map.PlayBounds.yMin + radius, Map.PlayBounds.yMax - radius));
-        }
-
-        private static Rect Inflate(Rect rect, float amount)
-        {
-            return new Rect(rect.xMin - amount, rect.yMin - amount, rect.width + amount * 2f, rect.height + amount * 2f);
-        }
-
-        private static Rect Inset(Rect rect, float amount)
-        {
-            var clampedAmount = Mathf.Clamp(amount, 0f, Mathf.Min(rect.width, rect.height) * 0.45f);
-            return new Rect(
-                rect.xMin + clampedAmount,
-                rect.yMin + clampedAmount,
-                rect.width - clampedAmount * 2f,
-                rect.height - clampedAmount * 2f);
         }
 
         private static Material CreateMaterial(Color color)

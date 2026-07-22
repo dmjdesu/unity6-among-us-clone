@@ -62,6 +62,7 @@ namespace AmongUsClone.Editor
         private const string RuntimeMapPath = "Assets/Resources/Maps/astra_research_complex_blockout_01.json";
         private const string ReportsFolder = "Assets/Game/Maps/Reports";
         private const string PlayerPrefabPath = "Assets/Prefabs/PlayerPrefab.prefab";
+        private const float RuntimeWalkableOverlap = 0.05f;
 
         private static readonly string[] SortingLayers =
         {
@@ -449,12 +450,14 @@ namespace AmongUsClone.Editor
                 label = V(room.Bounds.center)
             }).ToArray();
 
+            // Compressed cell runs only touch at their edges. Keep a small overlap so
+            // ShipMap's per-rectangle inset cannot split a visually continuous route.
             layout.RuntimeCorridors = CompressCellsToRects(layout.CorridorCells)
                 .Select((rect, index) => new RectFeatureDefinition
                 {
                     id = $"corridor_cell_run_{index:000}",
                     displayName = "Astra Corridor",
-                    bounds = R(rect)
+                    bounds = R(Inflate(rect, RuntimeWalkableOverlap))
                 })
                 .ToArray();
 
@@ -896,7 +899,7 @@ namespace AmongUsClone.Editor
                 playBounds = R(layout.PlayBounds),
                 rooms = layout.RuntimeRooms,
                 corridors = layout.RuntimeCorridors,
-                doorways = Array.Empty<RectFeatureDefinition>(),
+                doorways = layout.RuntimeDoorways,
                 obstacles = layout.RuntimeObstacles,
                 navigationWaypoints = layout.NavigationWaypoints,
                 spawnPoints = layout.SpawnPoints,
@@ -1613,6 +1616,7 @@ namespace AmongUsClone.Editor
         private const string RuntimeMapPath = "Assets/Resources/Maps/astra_research_complex_blockout_01.json";
         private const string ReportPath = "Assets/Game/Maps/Reports/AstraResearchComplex_BlockoutValidation.md";
         private const string PlayerPrefabPath = "Assets/Prefabs/PlayerPrefab.prefab";
+        private const float RuntimePlayerRadius = 0.5f;
 
         internal static ValidationResult Validate(AstraLayout layout, string scenePath)
         {
@@ -1628,6 +1632,7 @@ namespace AmongUsClone.Editor
             }
 
             var graph = BuildGraph(layout);
+            var runtimeReachability = CheckRuntimeReachability(layout, RuntimePlayerRadius);
             checks.Add(Check("11 rooms exist", layout.Definition.rooms.Length == 11 && CountMarkers(AstraBlockoutMarkerKind.RoomArea) == 11, $"definition={layout.Definition.rooms.Length}, scene={CountMarkers(AstraBlockoutMarkerKind.RoomArea)}"));
             checks.Add(Check("16 connections exist", layout.Definition.connections.Length == 16, $"connections={layout.Definition.connections.Length}"));
             checks.Add(Check("All rooms reachable", IsConnected(graph), $"{CountReachable(graph)}/{layout.Definition.rooms.Length} rooms reachable"));
@@ -1635,7 +1640,14 @@ namespace AmongUsClone.Editor
             checks.Add(Check("North-south routes >= 3", CountSideRoutes(layout, false) >= 3, $"routes={CountSideRoutes(layout, false)}"));
             checks.Add(Check("Dead-end rooms <= 1", graph.Count(pair => pair.Value.Count <= 1) <= 1, $"deadEnds={graph.Count(pair => pair.Value.Count <= 1)}"));
             checks.Add(Check("No graph bridge dependency", FindBridges(layout, graph).Length == 0, $"bridges={string.Join(", ", FindBridges(layout, graph))}"));
-            checks.Add(Check("Cell walkability connected", WalkableCellsConnectRooms(layout), "BFS over generated floor cells"));
+            checks.Add(Check(
+                "Runtime player-radius reachability",
+                runtimeReachability.ReachableRoomCount == layout.RuntimeRooms.Length,
+                runtimeReachability.RoomDetail));
+            checks.Add(Check(
+                "Runtime task points reachable",
+                runtimeReachability.ReachableTaskCount == layout.TaskPoints.Length,
+                runtimeReachability.TaskDetail));
 
             checks.Add(CheckPointCount("SpawnPoint", AstraBlockoutMarkerKind.SpawnPoint, layout.SpawnPoints.Length, 15, true));
             checks.Add(CheckPointCount("MeetingPoint", AstraBlockoutMarkerKind.MeetingPoint, layout.MeetingPoint == null ? 0 : 1, 1, false));
@@ -2096,49 +2108,277 @@ namespace AmongUsClone.Editor
             return true;
         }
 
-        private static bool WalkableCellsConnectRooms(AstraLayout layout)
+        private static RuntimeReachability CheckRuntimeReachability(AstraLayout layout, float radius)
         {
-            var blocked = new HashSet<Vector2Int>(layout.InteriorObstacleCells);
-            var start = AstraResearchComplexBlockoutGenerator.WorldToCell(layout.MeetingPoint.position.ToVector2());
-            var visited = new HashSet<Vector2Int>();
+            var roomBounds = layout.RuntimeRooms.Select(room => room.bounds.ToRect()).ToArray();
+            var corridors = layout.RuntimeCorridors.Select(corridor => corridor.bounds.ToRect()).ToArray();
+            var doorways = layout.RuntimeDoorways.Select(doorway => doorway.bounds.ToRect()).ToArray();
+            var obstacles = layout.RuntimeObstacles.Select(obstacle => obstacle.bounds.ToRect()).ToArray();
+            var meetingPoint = layout.MeetingPoint == null ? Vector2.zero : layout.MeetingPoint.position.ToVector2();
+            var geometry = new RuntimeGeometry(roomBounds, corridors, doorways, obstacles);
+
+            if (layout.MeetingPoint == null || RuntimeBlocked(layout, geometry, meetingPoint, radius))
+            {
+                return new RuntimeReachability(0, 0, "meeting point is blocked", "meeting point is blocked");
+            }
+
+            var xCoordinates = BuildNavigationCoordinates(layout.PlayBounds, geometry, radius, true);
+            var yCoordinates = BuildNavigationCoordinates(layout.PlayBounds, geometry, radius, false);
+            var width = xCoordinates.Length - 1;
+            var height = yCoordinates.Length - 1;
+            if (width <= 0 || height <= 0)
+            {
+                return new RuntimeReachability(0, 0, "runtime geometry has no navigable cells", "runtime geometry has no navigable cells");
+            }
+
+            var open = new bool[width * height];
+            var visited = new bool[open.Length];
+            for (var x = 0; x < width; x++)
+            {
+                var sampleX = (xCoordinates[x] + xCoordinates[x + 1]) * 0.5f;
+                for (var y = 0; y < height; y++)
+                {
+                    var sample = new Vector2(sampleX, (yCoordinates[y] + yCoordinates[y + 1]) * 0.5f);
+                    open[RuntimeCellIndex(x, y, height)] = !RuntimeBlocked(layout, geometry, sample, radius);
+                }
+            }
+
             var queue = new Queue<Vector2Int>();
-            queue.Enqueue(start);
-
-            var directions = new[]
+            for (var x = 0; x < width; x++)
             {
-                Vector2Int.up,
-                Vector2Int.down,
-                Vector2Int.left,
-                Vector2Int.right
-            };
-
-            while (queue.Count > 0)
-            {
-                var current = queue.Dequeue();
-                if (!visited.Add(current))
+                if (meetingPoint.x < xCoordinates[x] || meetingPoint.x > xCoordinates[x + 1])
                 {
                     continue;
                 }
 
-                foreach (var direction in directions)
+                for (var y = 0; y < height; y++)
                 {
-                    var next = current + direction;
-                    if (layout.FloorCells.Contains(next) && !blocked.Contains(next) && !visited.Contains(next))
+                    if (meetingPoint.y < yCoordinates[y] || meetingPoint.y > yCoordinates[y + 1])
                     {
-                        queue.Enqueue(next);
+                        continue;
+                    }
+
+                    var index = RuntimeCellIndex(x, y, height);
+                    if (open[index])
+                    {
+                        queue.Enqueue(new Vector2Int(x, y));
                     }
                 }
             }
 
-            foreach (var room in layout.Rooms)
+            while (queue.Count > 0)
             {
-                if (!room.FloorCells.Any(cell => !blocked.Contains(cell) && visited.Contains(cell)))
+                var current = queue.Dequeue();
+                var currentIndex = RuntimeCellIndex(current.x, current.y, height);
+                if (visited[currentIndex])
                 {
-                    return false;
+                    continue;
+                }
+
+                visited[currentIndex] = true;
+                TryQueueRuntimeNeighbor(layout, geometry, radius, current.x - 1, current.y, current.x, current.y, xCoordinates, yCoordinates, width, height, open, visited, queue);
+                TryQueueRuntimeNeighbor(layout, geometry, radius, current.x + 1, current.y, current.x, current.y, xCoordinates, yCoordinates, width, height, open, visited, queue);
+                TryQueueRuntimeNeighbor(layout, geometry, radius, current.x, current.y - 1, current.x, current.y, xCoordinates, yCoordinates, width, height, open, visited, queue);
+                TryQueueRuntimeNeighbor(layout, geometry, radius, current.x, current.y + 1, current.x, current.y, xCoordinates, yCoordinates, width, height, open, visited, queue);
+            }
+
+            var unreachableRooms = new List<string>();
+            foreach (var room in layout.RuntimeRooms)
+            {
+                var bounds = ShipMapGeometry.Inset(room.bounds.ToRect(), ShipMapGeometry.WalkableEdgeInset);
+                var reached = false;
+                for (var x = 0; x < width && !reached; x++)
+                {
+                    var sampleX = (xCoordinates[x] + xCoordinates[x + 1]) * 0.5f;
+                    for (var y = 0; y < height; y++)
+                    {
+                        var index = RuntimeCellIndex(x, y, height);
+                        var sample = new Vector2(sampleX, (yCoordinates[y] + yCoordinates[y + 1]) * 0.5f);
+                        if (visited[index] && bounds.Contains(sample))
+                        {
+                            reached = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!reached)
+                {
+                    unreachableRooms.Add(room.id);
                 }
             }
 
-            return true;
+            var unreachableTasks = layout.TaskPoints
+                .Where(task => !RuntimePointReached(task.position.ToVector2(), xCoordinates, yCoordinates, height, visited, layout, geometry, radius))
+                .Select(task => task.id)
+                .ToArray();
+
+            var reachableRoomCount = layout.RuntimeRooms.Length - unreachableRooms.Count;
+            var reachableTaskCount = layout.TaskPoints.Length - unreachableTasks.Length;
+            var roomDetail = $"{reachableRoomCount}/{layout.RuntimeRooms.Length} rooms reachable at radius {radius:0.00}";
+            if (unreachableRooms.Count > 0)
+            {
+                roomDetail += $"; blocked={string.Join(", ", unreachableRooms)}";
+            }
+
+            var taskDetail = $"{reachableTaskCount}/{layout.TaskPoints.Length} task points reachable at radius {radius:0.00}";
+            if (unreachableTasks.Length > 0)
+            {
+                taskDetail += $"; blocked={string.Join(", ", unreachableTasks)}";
+            }
+
+            return new RuntimeReachability(reachableRoomCount, reachableTaskCount, roomDetail, taskDetail);
+        }
+
+        private static void TryQueueRuntimeNeighbor(
+            AstraLayout layout,
+            RuntimeGeometry geometry,
+            float radius,
+            int nextX,
+            int nextY,
+            int currentX,
+            int currentY,
+            float[] xCoordinates,
+            float[] yCoordinates,
+            int width,
+            int height,
+            bool[] open,
+            bool[] visited,
+            Queue<Vector2Int> queue)
+        {
+            if (nextX < 0 || nextX >= width || nextY < 0 || nextY >= height)
+            {
+                return;
+            }
+
+            var nextIndex = RuntimeCellIndex(nextX, nextY, height);
+            if (!open[nextIndex] || visited[nextIndex])
+            {
+                return;
+            }
+
+            Vector2 boundarySample;
+            if (nextX != currentX)
+            {
+                var boundaryX = xCoordinates[Mathf.Max(nextX, currentX)];
+                boundarySample = new Vector2(boundaryX, (yCoordinates[currentY] + yCoordinates[currentY + 1]) * 0.5f);
+            }
+            else
+            {
+                var boundaryY = yCoordinates[Mathf.Max(nextY, currentY)];
+                boundarySample = new Vector2((xCoordinates[currentX] + xCoordinates[currentX + 1]) * 0.5f, boundaryY);
+            }
+
+            if (!RuntimeBlocked(layout, geometry, boundarySample, radius))
+            {
+                queue.Enqueue(new Vector2Int(nextX, nextY));
+            }
+        }
+
+        private static bool RuntimePointReached(
+            Vector2 point,
+            float[] xCoordinates,
+            float[] yCoordinates,
+            int height,
+            bool[] visited,
+            AstraLayout layout,
+            RuntimeGeometry geometry,
+            float radius)
+        {
+            if (RuntimeBlocked(layout, geometry, point, radius))
+            {
+                return false;
+            }
+
+            for (var x = 0; x < xCoordinates.Length - 1; x++)
+            {
+                if (point.x < xCoordinates[x] || point.x > xCoordinates[x + 1])
+                {
+                    continue;
+                }
+
+                for (var y = 0; y < yCoordinates.Length - 1; y++)
+                {
+                    if (point.y >= yCoordinates[y] && point.y <= yCoordinates[y + 1] && visited[RuntimeCellIndex(x, y, height)])
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private static bool RuntimeBlocked(AstraLayout layout, RuntimeGeometry geometry, Vector2 point, float radius)
+        {
+            var movementBounds = new Rect(
+                layout.PlayBounds.xMin + radius,
+                layout.PlayBounds.yMin + radius,
+                layout.PlayBounds.width - radius * 2f,
+                layout.PlayBounds.height - radius * 2f);
+            return !movementBounds.Contains(point) || ShipMapGeometry.IsBlocked(
+                point,
+                radius,
+                geometry.RoomBounds,
+                geometry.Corridors,
+                geometry.Doorways,
+                geometry.Obstacles);
+        }
+
+        private static float[] BuildNavigationCoordinates(Rect playBounds, RuntimeGeometry geometry, float radius, bool xAxis)
+        {
+            var minimum = (xAxis ? playBounds.xMin : playBounds.yMin) + radius;
+            var maximum = (xAxis ? playBounds.xMax : playBounds.yMax) - radius;
+            var values = new List<float> { minimum, maximum };
+            var walkableInset = Mathf.Min(ShipMapGeometry.WalkableEdgeInset, Mathf.Max(0f, radius) * 0.1f);
+
+            AddRuntimeRectEdges(values, geometry.RoomBounds, walkableInset, minimum, maximum, xAxis, false);
+            AddRuntimeRectEdges(values, geometry.Corridors, walkableInset, minimum, maximum, xAxis, false);
+            AddRuntimeRectEdges(values, geometry.Doorways, walkableInset, minimum, maximum, xAxis, false);
+            AddRuntimeRectEdges(values, geometry.Obstacles, radius, minimum, maximum, xAxis, true);
+
+            var sorted = values.OrderBy(value => value).ToArray();
+            var unique = new List<float>(sorted.Length);
+            foreach (var value in sorted)
+            {
+                if (unique.Count == 0 || Mathf.Abs(unique[unique.Count - 1] - value) > 0.0001f)
+                {
+                    unique.Add(value);
+                }
+            }
+
+            return unique.ToArray();
+        }
+
+        private static void AddRuntimeRectEdges(
+            List<float> values,
+            Rect[] rects,
+            float amount,
+            float minimum,
+            float maximum,
+            bool xAxis,
+            bool inflate)
+        {
+            foreach (var source in rects)
+            {
+                var rect = inflate ? ShipMapGeometry.Inflate(source, amount) : ShipMapGeometry.Inset(source, amount);
+                var first = xAxis ? rect.xMin : rect.yMin;
+                var second = xAxis ? rect.xMax : rect.yMax;
+                if (first > minimum && first < maximum)
+                {
+                    values.Add(first);
+                }
+
+                if (second > minimum && second < maximum)
+                {
+                    values.Add(second);
+                }
+            }
+        }
+
+        private static int RuntimeCellIndex(int x, int y, int height)
+        {
+            return x * height + y;
         }
 
         private static ValidationCheck Check(string name, bool passed, string detail)
@@ -2154,6 +2394,38 @@ namespace AmongUsClone.Editor
         private static ValidationCheck Fail(string name, string detail)
         {
             return Check(name, false, detail);
+        }
+
+        private sealed class RuntimeGeometry
+        {
+            public readonly Rect[] RoomBounds;
+            public readonly Rect[] Corridors;
+            public readonly Rect[] Doorways;
+            public readonly Rect[] Obstacles;
+
+            public RuntimeGeometry(Rect[] roomBounds, Rect[] corridors, Rect[] doorways, Rect[] obstacles)
+            {
+                RoomBounds = roomBounds;
+                Corridors = corridors;
+                Doorways = doorways;
+                Obstacles = obstacles;
+            }
+        }
+
+        private readonly struct RuntimeReachability
+        {
+            public readonly int ReachableRoomCount;
+            public readonly int ReachableTaskCount;
+            public readonly string RoomDetail;
+            public readonly string TaskDetail;
+
+            public RuntimeReachability(int reachableRoomCount, int reachableTaskCount, string roomDetail, string taskDetail)
+            {
+                ReachableRoomCount = reachableRoomCount;
+                ReachableTaskCount = reachableTaskCount;
+                RoomDetail = roomDetail;
+                TaskDetail = taskDetail;
+            }
         }
     }
 
@@ -2173,6 +2445,7 @@ namespace AmongUsClone.Editor
         public readonly List<AstraObstacle> Obstacles = new List<AstraObstacle>();
         public RoomDefinition[] RuntimeRooms = Array.Empty<RoomDefinition>();
         public RectFeatureDefinition[] RuntimeCorridors = Array.Empty<RectFeatureDefinition>();
+        public RectFeatureDefinition[] RuntimeDoorways = Array.Empty<RectFeatureDefinition>();
         public RectFeatureDefinition[] RuntimeObstacles = Array.Empty<RectFeatureDefinition>();
         public PointFeatureDefinition[] NavigationWaypoints = Array.Empty<PointFeatureDefinition>();
         public PointFeatureDefinition[] SpawnPoints = Array.Empty<PointFeatureDefinition>();

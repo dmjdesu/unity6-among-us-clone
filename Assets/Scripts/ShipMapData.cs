@@ -35,6 +35,76 @@ namespace AmongUsClone
         }
     }
 
+    public static class ShipMapGeometry
+    {
+        public const float WalkableEdgeInset = 0.015f;
+
+        public static bool IsBlocked(
+            Vector2 position,
+            float radius,
+            Rect[] roomBounds,
+            Rect[] corridors,
+            Rect[] doorways,
+            Rect[] obstacles)
+        {
+            var inset = Mathf.Min(WalkableEdgeInset, Mathf.Max(0f, radius) * 0.1f);
+            if (!ContainsInset(roomBounds, position, inset) &&
+                !ContainsInset(corridors, position, inset) &&
+                !ContainsInset(doorways, position, inset))
+            {
+                return true;
+            }
+
+            if (obstacles == null)
+            {
+                return false;
+            }
+
+            foreach (var obstacle in obstacles)
+            {
+                if (Inflate(obstacle, radius).Contains(position))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public static Rect Inflate(Rect rect, float amount)
+        {
+            return new Rect(rect.xMin - amount, rect.yMin - amount, rect.width + amount * 2f, rect.height + amount * 2f);
+        }
+
+        public static Rect Inset(Rect rect, float amount)
+        {
+            var clampedAmount = Mathf.Clamp(amount, 0f, Mathf.Min(rect.width, rect.height) * 0.45f);
+            return new Rect(
+                rect.xMin + clampedAmount,
+                rect.yMin + clampedAmount,
+                rect.width - clampedAmount * 2f,
+                rect.height - clampedAmount * 2f);
+        }
+
+        private static bool ContainsInset(Rect[] rects, Vector2 position, float inset)
+        {
+            if (rects == null)
+            {
+                return false;
+            }
+
+            foreach (var rect in rects)
+            {
+                if (Inset(rect, inset).Contains(position))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+    }
+
     [Serializable]
     public struct Vector2Definition
     {

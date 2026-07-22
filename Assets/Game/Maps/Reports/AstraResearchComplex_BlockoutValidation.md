@@ -24,7 +24,8 @@ Overall: PASS
 | North-south routes >= 3 | PASS | routes=4 |
 | Dead-end rooms <= 1 | PASS | deadEnds=0 |
 | No graph bridge dependency | PASS | bridges= |
-| Cell walkability connected | PASS | BFS over generated floor cells |
+| Runtime player-radius reachability | PASS | 11/11 rooms reachable at radius 0.50 |
+| Runtime task points reachable | PASS | 22/22 task points reachable at radius 0.50 |
 | SpawnPoint count >= 15 | PASS | definition=15, scene=15 |
 | MeetingPoint count == 1 | PASS | definition=1, scene=1 |
 | TaskPoint count >= 22 | PASS | definition=22, scene=22 |

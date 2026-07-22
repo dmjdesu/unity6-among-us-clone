@@ -473,6 +473,11 @@ namespace AmongUsClone
 
             TaskDeadlineFailed = true;
             TaskFailureCutInEndsAt = cutInEndsAt;
+            if (MatchState == MatchState.Meeting)
+            {
+                ResumeAfterMeeting();
+            }
+
             ClearInteraction();
         }
 

@@ -409,7 +409,7 @@ namespace AmongUsClone
             }
 
             var localPlayer = _spawner.LocalPlayer;
-            if (localPlayer != null && localPlayer.MatchState == MatchState.Meeting)
+            if (localPlayer != null && localPlayer.MatchState == MatchState.Meeting && !localPlayer.TaskDeadlineFailed)
             {
                 SetControlRows(
                     "Vote: Click a player",
@@ -431,7 +431,10 @@ namespace AmongUsClone
         private void UpdateMeetingPanel()
         {
             var localPlayer = _spawner.LocalPlayer;
-            var inMeeting = _spawner.IsConnected && localPlayer != null && localPlayer.MatchState == MatchState.Meeting;
+            var inMeeting = _spawner.IsConnected &&
+                localPlayer != null &&
+                localPlayer.MatchState == MatchState.Meeting &&
+                !localPlayer.TaskDeadlineFailed;
             _meetingPanel.SetActive(inMeeting);
             if (!inMeeting)
             {

@@ -168,1080 +168,1080 @@
             "id": "corridor_cell_run_000",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 16.0,
-                "y": -47.0,
-                "width": 8.0,
-                "height": 1.0
+                "x": 15.95,
+                "y": -47.05,
+                "width": 8.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_001",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -4.0,
-                "y": -43.0,
-                "width": 4.0,
-                "height": 1.0
+                "x": -4.05,
+                "y": -43.05,
+                "width": 4.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_002",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 14.0,
-                "y": -46.0,
-                "width": 12.0,
-                "height": 4.0
+                "x": 13.95,
+                "y": -46.05,
+                "width": 12.1,
+                "height": 4.1
             }
         },
         {
             "id": "corridor_cell_run_003",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -5.0,
-                "y": -42.0,
-                "width": 5.0,
-                "height": 1.0
+                "x": -5.05,
+                "y": -42.05,
+                "width": 5.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_004",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 16.0,
-                "y": -42.0,
-                "width": 8.0,
-                "height": 1.0
+                "x": 15.95,
+                "y": -42.05,
+                "width": 8.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_005",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -7.0,
-                "y": -41.0,
-                "width": 7.0,
-                "height": 1.0
+                "x": -7.05,
+                "y": -41.05,
+                "width": 7.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_006",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -8.0,
-                "y": -40.0,
-                "width": 8.0,
-                "height": 1.0
+                "x": -8.05,
+                "y": -40.05,
+                "width": 8.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_007",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -9.0,
-                "y": -39.0,
-                "width": 8.0,
-                "height": 1.0
+                "x": -9.05,
+                "y": -39.05,
+                "width": 8.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_008",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 6.0,
-                "y": -38.0,
-                "width": 2.0,
-                "height": 1.0
+                "x": 5.95,
+                "y": -38.05,
+                "width": 2.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_009",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -9.0,
-                "y": -38.0,
-                "width": 7.0,
-                "height": 1.0
+                "x": -9.05,
+                "y": -38.05,
+                "width": 7.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_010",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -9.0,
-                "y": -37.0,
-                "width": 5.0,
-                "height": 1.0
+                "x": -9.05,
+                "y": -37.05,
+                "width": 5.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_011",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -9.0,
-                "y": -36.0,
-                "width": 4.0,
-                "height": 1.0
+                "x": -9.05,
+                "y": -36.05,
+                "width": 4.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_012",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 40.0,
-                "y": -35.0,
-                "width": 4.0,
-                "height": 1.0
+                "x": 39.95,
+                "y": -35.05,
+                "width": 4.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_013",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 40.0,
-                "y": -34.0,
-                "width": 5.0,
-                "height": 2.0
+                "x": 39.95,
+                "y": -34.05,
+                "width": 5.1,
+                "height": 2.1
             }
         },
         {
             "id": "corridor_cell_run_014",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 40.0,
-                "y": -32.0,
-                "width": 6.0,
-                "height": 1.0
+                "x": 39.95,
+                "y": -32.05,
+                "width": 6.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_015",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 41.0,
-                "y": -31.0,
-                "width": 6.0,
-                "height": 2.0
+                "x": 40.95,
+                "y": -31.05,
+                "width": 6.1,
+                "height": 2.1
             }
         },
         {
             "id": "corridor_cell_run_016",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -36.0,
-                "y": -29.0,
-                "width": 4.0,
-                "height": 1.0
+                "x": -36.05,
+                "y": -29.05,
+                "width": 4.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_017",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 42.0,
-                "y": -29.0,
-                "width": 6.0,
-                "height": 1.0
+                "x": 41.95,
+                "y": -29.05,
+                "width": 6.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_018",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -37.0,
-                "y": -28.0,
-                "width": 5.0,
-                "height": 1.0
+                "x": -37.05,
+                "y": -28.05,
+                "width": 5.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_019",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -39.0,
-                "y": -27.0,
-                "width": 7.0,
-                "height": 1.0
+                "x": -39.05,
+                "y": -27.05,
+                "width": 7.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_020",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 43.0,
-                "y": -28.0,
-                "width": 5.0,
-                "height": 2.0
+                "x": 42.95,
+                "y": -28.05,
+                "width": 5.1,
+                "height": 2.1
             }
         },
         {
             "id": "corridor_cell_run_021",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 44.0,
-                "y": -26.0,
-                "width": 4.0,
-                "height": 1.0
+                "x": 43.95,
+                "y": -26.05,
+                "width": 4.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_022",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -40.0,
-                "y": -26.0,
-                "width": 8.0,
-                "height": 1.0
+                "x": -40.05,
+                "y": -26.05,
+                "width": 8.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_023",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -41.0,
-                "y": -25.0,
-                "width": 8.0,
-                "height": 1.0
+                "x": -41.05,
+                "y": -25.05,
+                "width": 8.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_024",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -41.0,
-                "y": -24.0,
-                "width": 7.0,
-                "height": 1.0
+                "x": -41.05,
+                "y": -24.05,
+                "width": 7.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_025",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -41.0,
-                "y": -23.0,
-                "width": 5.0,
-                "height": 1.0
+                "x": -41.05,
+                "y": -23.05,
+                "width": 5.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_026",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -41.0,
-                "y": -22.0,
-                "width": 4.0,
-                "height": 1.0
+                "x": -41.05,
+                "y": -22.05,
+                "width": 4.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_027",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -14.0,
-                "y": -21.0,
-                "width": 4.0,
-                "height": 1.0
+                "x": -14.05,
+                "y": -21.05,
+                "width": 4.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_028",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 5.0,
-                "y": -37.0,
-                "width": 4.0,
-                "height": 18.0
+                "x": 4.95,
+                "y": -37.05,
+                "width": 4.1,
+                "height": 18.1
             }
         },
         {
             "id": "corridor_cell_run_029",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -15.0,
-                "y": -20.0,
-                "width": 6.0,
-                "height": 2.0
+                "x": -15.05,
+                "y": -20.05,
+                "width": 6.1,
+                "height": 2.1
             }
         },
         {
             "id": "corridor_cell_run_030",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 4.0,
-                "y": -19.0,
-                "width": 5.0,
-                "height": 1.0
+                "x": 3.95,
+                "y": -19.05,
+                "width": 5.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_031",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -15.0,
-                "y": -18.0,
-                "width": 7.0,
-                "height": 1.0
+                "x": -15.05,
+                "y": -18.05,
+                "width": 7.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_032",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -15.0,
-                "y": -17.0,
-                "width": 8.0,
-                "height": 1.0
+                "x": -15.05,
+                "y": -17.05,
+                "width": 8.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_033",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -40.0,
-                "y": -16.0,
-                "width": 4.0,
-                "height": 1.0
+                "x": -40.05,
+                "y": -16.05,
+                "width": 4.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_034",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -14.0,
-                "y": -16.0,
-                "width": 8.0,
-                "height": 1.0
+                "x": -14.05,
+                "y": -16.05,
+                "width": 8.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_035",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -13.0,
-                "y": -15.0,
-                "width": 8.0,
-                "height": 1.0
+                "x": -13.05,
+                "y": -15.05,
+                "width": 8.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_036",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -40.0,
-                "y": -15.0,
-                "width": 7.0,
-                "height": 1.0
+                "x": -40.05,
+                "y": -15.05,
+                "width": 7.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_037",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -12.0,
-                "y": -14.0,
-                "width": 8.0,
-                "height": 1.0
+                "x": -12.05,
+                "y": -14.05,
+                "width": 8.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_038",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -39.0,
-                "y": -14.0,
-                "width": 9.0,
-                "height": 1.0
+                "x": -39.05,
+                "y": -14.05,
+                "width": 9.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_039",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -11.0,
-                "y": -13.0,
-                "width": 7.0,
-                "height": 1.0
+                "x": -11.05,
+                "y": -13.05,
+                "width": 7.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_040",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -36.0,
-                "y": -13.0,
-                "width": 8.0,
-                "height": 1.0
+                "x": -36.05,
+                "y": -13.05,
+                "width": 8.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_041",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -34.0,
-                "y": -12.0,
-                "width": 9.0,
-                "height": 1.0
+                "x": -34.05,
+                "y": -12.05,
+                "width": 9.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_042",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 4.0,
-                "y": -18.0,
-                "width": 4.0,
-                "height": 7.0
+                "x": 3.95,
+                "y": -18.05,
+                "width": 4.1,
+                "height": 7.1
             }
         },
         {
             "id": "corridor_cell_run_043",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 5.0,
-                "y": -11.0,
-                "width": 2.0,
-                "height": 1.0
+                "x": 4.95,
+                "y": -11.05,
+                "width": 2.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_044",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -52.0,
-                "y": -12.0,
-                "width": 4.0,
-                "height": 2.0
+                "x": -52.05,
+                "y": -12.05,
+                "width": 4.1,
+                "height": 2.1
             }
         },
         {
             "id": "corridor_cell_run_045",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -31.0,
-                "y": -11.0,
-                "width": 9.0,
-                "height": 1.0
+                "x": -31.05,
+                "y": -11.05,
+                "width": 9.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_046",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -10.0,
-                "y": -12.0,
-                "width": 6.0,
-                "height": 2.0
+                "x": -10.05,
+                "y": -12.05,
+                "width": 6.1,
+                "height": 2.1
             }
         },
         {
             "id": "corridor_cell_run_047",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -28.0,
-                "y": -10.0,
-                "width": 8.0,
-                "height": 1.0
+                "x": -28.05,
+                "y": -10.05,
+                "width": 8.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_048",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -9.0,
-                "y": -10.0,
-                "width": 4.0,
-                "height": 1.0
+                "x": -9.05,
+                "y": -10.05,
+                "width": 4.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_049",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -25.0,
-                "y": -9.0,
-                "width": 7.0,
-                "height": 1.0
+                "x": -25.05,
+                "y": -9.05,
+                "width": 7.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_050",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 48.0,
-                "y": -10.0,
-                "width": 4.0,
-                "height": 2.0
+                "x": 47.95,
+                "y": -10.05,
+                "width": 4.1,
+                "height": 2.1
             }
         },
         {
             "id": "corridor_cell_run_051",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -23.0,
-                "y": -8.0,
-                "width": 7.0,
-                "height": 1.0
+                "x": -23.05,
+                "y": -8.05,
+                "width": 7.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_052",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -21.0,
-                "y": -7.0,
-                "width": 6.0,
-                "height": 1.0
+                "x": -21.05,
+                "y": -7.05,
+                "width": 6.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_053",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -19.0,
-                "y": -6.0,
-                "width": 4.0,
-                "height": 1.0
+                "x": -19.05,
+                "y": -6.05,
+                "width": 4.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_054",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -52.0,
-                "y": -10.0,
-                "width": 5.0,
-                "height": 13.0
+                "x": -52.05,
+                "y": -10.05,
+                "width": 5.1,
+                "height": 13.1
             }
         },
         {
             "id": "corridor_cell_run_055",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 47.0,
-                "y": -8.0,
-                "width": 6.0,
-                "height": 12.0
+                "x": 46.95,
+                "y": -8.05,
+                "width": 6.1,
+                "height": 12.1
             }
         },
         {
             "id": "corridor_cell_run_056",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -21.0,
-                "y": 4.0,
-                "width": 7.0,
-                "height": 1.0
+                "x": -21.05,
+                "y": 3.95,
+                "width": 7.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_057",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -51.0,
-                "y": 3.0,
-                "width": 4.0,
-                "height": 2.0
+                "x": -51.05,
+                "y": 2.95,
+                "width": 4.1,
+                "height": 2.1
             }
         },
         {
             "id": "corridor_cell_run_058",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 14.0,
-                "y": 4.0,
-                "width": 7.0,
-                "height": 1.0
+                "x": 13.95,
+                "y": 3.95,
+                "width": 7.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_059",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -26.0,
-                "y": 5.0,
-                "width": 12.0,
-                "height": 1.0
+                "x": -26.05,
+                "y": 4.95,
+                "width": 12.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_060",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 14.0,
-                "y": 5.0,
-                "width": 12.0,
-                "height": 1.0
+                "x": 13.95,
+                "y": 4.95,
+                "width": 12.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_061",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 48.0,
-                "y": 4.0,
-                "width": 4.0,
-                "height": 2.0
+                "x": 47.95,
+                "y": 3.95,
+                "width": 4.1,
+                "height": 2.1
             }
         },
         {
             "id": "corridor_cell_run_062",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 14.0,
-                "y": 6.0,
-                "width": 17.0,
-                "height": 1.0
+                "x": 13.95,
+                "y": 5.95,
+                "width": 17.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_063",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -30.0,
-                "y": 6.0,
-                "width": 16.0,
-                "height": 1.0
+                "x": -30.05,
+                "y": 5.95,
+                "width": 16.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_064",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 14.0,
-                "y": 7.0,
-                "width": 27.0,
-                "height": 1.0
+                "x": 13.95,
+                "y": 6.95,
+                "width": 27.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_065",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -37.0,
-                "y": 7.0,
-                "width": 23.0,
-                "height": 1.0
+                "x": -37.05,
+                "y": 6.95,
+                "width": 23.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_066",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 16.0,
-                "y": 8.0,
-                "width": 27.0,
-                "height": 1.0
+                "x": 15.95,
+                "y": 7.95,
+                "width": 27.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_067",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -39.0,
-                "y": 8.0,
-                "width": 23.0,
-                "height": 1.0
+                "x": -39.05,
+                "y": 7.95,
+                "width": 23.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_068",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 21.0,
-                "y": 9.0,
-                "width": 22.0,
-                "height": 1.0
+                "x": 20.95,
+                "y": 8.95,
+                "width": 22.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_069",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -39.0,
-                "y": 9.0,
-                "width": 19.0,
-                "height": 1.0
+                "x": -39.05,
+                "y": 8.95,
+                "width": 19.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_070",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 26.0,
-                "y": 10.0,
-                "width": 17.0,
-                "height": 1.0
+                "x": 25.95,
+                "y": 9.95,
+                "width": 17.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_071",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -39.0,
-                "y": 10.0,
-                "width": 14.0,
-                "height": 1.0
+                "x": -39.05,
+                "y": 9.95,
+                "width": 14.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_072",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 31.0,
-                "y": 11.0,
-                "width": 12.0,
-                "height": 1.0
+                "x": 30.95,
+                "y": 10.95,
+                "width": 12.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_073",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -39.0,
-                "y": 11.0,
-                "width": 9.0,
-                "height": 1.0
+                "x": -39.05,
+                "y": 10.95,
+                "width": 9.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_074",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 45.0,
-                "y": 18.0,
-                "width": 4.0,
-                "height": 1.0
+                "x": 44.95,
+                "y": 17.95,
+                "width": 4.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_075",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -48.0,
-                "y": 18.0,
-                "width": 4.0,
-                "height": 2.0
+                "x": -48.05,
+                "y": 17.95,
+                "width": 4.1,
+                "height": 2.1
             }
         },
         {
             "id": "corridor_cell_run_076",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 44.0,
-                "y": 19.0,
-                "width": 5.0,
-                "height": 2.0
+                "x": 43.95,
+                "y": 18.95,
+                "width": 5.1,
+                "height": 2.1
             }
         },
         {
             "id": "corridor_cell_run_077",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 43.0,
-                "y": 21.0,
-                "width": 6.0,
-                "height": 1.0
+                "x": 42.95,
+                "y": 20.95,
+                "width": 6.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_078",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 42.0,
-                "y": 22.0,
-                "width": 6.0,
-                "height": 2.0
+                "x": 41.95,
+                "y": 21.95,
+                "width": 6.1,
+                "height": 2.1
             }
         },
         {
             "id": "corridor_cell_run_079",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -48.0,
-                "y": 20.0,
-                "width": 5.0,
-                "height": 4.0
+                "x": -48.05,
+                "y": 19.95,
+                "width": 5.1,
+                "height": 4.1
             }
         },
         {
             "id": "corridor_cell_run_080",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 41.0,
-                "y": 24.0,
-                "width": 6.0,
-                "height": 2.0
+                "x": 40.95,
+                "y": 23.95,
+                "width": 6.1,
+                "height": 2.1
             }
         },
         {
             "id": "corridor_cell_run_081",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 40.0,
-                "y": 26.0,
-                "width": 6.0,
-                "height": 1.0
+                "x": 39.95,
+                "y": 25.95,
+                "width": 6.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_082",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -47.0,
-                "y": 24.0,
-                "width": 5.0,
-                "height": 4.0
+                "x": -47.05,
+                "y": 23.95,
+                "width": 5.1,
+                "height": 4.1
             }
         },
         {
             "id": "corridor_cell_run_083",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 40.0,
-                "y": 27.0,
-                "width": 5.0,
-                "height": 2.0
+                "x": 39.95,
+                "y": 26.95,
+                "width": 5.1,
+                "height": 2.1
             }
         },
         {
             "id": "corridor_cell_run_084",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -46.0,
-                "y": 28.0,
-                "width": 4.0,
-                "height": 2.0
+                "x": -46.05,
+                "y": 27.95,
+                "width": 4.1,
+                "height": 2.1
             }
         },
         {
             "id": "corridor_cell_run_085",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 40.0,
-                "y": 29.0,
-                "width": 4.0,
-                "height": 1.0
+                "x": 39.95,
+                "y": 28.95,
+                "width": 4.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_086",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -13.0,
-                "y": 30.0,
-                "width": 39.0,
-                "height": 1.0
+                "x": -13.05,
+                "y": 29.95,
+                "width": 39.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_087",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -25.0,
-                "y": 31.0,
-                "width": 52.0,
-                "height": 1.0
+                "x": -25.05,
+                "y": 30.95,
+                "width": 52.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_088",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -26.0,
-                "y": 32.0,
-                "width": 53.0,
-                "height": 1.0
+                "x": -26.05,
+                "y": 31.95,
+                "width": 53.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_089",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -26.0,
-                "y": 33.0,
-                "width": 14.0,
-                "height": 1.0
+                "x": -26.05,
+                "y": 32.95,
+                "width": 14.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_090",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 22.0,
-                "y": 38.0,
-                "width": 5.0,
-                "height": 1.0
+                "x": 21.95,
+                "y": 37.95,
+                "width": 5.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_091",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 20.0,
-                "y": 39.0,
-                "width": 7.0,
-                "height": 1.0
+                "x": 19.95,
+                "y": 38.95,
+                "width": 7.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_092",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -27.0,
-                "y": 40.0,
-                "width": 6.0,
-                "height": 1.0
+                "x": -27.05,
+                "y": 39.95,
+                "width": 6.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_093",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 17.0,
-                "y": 40.0,
-                "width": 10.0,
-                "height": 1.0
+                "x": 16.95,
+                "y": 39.95,
+                "width": 10.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_094",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 15.0,
-                "y": 41.0,
-                "width": 12.0,
-                "height": 1.0
+                "x": 14.95,
+                "y": 40.95,
+                "width": 12.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_095",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -27.0,
-                "y": 41.0,
-                "width": 10.0,
-                "height": 1.0
+                "x": -27.05,
+                "y": 40.95,
+                "width": 10.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_096",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 12.0,
-                "y": 42.0,
-                "width": 13.0,
-                "height": 1.0
+                "x": 11.95,
+                "y": 41.95,
+                "width": 13.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_097",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -27.0,
-                "y": 42.0,
-                "width": 14.0,
-                "height": 1.0
+                "x": -27.05,
+                "y": 41.95,
+                "width": 14.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_098",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 10.0,
-                "y": 43.0,
-                "width": 13.0,
-                "height": 1.0
+                "x": 9.95,
+                "y": 42.95,
+                "width": 13.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_099",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -27.0,
-                "y": 43.0,
-                "width": 17.0,
-                "height": 1.0
+                "x": -27.05,
+                "y": 42.95,
+                "width": 17.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_100",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 8.0,
-                "y": 44.0,
-                "width": 12.0,
-                "height": 1.0
+                "x": 7.95,
+                "y": 43.95,
+                "width": 12.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_101",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -25.0,
-                "y": 44.0,
-                "width": 17.0,
-                "height": 1.0
+                "x": -25.05,
+                "y": 43.95,
+                "width": 17.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_102",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 8.0,
-                "y": 45.0,
-                "width": 10.0,
-                "height": 1.0
+                "x": 7.95,
+                "y": 44.95,
+                "width": 10.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_103",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -22.0,
-                "y": 45.0,
-                "width": 14.0,
-                "height": 1.0
+                "x": -22.05,
+                "y": 44.95,
+                "width": 14.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_104",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 8.0,
-                "y": 46.0,
-                "width": 7.0,
-                "height": 1.0
+                "x": 7.95,
+                "y": 45.95,
+                "width": 7.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_105",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -18.0,
-                "y": 46.0,
-                "width": 10.0,
-                "height": 1.0
+                "x": -18.05,
+                "y": 45.95,
+                "width": 10.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_106",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": 8.0,
-                "y": 47.0,
-                "width": 5.0,
-                "height": 1.0
+                "x": 7.95,
+                "y": 46.95,
+                "width": 5.1,
+                "height": 1.1
             }
         },
         {
             "id": "corridor_cell_run_107",
             "displayName": "Astra Corridor",
             "bounds": {
-                "x": -14.0,
-                "y": 47.0,
-                "width": 6.0,
-                "height": 1.0
+                "x": -14.05,
+                "y": 46.95,
+                "width": 6.1,
+                "height": 1.1
             }
         }
     ],
